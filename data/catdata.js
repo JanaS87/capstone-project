@@ -1,4 +1,4 @@
-const cats = [
+export const cats = [
   {
     id: "1",
     name: "Luna",
@@ -40,5 +40,3 @@ const cats = [
     badAcceptance: "MjamMjam",
   },
 ];
-
-export default cats;

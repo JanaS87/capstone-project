@@ -7,8 +7,11 @@ export default createGlobalStyle`
     box-sizing: border-box;
   }
 
-  body {
+  @media (max-width: 320px) {
+    body {
     margin: 0;
     font-family: system-ui;
   }
+  }
+
 `;
