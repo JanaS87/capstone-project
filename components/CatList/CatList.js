@@ -5,14 +5,34 @@ import { styled } from "styled-components";
 export default function CatList() {
   return (
     <>
-      <ul>
+      <StyledHeading>Your Cats🐾</StyledHeading>
+      <StyledList>
         {cats &&
           cats.map((cat) => (
-            <li key={cat.id}>
+            <ListItem key={cat.id}>
               <CatCard cat={cat} />
-            </li>
+            </ListItem>
           ))}
-      </ul>
+      </StyledList>
     </>
   );
 }
+
+const StyledList = styled.ul`
+  list-style-type: none;
+  display: grid;
+  padding-left: 0;
+  gap: 1rem;
+`;
+
+const ListItem = styled.li`
+  padding: 0.5rem 1rem;
+  box-shadow: 0px 1px 5px -2px #ff6d60;
+  border-radius: 10px/20px;
+  font-size: 1.3em;
+  background-color: white;
+`;
+
+const StyledHeading = styled.h1`
+  margin-left: 5%;
+`;

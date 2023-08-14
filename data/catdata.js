@@ -2,7 +2,7 @@ export const cats = [
   {
     id: "1",
     name: "Luna",
-    age: "5",
+    age: 5,
     allergies: "",
     diseases: "",
     intolerances: "",
@@ -12,7 +12,7 @@ export const cats = [
   {
     id: "2",
     name: "Walter",
-    age: "10",
+    age: 10,
     allergies: "",
     diseases: "diabetes",
     intolerances: "gluten",
@@ -22,7 +22,7 @@ export const cats = [
   {
     id: "3",
     name: "Harley",
-    age: "3",
+    age: 3,
     allergies: "",
     diseases: "",
     intolerances: "",
@@ -32,7 +32,7 @@ export const cats = [
   {
     id: "4",
     name: "Davidson",
-    age: "3",
+    age: 3,
     allergies: "",
     diseases: "intestine problems",
     intolerances: "",
