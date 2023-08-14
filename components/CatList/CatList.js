@@ -31,6 +31,9 @@ const ListItem = styled.li`
   border-radius: 10px/20px;
   font-size: 1.3em;
   background-color: white;
+  h3 {
+    background-color: white;
+  }
 `;
 
 const StyledHeading = styled.h1`
