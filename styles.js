@@ -5,10 +5,15 @@ export default createGlobalStyle`
   *::before,
   *::after {
     box-sizing: border-box;
+    background-color:#F3E99F;
   }
 
-  body {
+  @media (max-width: 320px) {
+    body {
+    
     margin: 0;
     font-family: system-ui;
   }
+  }
+
 `;
