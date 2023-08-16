@@ -7,7 +7,8 @@ export default function Button() {
 
 const StyledLink = styled(Link)`
   padding: 16px 42px;
-  border-radius: 3px;
+  margin-left: 0;
+  border-radius: 10px/20px;
   box-shadow: 0px 0px 12px -2px rgba(0, 0, 0, 0.5);
   line-height: 1.25;
   background: #fc6e51;
@@ -19,4 +20,5 @@ const StyledLink = styled(Link)`
   position: relative;
   transition: background-color 0.6s ease;
   overflow: hidden;
+  cursor: pointer;
 `;

@@ -17,6 +17,7 @@ const CatDetail = () => {
   // if cat is not found
   if (!cat) return <p>Cat not found</p>;
 
+  // passing the label and the respective data object
   const allergies = formatObjectValues("Allergies", cat.allergies);
   const diseases = formatObjectValues("Diseases", cat.diseases);
   const intolerances = formatObjectValues("Intolerances", cat.intolerances);
@@ -30,11 +31,11 @@ const CatDetail = () => {
             <strong>Age:</strong> <span>{cat.age}</span>
           </p>
           <h4>Allergies, Diseases, Intolerances:</h4>
-          <p>
+          <div>
             {allergies && <p>{allergies}</p>}
             {diseases && <p>{diseases}</p>}
             {intolerances && <p>{intolerances}</p>}
-          </p>
+          </div>
           <h4>Good Acceptance: </h4>
           <p>{cat.goodAcceptance}</p>
           <h4>Bad Acceptance: </h4>
@@ -62,7 +63,8 @@ const StyledWrapper = styled.div`
     background-color: white;
   }
 
-  strong {
+  strong,
+  div {
     background-color: white;
   }
 `;

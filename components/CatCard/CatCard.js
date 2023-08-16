@@ -1,9 +1,14 @@
 import Link from "next/link";
+import styled from "styled-components";
 
 export default function CatCard({ cat }) {
   return (
-    <Link href={`/cats/${cat.id}`}>
+    <StyledLink href={`/cats/${cat.id}`}>
       <h3>{cat.name}</h3>
-    </Link>
+    </StyledLink>
   );
 }
+
+const StyledLink = styled(Link)`
+  cursor: pointer;
+`;
