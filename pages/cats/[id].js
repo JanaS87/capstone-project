@@ -26,16 +26,18 @@ const CatDetail = () => {
       <StyledHeading>{cat.name}</StyledHeading>
       <StyledWrapper>
         <StyledSection>
-          <h3>Age: </h3> <p>{cat.age}</p>
-          <h3>Allergies, Diseases, Intolerances:</h3>
+          <p>
+            <strong>Age:</strong> <span>{cat.age}</span>
+          </p>
+          <h4>Allergies, Diseases, Intolerances:</h4>
           <p>
             {allergies && <p>{allergies}</p>}
             {diseases && <p>{diseases}</p>}
             {intolerances && <p>{intolerances}</p>}
           </p>
-          <h3>Good Acceptance: </h3>
+          <h4>Good Acceptance: </h4>
           <p>{cat.goodAcceptance}</p>
-          <h3>Bad Acceptance: </h3>
+          <h4>Bad Acceptance: </h4>
           <p>{cat.badAcceptance}</p>
         </StyledSection>
       </StyledWrapper>
@@ -53,9 +55,16 @@ const StyledHeading = styled.h1`
 const StyledWrapper = styled.div`
   max-width: 65%;
   list-style-type: none;
-  display: grid;
-  padding-left: 0;
-  margin-bottom: 8%;
+  margin-bottom: 1.3rem;
+
+  span {
+    margin-left: 0.5rem;
+    background-color: white;
+  }
+
+  strong {
+    background-color: white;
+  }
 `;
 
 const StyledSection = styled.section`
@@ -67,8 +76,9 @@ const StyledSection = styled.section`
   font-size: 1.3em;
   background-color: white;
 
-  h3,
+  h4,
   p {
     background-color: white;
+    margin: 0.8rem 0.4rem;
   }
 `;
