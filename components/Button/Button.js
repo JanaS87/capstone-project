@@ -2,7 +2,7 @@ import Link from "next/link";
 import styled from "styled-components";
 
 export default function Button() {
-  return <StyledLink href={"/"}>Back</StyledLink>;
+  return <StyledLink href={"/"}></StyledLink>;
 }
 
 const StyledLink = styled(Link)`

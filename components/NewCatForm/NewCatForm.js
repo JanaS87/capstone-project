@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import Select from "react-select";
 import { cats } from "@/data/catdata";
+import { dblClick } from "@testing-library/user-event/dist/types/convenience";
+import Button from "../Button/Button";
 
 export default function NewCatForm({ onAddCat }) {
   const [catList, setCatList] = useState(cats);
@@ -83,6 +85,7 @@ export default function NewCatForm({ onAddCat }) {
         maxLength={50}
         onChange={handleChange}
       />
+      <button type="submit">Save</button>
     </form>
   );
 }
