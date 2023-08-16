@@ -24,7 +24,7 @@ const CatDetail = () => {
 
   return (
     <>
-      <StyledHeading>{cat.name}</StyledHeading>
+      <StyledHead>{cat.name}</StyledHead>
       <StyledWrapper>
         <StyledSection>
           <p>
@@ -49,7 +49,7 @@ const CatDetail = () => {
 
 export default CatDetail;
 
-const StyledHeading = styled.h1`
+const StyledHead = styled.h1`
   margin-left: 5%;
 `;
 

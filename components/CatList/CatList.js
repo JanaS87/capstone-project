@@ -5,7 +5,7 @@ import { styled } from "styled-components";
 export default function CatList() {
   return (
     <>
-      <StyledHeading>Your Cats🐾</StyledHeading>
+      <StyledHeading>Your Cats</StyledHeading>
       <StyledList>
         {cats &&
           cats.map((cat) => (
