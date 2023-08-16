@@ -1,11 +1,10 @@
-import Link from "next/link";
 import styled from "styled-components";
 
 export default function Button() {
-  return <StyledLink href={"/"}></StyledLink>;
+  return <StyledButton></StyledButton>;
 }
 
-const StyledLink = styled(Link)`
+const StyledButton = styled.button`
   padding: 16px 42px;
   margin-left: 0;
   border-radius: 10px/20px;
@@ -13,12 +12,9 @@ const StyledLink = styled(Link)`
   line-height: 1.25;
   background: #fc6e51;
   text-decoration: none;
-  color: white;
+  color: black;
   font-size: 16px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  position: relative;
-  transition: background-color 0.6s ease;
-  overflow: hidden;
   cursor: pointer;
 `;

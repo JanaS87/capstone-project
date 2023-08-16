@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import NewCatForm from "../components/NewCatForm/NewCatForm";
 import Button from "@/components/Button/Button";
+import { cats } from "@/data/catdata";
+import Link from "next/link";
 
 export default function NewCat() {
   const [catList, setCatList] = useState(cats);
@@ -14,7 +16,9 @@ export default function NewCat() {
     <>
       <h1>Add a new cat</h1>
       <NewCatForm onAddCat={handleAddCat} />
-      <Button>Back</Button>
+      <Link href={"/"}>
+        <Button>Back</Button>
+      </Link>
     </>
   );
 }

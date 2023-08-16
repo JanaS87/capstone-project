@@ -3,6 +3,7 @@ import Button from "@/components/Button/Button";
 import { useRouter } from "next/router";
 import { formatObjectValues } from "@/utils/objectHelper";
 import styled from "styled-components";
+import Link from "next/link";
 
 const CatDetail = () => {
   const router = useRouter();
@@ -42,7 +43,9 @@ const CatDetail = () => {
           <p>{cat.badAcceptance}</p>
         </StyledSection>
       </StyledWrapper>
-      <Button>Back</Button>
+      <Link href={"/"}>
+        <Button>Back</Button>
+      </Link>
     </>
   );
 };

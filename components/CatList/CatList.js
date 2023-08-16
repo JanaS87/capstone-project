@@ -1,11 +1,16 @@
 import { cats } from "../../data/catdata";
 import CatCard from "../CatCard/CatCard.js";
 import { styled } from "styled-components";
+import Link from "next/link";
+import Button from "../Button/Button";
 
 export default function CatList() {
   return (
     <>
       <StyledHeading>Your Cats</StyledHeading>
+      <Link href={"/newcat"}>
+        <Button>Add New Cat</Button>
+      </Link>
       <StyledList>
         {cats &&
           cats.map((cat) => (
