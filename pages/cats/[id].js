@@ -1,5 +1,5 @@
 import { cats } from "@/data/catdata";
-import Link from "next/link";
+import Button from "@/components/Button/Button";
 import { useRouter } from "next/router";
 
 const CatDetail = () => {
@@ -35,6 +35,7 @@ const CatDetail = () => {
         <p>Bad Acceptance: </p>
         <p>{cat.badAcceptance}</p>
       </section>
+      <Button />
     </>
   );
 };

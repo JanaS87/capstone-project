@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Button() {
-  return <button>Back</button>;
+  return <Link href={"/"}>Back</Link>;
 }
