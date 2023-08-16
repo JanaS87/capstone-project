@@ -19,6 +19,7 @@ export default function CatList() {
 }
 
 const StyledList = styled.ul`
+  max-width: 65%;
   list-style-type: none;
   display: grid;
   padding-left: 0;

@@ -29,9 +29,9 @@ const CatDetail = () => {
           <h3>Age: </h3> <p>{cat.age}</p>
           <h3>Allergies, Diseases, Intolerances:</h3>
           <p>
-            {allergies && <p>(cat.allergies)</p>}
-            {diseases && <p>(cat.diseases)</p>}
-            {intolerances && <p>(cat.intolerances)</p>}
+            {allergies && <p>{allergies}</p>}
+            {diseases && <p>{diseases}</p>}
+            {intolerances && <p>{intolerances}</p>}
           </p>
           <h3>Good Acceptance: </h3>
           <p>{cat.goodAcceptance}</p>
@@ -55,7 +55,7 @@ const StyledWrapper = styled.div`
   list-style-type: none;
   display: grid;
   padding-left: 0;
-  margin-bottom: 10%;
+  margin-bottom: 8%;
 `;
 
 const StyledSection = styled.section`

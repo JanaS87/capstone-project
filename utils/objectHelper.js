@@ -1,14 +1,8 @@
-export function formatObjectValues(obj) {
-  if (typeof obj !== "object" || obj === null) {
-    console.warn("The provided value is not an object:", obj);
+export function formatObjectValues(label, value) {
+  if (typeof value !== "string") {
+    console.warn("The provided value is not a string:", value);
     return "";
   }
 
-  const values = Object.values(obj)
-    .filter(
-      (value) => value && typeof value === "string" && value.trim() !== ""
-    )
-    .join(", ");
-
-  return values ? `${key}: ${values}` : "";
+  return value.trim() !== "" ? `${label}: ${value}` : "";
 }
