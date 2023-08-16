@@ -42,7 +42,7 @@ const CatDetail = () => {
           <p>{cat.badAcceptance}</p>
         </StyledSection>
       </StyledWrapper>
-      <Button />
+      <Button>Back</Button>
     </>
   );
 };
