@@ -11,4 +11,5 @@ export default function CatCard({ cat }) {
 
 const StyledLink = styled(Link)`
   cursor: pointer;
+  text-decoration: none;
 `;
