@@ -64,6 +64,15 @@ export default function NewCatForm({ onAddCat }) {
   function handleChange(event) {
     setCat({ ...cat, [event.target.name]: event.target.value });
   }
+  // you can only enter two numbers (only Gandalf can be older than the time itself!)
+  function handleAgeChange(event) {
+    const ageValue = event.target.value;
+    if (ageValue.length > 2) {
+      setCat({ ...cat, age: ageValue.slice(0, 2) });
+    } else {
+      setCat({ ...cat, age: ageValue });
+    }
+  }
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -77,6 +86,7 @@ export default function NewCatForm({ onAddCat }) {
     // add new cat to the list
     onAddCat(newCat);
 
+    console.log();
     setCatList([...catList, newCat]);
 
     event.target.reset();
@@ -86,11 +96,11 @@ export default function NewCatForm({ onAddCat }) {
     <StyledForm onSubmit={handleSubmit}>
       <StyledInputGroup>
         <label htmlFor="name">Name: </label>
-        <input
+        <TextInput
           type="text"
           name="name"
           value={cat.name}
-          maxLength={50}
+          maxLength={8}
           onChange={handleChange}
         />
 
@@ -99,9 +109,10 @@ export default function NewCatForm({ onAddCat }) {
           type="number"
           name="age"
           value={cat.age}
-          maxLength={2}
+          min={1}
+          max={2}
           className="ageInput"
-          onChange={handleChange}
+          onChange={handleAgeChange}
         />
       </StyledInputGroup>
 
@@ -170,6 +181,10 @@ const AgeInput = styled.input`
   width: 50px;
 `;
 
+const TextInput = styled.input`
+  width: 75px;
+`;
+
 const StyledInputGroup = styled.div`
   display: flex;
   background-color: white;
@@ -177,7 +192,7 @@ const StyledInputGroup = styled.div`
 `;
 
 const StyledForm = styled.form`
-  max-width: 75%;
+  max-width: 85%;
   display: flex;
   flex-direction: column;
   padding: 0.5rem 1rem;
