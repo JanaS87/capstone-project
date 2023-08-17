@@ -24,32 +24,41 @@ export default function NewCatForm({ onAddCat }) {
     label: food.brand + ` - ` + food.variety,
   }));
 
-  const [selectedCatFood, setSelectedCatFood] = useState(null);
+  const [selectedGoodFood, setSelectedGoodFood] = useState(null);
+  const [selectedBadFood, setSelectedBadFood] = useState(null);
 
   // any cat food is selected
-  function handleCatFoodChange(selectedOption) {
-    setSelectedCatFood(selectedOption);
+  function handleGoodFoodChange(selectedOption) {
+    setSelectedGoodFood(selectedOption);
+  }
+
+  function handleBadFoodChange(selectedOption) {
+    setSelectedBadFood(selectedOption);
   }
 
   // state to save the chosen food to show it below the drop down
-  const [addedCatFood, setAddedCatFood] = useState([]);
+  const [addedGoodFood, setAddedGoodFood] = useState([]);
+  const [addedBadFood, setAddedBadFood] = useState([]);
 
   // add the chosen food to the list, if it´s not already in it.
   // checking this with some()
-  function handleAddCatFood() {
+  function handleAddGoodFood() {
     if (
-      selectedCatFood &&
-      !addedCatFood.some((food) => food.value === selectedCatFood.value)
+      selectedGoodFood &&
+      !addedGoodFood.some((food) => food.value === selectedGoodFood.value)
     ) {
-      setAddedCatFood([...addedCatFood, selectedCatFood]);
+      setAddedGoodFood([...addedGoodFood, selectedGoodFood]);
     }
   }
 
-  /* function handleAddFood() {
-    if (selectedCatFood) {
-      console.log("Added Cat food: ", selectedCatFood);
+  function handleAddBadFood() {
+    if (
+      selectedBadFood &&
+      !addedBadFood.some((food) => food.value === selectedBadFood.value)
+    ) {
+      setAddedBadFood([...addedBadFood, selectedBadFood]);
     }
-  } */
+  }
 
   // updates the cat- state object when an input field changes
   function handleChange(event) {
@@ -76,19 +85,19 @@ export default function NewCatForm({ onAddCat }) {
   return (
     <StyledForm onSubmit={handleSubmit}>
       <StyledInputGroup>
-        <label htmlFor="inputName">Name: </label>
+        <label htmlFor="name">Name: </label>
         <input
           type="text"
-          name="inputName"
+          name="name"
           value={cat.name}
           maxLength={50}
           onChange={handleChange}
         />
 
-        <label htmlFor="inputAge">Age: </label>
+        <label htmlFor="age">Age: </label>
         <AgeInput
           type="number"
-          name="inputAge"
+          name="age"
           value={cat.age}
           maxLength={2}
           className="ageInput"
@@ -96,63 +105,61 @@ export default function NewCatForm({ onAddCat }) {
         />
       </StyledInputGroup>
 
-      <label htmlFor="inputAllergies">Allergies: </label>
+      <label htmlFor="allergies">Allergies: </label>
       <input
         type="text"
-        name="inputAllergies"
+        name="allergies"
         value={cat.allergies}
         maxLength={50}
         onChange={handleChange}
       />
 
-      <label htmlFor="inputDiseases">Diseases: </label>
+      <label htmlFor="diseases">Diseases: </label>
       <input
         type="text"
-        name="inputDiseases"
+        name="diseases"
         value={cat.diseases}
         maxLength={50}
         onChange={handleChange}
       />
 
-      <label htmlFor="inputIntolerances">Intolerances: </label>
+      <label htmlFor="intolerances">Intolerances: </label>
       <input
         type="text"
-        name="inputIntolerancesw"
+        name="intolerances"
         value={cat.intolerances}
         maxLength={50}
         onChange={handleChange}
       />
 
-      <label htmlFor="inputGoodAcceptance">Good Acceptance: </label>
+      <label htmlFor="goodAcceptance">Good Acceptance: </label>
       <Select
         options={catFoodOptions}
-        onChange={handleCatFoodChange}
+        onChange={handleGoodFoodChange}
         isSearchable={true}
+        value={selectedGoodFood}
         placeholder="choose food..."
       />
-      <Button type="button" onClick={handleAddCatFood}>
-        Add
-      </Button>
+      <Button onClick={handleAddGoodFood}>Add</Button>
       <div>
-        {addedCatFood.map((food) => {
-          <div key={food.value}>{food.label}</div>;
-        })}
+        {addedGoodFood.map((food) => (
+          <div key={food.value}>{food.label}</div>
+        ))}
       </div>
 
-      <label htmlFor="inputBadAcceptance">Bad Acceptance: </label>
+      <label htmlFor="badAcceptance">Bad Acceptance: </label>
       <Select
         options={catFoodOptions}
-        onChange={handleCatFoodChange}
+        onChange={handleBadFoodChange}
         isSearchable={true}
+        value={selectedBadFood}
         placeholder="choose food..."
       />
-      <Button type="button" onClick={handleAddCatFood}>
-        Add
-      </Button>
+      <Button onClick={handleAddBadFood}>Add</Button>
       <div>
-        {addedCatFood.map((food) => {
-          <div key={food.value}>{food.label}</div>;
-        })}
+        {addedBadFood.map((food) => (
+          <div key={food.value}>{food.label}</div>
+        ))}
       </div>
       <Button type="submit">Save</Button>
     </StyledForm>
