@@ -40,8 +40,8 @@ export default function NewCatForm({ onAddCat }) {
   }
 
   return (
-    <StyledWrapper>
-      <StyledForm onSubmit={handleSubmit}>
+    <StyledForm onSubmit={handleSubmit}>
+      <StyledInputGroup>
         <label htmlFor="inputName">Name: </label>
         <input
           type="text"
@@ -52,47 +52,56 @@ export default function NewCatForm({ onAddCat }) {
         />
 
         <label htmlFor="inputAge">Age: </label>
-        <input
+        <AgeInput
           type="number"
           name="inputAge"
           value={cat.age}
-          maxLength={30}
+          maxLength={2}
+          className="ageInput"
           onChange={handleChange}
         />
+      </StyledInputGroup>
 
-        <label htmlFor="inputAllergies">Allergies: </label>
-        <input
-          type="text"
-          name="inputAllergies"
-          value={cat.allergies}
-          maxLength={50}
-          onChange={handleChange}
-        />
+      <label htmlFor="inputAllergies">Allergies: </label>
+      <input
+        type="text"
+        name="inputAllergies"
+        value={cat.allergies}
+        maxLength={50}
+        onChange={handleChange}
+      />
 
-        <label htmlFor="inputDiseases">Diseases: </label>
-        <input
-          type="text"
-          name="inputDiseases"
-          value={cat.diseases}
-          maxLength={50}
-          onChange={handleChange}
-        />
+      <label htmlFor="inputDiseases">Diseases: </label>
+      <input
+        type="text"
+        name="inputDiseases"
+        value={cat.diseases}
+        maxLength={50}
+        onChange={handleChange}
+      />
 
-        <label htmlFor="inputIntolerances">Intolerances: </label>
-        <input
-          type="text"
-          name="inputIntolerancesw"
-          value={cat.intolerances}
-          maxLength={50}
-          onChange={handleChange}
-        />
-        <Button type="submit">Save</Button>
-      </StyledForm>
-    </StyledWrapper>
+      <label htmlFor="inputIntolerances">Intolerances: </label>
+      <input
+        type="text"
+        name="inputIntolerancesw"
+        value={cat.intolerances}
+        maxLength={50}
+        onChange={handleChange}
+      />
+      <Button type="submit">Save</Button>
+    </StyledForm>
   );
 }
 
-const StyledWrapper = styled.div``;
+const AgeInput = styled.input`
+  width: 50px;
+`;
+
+const StyledInputGroup = styled.div`
+  display: flex;
+  background-color: white;
+  gap: 0.8rem;
+`;
 
 const StyledForm = styled.form`
   max-width: 65%;
@@ -108,6 +117,7 @@ const StyledForm = styled.form`
   Button {
     max-width: 30%;
     text-align: center;
+    margin: 0 auto;
     background-color: #1d5d9b;
   }
 
