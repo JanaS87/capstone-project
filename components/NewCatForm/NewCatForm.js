@@ -31,11 +31,25 @@ export default function NewCatForm({ onAddCat }) {
     setSelectedCatFood(selectedOption);
   }
 
-  function handleAddFood() {
+  // state to save the chosen food to show it below the drop down
+  const [addedCatFood, setAddedCatFood] = useState([]);
+
+  // add the chosen food to the list, if it´s not already in it.
+  // checking this with some()
+  function handleAddCatFood() {
+    if (
+      selectedCatFood &&
+      !addedCatFood.some((food) => food.value === selectedCatFood.value)
+    ) {
+      setAddedCatFood([...addedCatFood, selectedCatFood]);
+    }
+  }
+
+  /* function handleAddFood() {
     if (selectedCatFood) {
       console.log("Added Cat food: ", selectedCatFood);
     }
-  }
+  } */
 
   // updates the cat- state object when an input field changes
   function handleChange(event) {
@@ -116,7 +130,14 @@ export default function NewCatForm({ onAddCat }) {
         isSearchable={true}
         placeholder="choose food..."
       />
-      <Button>Add</Button>
+      <Button type="button" onClick={handleAddCatFood}>
+        Add
+      </Button>
+      <div>
+        {addedCatFood.map((food) => {
+          <div key={food.value}>{food.label}</div>;
+        })}
+      </div>
 
       <label htmlFor="inputBadAcceptance">Bad Acceptance: </label>
       <Select
@@ -125,7 +146,14 @@ export default function NewCatForm({ onAddCat }) {
         isSearchable={true}
         placeholder="choose food..."
       />
-      <Button>Add</Button>
+      <Button type="button" onClick={handleAddCatFood}>
+        Add
+      </Button>
+      <div>
+        {addedCatFood.map((food) => {
+          <div key={food.value}>{food.label}</div>;
+        })}
+      </div>
       <Button type="submit">Save</Button>
     </StyledForm>
   );
