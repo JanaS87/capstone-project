@@ -24,8 +24,9 @@ export default function NewCatForm({ onAddCat }) {
     label: food.brand + ` - ` + food.variety,
   }));
 
-  const [selectedGoodFood, setSelectedGoodFood] = useState(null);
-  const [selectedBadFood, setSelectedBadFood] = useState(null);
+  const [selectedGoodFood, setSelectedGoodFood] = useState({});
+  const [selectedBadFood, setSelectedBadFood] = useState({});
+  console.log("selektiertes gutes Futter", selectedGoodFood);
 
   // any cat food is selected
   function handleGoodFoodChange(selectedOption) {
@@ -39,7 +40,7 @@ export default function NewCatForm({ onAddCat }) {
   // state to save the chosen food to show it below the drop down
   const [addedGoodFood, setAddedGoodFood] = useState([]);
   const [addedBadFood, setAddedBadFood] = useState([]);
-
+  console.log("Gutes Futter", addedGoodFood);
   // add the chosen food to the list, if it´s not already in it.
   // checking this with some()
   function handleAddGoodFood() {
@@ -64,7 +65,7 @@ export default function NewCatForm({ onAddCat }) {
   function handleChange(event) {
     setCat({ ...cat, [event.target.name]: event.target.value });
   }
-  // you can only enter two numbers (only Gandalf can be older than the time itself!)
+  // you can only enter two numbers
   function handleAgeChange(event) {
     const ageValue = event.target.value;
     if (ageValue.length > 2) {
@@ -148,7 +149,7 @@ export default function NewCatForm({ onAddCat }) {
         options={catFoodOptions}
         onChange={handleGoodFoodChange}
         isSearchable={true}
-        value={selectedGoodFood}
+        defaultValue={selectedGoodFood}
         placeholder="choose food..."
       />
       <Button onClick={handleAddGoodFood}>Add</Button>
