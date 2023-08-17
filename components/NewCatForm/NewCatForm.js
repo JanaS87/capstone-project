@@ -3,6 +3,7 @@ import Select from "react-select";
 import { cats } from "@/data/catdata";
 import styled from "styled-components";
 import Button from "../Button/Button";
+import { catfoods } from "@/data/catfooddata";
 
 export default function NewCatForm({ onAddCat }) {
   const [catList, setCatList] = useState(cats);
@@ -16,6 +17,25 @@ export default function NewCatForm({ onAddCat }) {
     goodAcceptance: "",
     badAcceptance: "",
   });
+
+  // mappin the food for react - select drop down
+  const catFoodOptions = catfoods.map((food) => ({
+    value: food.id,
+    label: food.brand + ` - ` + food.variety,
+  }));
+
+  const [selectedCatFood, setSelectedCatFood] = useState(null);
+
+  // any cat food is selected
+  function handleCatFoodChange(selectedOption) {
+    setSelectedCatFood(selectedOption);
+  }
+
+  function handleAddFood() {
+    if (selectedCatFood) {
+      console.log("Added Cat food: ", selectedCatFood);
+    }
+  }
 
   // updates the cat- state object when an input field changes
   function handleChange(event) {
@@ -88,6 +108,24 @@ export default function NewCatForm({ onAddCat }) {
         maxLength={50}
         onChange={handleChange}
       />
+
+      <label htmlFor="inputGoodAcceptance">Good Acceptance: </label>
+      <Select
+        options={catFoodOptions}
+        onChange={handleCatFoodChange}
+        isSearchable={true}
+        placeholder="choose food..."
+      />
+      <Button>Add</Button>
+
+      <label htmlFor="inputBadAcceptance">Bad Acceptance: </label>
+      <Select
+        options={catFoodOptions}
+        onChange={handleCatFoodChange}
+        isSearchable={true}
+        placeholder="choose food..."
+      />
+      <Button>Add</Button>
       <Button type="submit">Save</Button>
     </StyledForm>
   );
@@ -104,7 +142,7 @@ const StyledInputGroup = styled.div`
 `;
 
 const StyledForm = styled.form`
-  max-width: 65%;
+  max-width: 75%;
   display: flex;
   flex-direction: column;
   padding: 0.5rem 1rem;
