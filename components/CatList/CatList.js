@@ -7,10 +7,6 @@ import Button from "../Button/Button";
 export default function CatList() {
   return (
     <>
-      <StyledHeading>Your Cats</StyledHeading>
-      <Link href={"/newcat"}>
-        <Button>Add New Cat</Button>
-      </Link>
       <StyledList>
         {cats &&
           cats.map((cat) => (
@@ -40,8 +36,4 @@ const ListItem = styled.li`
   h3 {
     background-color: white;
   }
-`;
-
-const StyledHeading = styled.h1`
-  margin-left: 5%;
 `;
