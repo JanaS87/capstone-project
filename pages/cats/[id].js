@@ -1,11 +1,8 @@
-import { cats } from "@/data/catdata";
-import Button from "@/components/Button/Button";
 import { useRouter } from "next/router";
-import { formatObjectValues } from "@/utils/objectHelper";
 import styled from "styled-components";
 import Link from "next/link";
 
-const CatDetail = () => {
+export default function CatDetailPage({ catList }) {
   const router = useRouter();
   const { id } = router.query;
 
@@ -13,15 +10,10 @@ const CatDetail = () => {
   if (!id) return <p>Loading</p>;
 
   // find the cat with the right id
-  const cat = cats.find((cat) => cat.id.toString() === id);
+  const cat = catList.find((cat) => cat.id.toString() === id);
 
   // if cat is not found
   if (!cat) return <p>Cat not found</p>;
-
-  // passing the label and the respective data object
-  const allergies = formatObjectValues("Allergies", cat.allergies);
-  const diseases = formatObjectValues("Diseases", cat.diseases);
-  const intolerances = formatObjectValues("Intolerances", cat.intolerances);
 
   return (
     <>
@@ -33,24 +25,20 @@ const CatDetail = () => {
           </p>
           <h4>Allergies, Diseases, Intolerances:</h4>
           <div>
-            {allergies && <p>{allergies}</p>}
-            {diseases && <p>{diseases}</p>}
-            {intolerances && <p>{intolerances}</p>}
+            <p>Allergies: {cat.allergies}</p>
+            <p>Diseases: {cat.diseases}</p>
+            <p>Intolerances: {cat.intolerances}</p>
           </div>
           <h4>Good Acceptance: </h4>
-          <p>{cat.goodAcceptance}</p>
+          <p>[{cat.goodAcceptance}]</p>
           <h4>Bad Acceptance: </h4>
-          <p>{cat.badAcceptance}</p>
+          <p>[{cat.badAcceptance}]</p>
         </StyledSection>
       </StyledWrapper>
-      <Link href={"/"}>
-        <Button>Back</Button>
-      </Link>
+      <Link href={"/"}>Back</Link>
     </>
   );
-};
-
-export default CatDetail;
+}
 
 const StyledHead = styled.h1`
   margin-left: 5%;

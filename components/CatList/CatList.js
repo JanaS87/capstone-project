@@ -1,21 +1,15 @@
-import { cats } from "../../data/catdata";
 import CatCard from "../CatCard/CatCard.js";
 import { styled } from "styled-components";
-import Link from "next/link";
-import Button from "../Button/Button";
 
-export default function CatList() {
+export default function CatList({ catList }) {
   return (
-    <>
-      <StyledList>
-        {cats &&
-          cats.map((cat) => (
-            <ListItem key={cat.id}>
-              <CatCard cat={cat} />
-            </ListItem>
-          ))}
-      </StyledList>
-    </>
+    <StyledList>
+      {catList.map((cat) => (
+        <ListItem key={cat.id}>
+          <CatCard cat={cat} />
+        </ListItem>
+      ))}
+    </StyledList>
   );
 }
 

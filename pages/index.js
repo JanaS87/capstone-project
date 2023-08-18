@@ -1,15 +1,13 @@
 import CatList from "@/components/CatList/CatList";
-import NewCatForm from "@/components/NewCatForm/NewCatForm";
 import Link from "next/link";
 import { styled } from "styled-components";
 
-export default function HomePage({ handleAddCat }) {
+export default function HomePage({ catList }) {
   return (
     <>
       <StyledHeading>Your Cats</StyledHeading>
       <Link href={"/newcat"}>Add New Cat</Link>
-      <CatList />
-      <NewCatForm onAddCat={handleAddCat} />
+      <CatList catList={catList} />
     </>
   );
 }

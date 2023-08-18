@@ -4,10 +4,10 @@ import styled from "styled-components";
 import Button from "../Button/Button";
 import { catfoods } from "@/data/catfooddata";
 import { uid } from "uid";
-import { cats } from "@/data/catdata";
 
 export default function NewCatForm({ onAddCat }) {
-  // const [catList, setCatList] = useState(cats);
+  console.log(onAddCat);
+
   const [cat, setCat] = useState({
     id: "",
     name: "",
@@ -45,25 +45,23 @@ export default function NewCatForm({ onAddCat }) {
   // checking this with some()
   function handleAddGoodFood(event) {
     event.preventDefault();
-    console.log("handle good food triggered");
+
     if (
       selectedGoodFood &&
       !addedGoodFood.some((food) => food.value === selectedGoodFood.value)
     ) {
       setAddedGoodFood([...addedGoodFood, selectedGoodFood]);
-      console.log("added good food to the list");
     }
   }
 
   function handleAddBadFood(event) {
     event.preventDefault();
-    console.log("handle bad food triggered");
+
     if (
       selectedBadFood &&
       !addedBadFood.some((food) => food.value === selectedBadFood.value)
     ) {
       setAddedBadFood([...addedBadFood, selectedBadFood]);
-      console.log("added bad food to the list");
     }
   }
 
@@ -71,7 +69,7 @@ export default function NewCatForm({ onAddCat }) {
   function handleChange(event) {
     setCat({ ...cat, [event.target.name]: event.target.value });
   }
-  // you can only enter two numbers
+  // you can only enter two numbers (internet)
   function handleAgeChange(event) {
     const ageValue = event.target.value;
     if (ageValue.length > 2) {
@@ -95,12 +93,10 @@ export default function NewCatForm({ onAddCat }) {
       badAcceptance: addedBadFood,
     };
 
-    console.log(newCat);
+    console.log("onAddCat type:", typeof onAddCat);
 
     // add new cat to the list
     onAddCat(newCat);
-
-    console.log(newCat);
 
     setCat({
       id: "",
@@ -205,6 +201,10 @@ export default function NewCatForm({ onAddCat }) {
   );
 }
 
+// every react-select function etc. is written with help from the internet
+// because we didn´t have worked with that before.
+
+// Styling Section
 const AgeInput = styled.input`
   width: 50px;
 `;
