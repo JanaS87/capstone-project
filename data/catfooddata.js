@@ -32,6 +32,7 @@ export const catfoods = [
     ],
     goodAcceptance: false,
     badAcceptance: false,
+    type: "wet",
   },
   {
     id: "2",
@@ -66,6 +67,7 @@ export const catfoods = [
     ],
     goodAcceptance: false,
     badAcceptance: false,
+    type: "wet",
   },
   {
     id: "3",
@@ -100,6 +102,7 @@ export const catfoods = [
     ],
     goodAcceptance: false,
     badAcceptance: false,
+    type: "wet",
   },
   {
     id: "4",
@@ -116,6 +119,7 @@ export const catfoods = [
     additives: "Taurin 700 mg per kg",
     goodAcceptance: false,
     badAcceptance: false,
+    type: "wet",
   },
   {
     id: "5",
@@ -132,5 +136,6 @@ export const catfoods = [
     additives: "Taurin 700 mg per kg",
     goodAcceptance: false,
     badAcceptance: false,
+    type: "wet",
   },
 ];
