@@ -110,8 +110,6 @@ export default function NewCatForm({ onAddCat }) {
           type="number"
           name="age"
           value={cat.age}
-          min={1}
-          max={2}
           className="ageInput"
           onChange={handleAgeChange}
         />
@@ -149,7 +147,7 @@ export default function NewCatForm({ onAddCat }) {
         options={catFoodOptions}
         onChange={handleGoodFoodChange}
         isSearchable={true}
-        defaultValue={selectedGoodFood}
+        Value={selectedGoodFood}
         placeholder="choose food..."
       />
       <Button onClick={handleAddGoodFood}>Add</Button>

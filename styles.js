@@ -5,7 +5,7 @@ export default createGlobalStyle`
   *::before,
   *::after {
     box-sizing: border-box;
-    background-color:#F3E99F;
+    //background-color:#F3E99F;
   }
 
   @media (max-width: 320px) {
