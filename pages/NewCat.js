@@ -10,7 +10,6 @@ export default function NewCat() {
     // update catList with new cat
     setCatList([...catList, newCat]);
   }
-
   return (
     <>
       <h1>Add a new cat</h1>

@@ -4,6 +4,7 @@ import styled from "styled-components";
 import Button from "../Button/Button";
 import { catfoods } from "@/data/catfooddata";
 import { uid } from "uid";
+import { cats } from "@/data/catdata";
 
 export default function NewCatForm({ onAddCat }) {
   // const [catList, setCatList] = useState(cats);
@@ -26,8 +27,6 @@ export default function NewCatForm({ onAddCat }) {
 
   const [selectedGoodFood, setSelectedGoodFood] = useState({});
   const [selectedBadFood, setSelectedBadFood] = useState({});
-  console.log("selektiertes gutes Futter", selectedGoodFood);
-  console.log("selektiertes schlechtes Futter", selectedBadFood);
 
   // any cat food is selected
   function handleGoodFoodChange(selectedOption) {
@@ -41,8 +40,7 @@ export default function NewCatForm({ onAddCat }) {
   // state to save the chosen food to show it below the drop down
   const [addedGoodFood, setAddedGoodFood] = useState([]);
   const [addedBadFood, setAddedBadFood] = useState([]);
-  console.log("Gutes Futter", addedGoodFood);
-  console.log("schlechtes Futter", addedBadFood);
+
   // add the chosen food to the list, if it´s not already in it.
   // checking this with some()
   function handleAddGoodFood(event) {
@@ -101,6 +99,8 @@ export default function NewCatForm({ onAddCat }) {
 
     // add new cat to the list
     onAddCat(newCat);
+
+    console.log(newCat);
 
     setCat({
       id: "",
