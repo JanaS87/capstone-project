@@ -14,8 +14,8 @@ export default function NewCatForm({ onAddCat }) {
     allergies: "",
     diseases: "",
     intolerances: "",
-    goodAcceptance: "",
-    badAcceptance: "",
+    goodAcceptance: [],
+    badAcceptance: [],
   });
 
   // mappin the food for react - select drop down
@@ -97,8 +97,7 @@ export default function NewCatForm({ onAddCat }) {
       badAcceptance: addedBadFood,
     };
 
-    console.log();
-    // setCatList([...catList, newCat]);
+    console.log(newCat);
 
     // add new cat to the list
     onAddCat(newCat);
