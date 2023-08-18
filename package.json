@@ -16,7 +16,9 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-select": "^5.7.4",
-    "styled-components": "^6.0.2"
+    "styled-components": "^6.0.2",
+    "uid": "^2.0.2",
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
     "@svgr/webpack": "^8.0.1",

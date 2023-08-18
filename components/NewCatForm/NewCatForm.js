@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import Select from "react-select";
-import { cats } from "@/data/catdata";
 import styled from "styled-components";
 import Button from "../Button/Button";
 import { catfoods } from "@/data/catfooddata";
+import { uid } from "uid";
 
 export default function NewCatForm({ onAddCat }) {
-  const [catList, setCatList] = useState(cats);
+  // const [catList, setCatList] = useState(cats);
   const [cat, setCat] = useState({
     id: "",
     name: "",
@@ -27,6 +27,7 @@ export default function NewCatForm({ onAddCat }) {
   const [selectedGoodFood, setSelectedGoodFood] = useState({});
   const [selectedBadFood, setSelectedBadFood] = useState({});
   console.log("selektiertes gutes Futter", selectedGoodFood);
+  console.log("selektiertes schlechtes Futter", selectedBadFood);
 
   // any cat food is selected
   function handleGoodFoodChange(selectedOption) {
@@ -41,23 +42,30 @@ export default function NewCatForm({ onAddCat }) {
   const [addedGoodFood, setAddedGoodFood] = useState([]);
   const [addedBadFood, setAddedBadFood] = useState([]);
   console.log("Gutes Futter", addedGoodFood);
+  console.log("schlechtes Futter", addedBadFood);
   // add the chosen food to the list, if it´s not already in it.
   // checking this with some()
-  function handleAddGoodFood() {
+  function handleAddGoodFood(event) {
+    event.preventDefault();
+    console.log("handle good food triggered");
     if (
       selectedGoodFood &&
       !addedGoodFood.some((food) => food.value === selectedGoodFood.value)
     ) {
       setAddedGoodFood([...addedGoodFood, selectedGoodFood]);
+      console.log("added good food to the list");
     }
   }
 
-  function handleAddBadFood() {
+  function handleAddBadFood(event) {
+    event.preventDefault();
+    console.log("handle bad food triggered");
     if (
       selectedBadFood &&
       !addedBadFood.some((food) => food.value === selectedBadFood.value)
     ) {
       setAddedBadFood([...addedBadFood, selectedBadFood]);
+      console.log("added bad food to the list");
     }
   }
 
@@ -79,18 +87,36 @@ export default function NewCatForm({ onAddCat }) {
     event.preventDefault();
 
     // generate new ID
-    const newId = String(catList.length + 1);
+    const newId = uid();
 
     // create new cat object at the end of the array
-    const newCat = { ...cat, id: newId };
+    const newCat = {
+      ...cat,
+      id: newId,
+      goodAcceptance: addedGoodFood,
+      badAcceptance: addedBadFood,
+    };
+
+    console.log();
+    // setCatList([...catList, newCat]);
 
     // add new cat to the list
     onAddCat(newCat);
 
-    console.log();
-    setCatList([...catList, newCat]);
+    setCat({
+      id: "",
+      name: "",
+      age: "",
+      allergies: "",
+      diseases: "",
+      intolerances: "",
+      goodAcceptance: "",
+      badAcceptance: "",
+    });
+    setAddedGoodFood([]);
+    setAddedBadFood([]);
 
-    event.target.reset();
+    // event.target.reset();
   }
 
   return (
@@ -147,10 +173,12 @@ export default function NewCatForm({ onAddCat }) {
         options={catFoodOptions}
         onChange={handleGoodFoodChange}
         isSearchable={true}
-        Value={selectedGoodFood}
+        value={selectedGoodFood}
         placeholder="choose food..."
       />
-      <Button onClick={handleAddGoodFood}>Add</Button>
+      <Button type="button" onClick={handleAddGoodFood}>
+        Add
+      </Button>
       <div>
         {addedGoodFood.map((food) => (
           <div key={food.value}>{food.label}</div>
@@ -165,7 +193,9 @@ export default function NewCatForm({ onAddCat }) {
         value={selectedBadFood}
         placeholder="choose food..."
       />
-      <Button onClick={handleAddBadFood}>Add</Button>
+      <Button type="button" onClick={handleAddBadFood}>
+        Add
+      </Button>
       <div>
         {addedBadFood.map((food) => (
           <div key={food.value}>{food.label}</div>
