@@ -20,7 +20,7 @@ export default function CatDetailPage({ catList, catFoods }) {
   );
 
   const filteredBadFood = cat.food.dislikes.map((bad) =>
-    catFoods.find((bad) => food.id === bad)
+    catFoods.find((food) => food.id === bad)
   );
 
   console.log("good", filteredGoodFood);
