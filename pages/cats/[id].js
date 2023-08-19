@@ -34,23 +34,26 @@ export default function CatDetailPage({ catList, catFoods }) {
           <h4>Allergies, Diseases, Intolerances:</h4>
           <div>
             <p>
-              Allergies:
-              {cat.allergies?.map((allergy) => (
-                <span key={allergy.id}>{allergy.name}</span>
-              ))}
+              Allergies:{" "}
+              {cat.allergies ||
+                [].map((allergy) => (
+                  <span key={allergy.id}>{allergy.name}</span>
+                ))}
             </p>
 
             <p>
-              Diseases:
-              {cat.diseases?.map((disease) => (
-                <span key={disease.id}>{disease.name}</span>
-              ))}
+              Diseases:{" "}
+              {cat.diseases ||
+                [].map((disease) => (
+                  <span key={disease.id}>{disease.name}</span>
+                ))}
             </p>
             <p>
-              Intolerances:
-              {cat.intolerances?.map((intolerance) => (
-                <span key={intolerance.id}>{intolerance.name}</span>
-              ))}
+              Intolerances:{" "}
+              {cat.intolerances ||
+                [].map((intolerance) => (
+                  <span key={intolerance.id}>{intolerance.name}</span>
+                ))}
             </p>
           </div>
           <h4>Good Acceptance: </h4>

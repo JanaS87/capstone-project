@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Select from "react-select";
 import styled from "styled-components";
 import Button from "../Button/Button";
 import { catfoods } from "@/data/catfooddata";
@@ -10,9 +9,6 @@ export default function NewCatForm({ onAddCat }) {
     id: "",
     name: "",
     age: "",
-    allergies: [],
-    diseases: [],
-    intolerances: [],
     food: {
       likes: [],
       dislikes: [],
@@ -66,7 +62,7 @@ export default function NewCatForm({ onAddCat }) {
 
   // updates the cat- state object when an input field changes
   function handleChange(event) {
-    setCat({ ...cat, [event.target.name]: event.target.value });
+    setCat({ ...cat, [event.target.name]: event.target.value || "" });
   }
   // you can only enter two numbers (internet)
   function handleAgeChange(event) {
@@ -103,9 +99,6 @@ export default function NewCatForm({ onAddCat }) {
       id: "",
       name: "",
       age: "",
-      allergies: [],
-      diseases: [],
-      intolerances: [],
       food: {
         likes: [],
         dislikes: [],
@@ -128,6 +121,7 @@ export default function NewCatForm({ onAddCat }) {
           aria-describedby="name-info"
           value={cat.name}
           maxLength={8}
+          required
           onChange={handleChange}
         />
 
@@ -140,6 +134,7 @@ export default function NewCatForm({ onAddCat }) {
           value={cat.age}
           className="ageInput"
           onChange={handleAgeChange}
+          required
         />
       </StyledInputGroup>
       <label htmlFor="allergies">Allergies: </label>
