@@ -13,6 +13,8 @@ export default function CatDetailPage({ catList, catFoods }) {
 
   if (!cat) return <p>Cat not found</p>;
 
+  console.log("Cat object:", cat);
+
   const filteredGoodFood = cat.food.likes.map((good) =>
     catFoods.find((food) => food.id === good)
   );
@@ -32,20 +34,21 @@ export default function CatDetailPage({ catList, catFoods }) {
           <h4>Allergies, Diseases, Intolerances:</h4>
           <div>
             <p>
-              Allergies:{" "}
-              {cat.allergies.map((allergy) => (
+              Allergies:
+              {cat.allergies?.map((allergy) => (
                 <span key={allergy.id}>{allergy.name}</span>
               ))}
             </p>
+
             <p>
-              Diseases:{" "}
-              {cat.diseases.map((disease) => (
+              Diseases:
+              {cat.diseases?.map((disease) => (
                 <span key={disease.id}>{disease.name}</span>
               ))}
             </p>
             <p>
-              Intolerances:{" "}
-              {cat.intolerances.map((intolerance) => (
+              Intolerances:
+              {cat.intolerances?.map((intolerance) => (
                 <span key={intolerance.id}>{intolerance.name}</span>
               ))}
             </p>
