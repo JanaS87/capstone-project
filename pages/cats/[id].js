@@ -21,9 +21,6 @@ export default function CatDetailPage({ catList, catFoods }) {
     catFoods.find((food) => food.id === bad)
   );
 
-  console.log("good", filteredGoodFood);
-  console.log("bad", filteredBadFood);
-
   return (
     <>
       <StyledHead>{cat.name}</StyledHead>
