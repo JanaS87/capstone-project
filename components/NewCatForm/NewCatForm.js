@@ -9,6 +9,9 @@ export default function NewCatForm({ onAddCat }) {
     id: "",
     name: "",
     age: "",
+    allergies: [],
+    diseases: [],
+    intolerances: [],
     food: {
       likes: [],
       dislikes: [],
