@@ -32,8 +32,8 @@ export const catfoods = [
     ],
     type: "wet",
     cat: {
-      likes: [],
-      dislikes: [],
+      likes: ["1", "3"],
+      dislikes: ["4"],
     },
   },
   {
@@ -69,8 +69,8 @@ export const catfoods = [
     ],
     type: "wet",
     cat: {
-      likes: [],
-      dislikes: [],
+      likes: ["2", "4"],
+      dislikes: ["1", "4"],
     },
   },
   {
@@ -107,7 +107,7 @@ export const catfoods = [
     type: "wet",
     cat: {
       likes: [],
-      dislikes: [],
+      dislikes: ["2"],
     },
   },
   {
@@ -125,7 +125,7 @@ export const catfoods = [
     additives: "Taurin 700 mg per kg",
     type: "wet",
     cat: {
-      likes: [],
+      likes: ["1", "3", "4"],
       dislikes: [],
     },
   },
@@ -145,7 +145,7 @@ export const catfoods = [
     type: "wet",
     cat: {
       likes: [],
-      dislikes: [],
+      dislikes: ["2", "5"],
     },
   },
 ];
