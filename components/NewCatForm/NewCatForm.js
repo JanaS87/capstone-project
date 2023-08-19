@@ -12,18 +12,12 @@ export default function NewCatForm({ onAddCat }) {
     id: "",
     name: "",
     age: "",
-    allergies: "",
-    diseases: "",
-    intolerances: "",
+    allergies: [{}],
+    diseases: [{}],
+    intolerances: [{}],
     goodAcceptance: [],
     badAcceptance: [],
   });
-
-  // mappin the food for react - select drop down
-  const catFoodOptions = catfoods.map((food) => ({
-    value: food.id,
-    label: food.brand + ` - ` + food.variety,
-  }));
 
   const [selectedGoodFood, setSelectedGoodFood] = useState({});
   const [selectedBadFood, setSelectedBadFood] = useState({});
