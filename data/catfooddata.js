@@ -30,9 +30,11 @@ export const catfoods = [
       "Zink [als Zinksulfat",
       "Monohydrat] (20,0 mg/kg)",
     ],
-    goodAcceptance: [],
-    badAcceptance: [],
     type: "wet",
+    cat: {
+      likes: [],
+      dislikes: [],
+    },
   },
   {
     id: "2",
@@ -65,9 +67,11 @@ export const catfoods = [
       "Zink [als Zinksulfat",
       "Monohydrat] (20,0 mg/kg)",
     ],
-    goodAcceptance: [],
-    badAcceptance: [],
     type: "wet",
+    cat: {
+      likes: [],
+      dislikes: [],
+    },
   },
   {
     id: "3",
@@ -100,9 +104,11 @@ export const catfoods = [
       "Zink [als Zinksulfat",
       "Monohydrat] (20,0 mg/kg)",
     ],
-    goodAcceptance: [],
-    badAcceptance: [],
     type: "wet",
+    cat: {
+      likes: [],
+      dislikes: [],
+    },
   },
   {
     id: "4",
@@ -117,9 +123,11 @@ export const catfoods = [
       "Feuchtigkeit (75.0%)",
     ],
     additives: "Taurin 700 mg per kg",
-    goodAcceptance: [],
-    badAcceptance: [],
     type: "wet",
+    cat: {
+      likes: [],
+      dislikes: [],
+    },
   },
   {
     id: "5",
@@ -134,8 +142,10 @@ export const catfoods = [
       "Feuchtigkeit (77.0%)",
     ],
     additives: "Taurin 700 mg per kg",
-    goodAcceptance: [],
-    badAcceptance: [],
     type: "wet",
+    cat: {
+      likes: [],
+      dislikes: [],
+    },
   },
 ];

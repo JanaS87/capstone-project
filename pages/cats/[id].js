@@ -6,13 +6,11 @@ export default function CatDetailPage({ catList, catFoods }) {
   const router = useRouter();
   const { id } = router.query;
 
-  // if the id is not available
   if (!id) return <p>Loading</p>;
 
   // find the cat with the right id
   const cat = catList.find((cat) => cat.id.toString() === id);
 
-  // if cat is not found
   if (!cat) return <p>Cat not found</p>;
 
   const filteredGoodFood = cat.food.likes.map((good) =>
