@@ -12,11 +12,13 @@ export default function NewCatForm({ onAddCat }) {
     id: "",
     name: "",
     age: "",
-    allergies: [{}],
-    diseases: [{}],
-    intolerances: [{}],
-    goodAcceptance: [],
-    badAcceptance: [],
+    allergies: [],
+    diseases: [],
+    intolerances: [],
+    food: {
+      likes: [],
+      dislikes: [],
+    },
   });
 
   const [selectedGoodFood, setSelectedGoodFood] = useState({});
