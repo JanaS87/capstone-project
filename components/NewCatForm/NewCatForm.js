@@ -191,29 +191,33 @@ export default function NewCatForm({ onAddCat }) {
         ))}
       </div>
 
-      {/* <label htmlFor="badAcceptance">Bad Acceptance: </label>
-      <Select
-        options={catFoodOptions}
-        onChange={handleBadFoodChange}
-        isSearchable={true}
+      <label htmlFor="badFood-select">Bad Acceptance: </label>
+      <select
+        id="badFood-select"
+        onChange={(event) => handleBadFoodChange(event.target.value)}
         value={selectedBadFood}
-        placeholder="choose food..."
-      />
+      >
+        <option value={""}>-- Please choose a food --</option>
+        {catfoods.map((food) => (
+          <option key={food.id} value={food.id}>
+            {food.brand} - {food.variety}
+          </option>
+        ))}
+      </select>
       <Button type="button" onClick={handleAddBadFood}>
         Add
       </Button>
       <div>
         {addedBadFood.map((food) => (
-          <div key={food.value}>{food.label}</div>
+          <div key={food.id}>
+            {food.brand} - {food.variety}
+          </div>
         ))}
-      </div> */}
+      </div>
       <Button type="submit">Save</Button>
     </StyledForm>
   );
 }
-
-// every react-select function etc. is written with help from the internet
-// because we didn´t have worked with that before.
 
 // Styling Section
 const AgeInput = styled.input`
