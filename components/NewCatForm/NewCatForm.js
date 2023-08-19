@@ -52,11 +52,14 @@ export default function NewCatForm({ onAddCat }) {
   function handleAddBadFood(event) {
     event.preventDefault();
 
+    const badFoodSelect = catfoods.find((food) => food.id === selectedBadFood);
+
     if (
-      selectedBadFood &&
-      !addedBadFood.some((food) => food.value === selectedBadFood.value)
+      badFoodSelect &&
+      !addedBadFood.some((food) => food.value === badFoodSelect.id)
     ) {
-      setAddedBadFood([...addedBadFood, selectedBadFood]);
+      setAddedBadFood([...addedBadFood, badFoodSelect]);
+      console.log(badFoodSelect);
     }
   }
 
