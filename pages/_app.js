@@ -1,6 +1,7 @@
 import { useState } from "react";
 import GlobalStyle from "../styles";
 import { cats } from "@/data/catdata";
+import { catfoods } from "@/data/catfooddata";
 
 export default function App({ Component, pageProps }) {
   const [catList, setCatList] = useState(cats);
@@ -14,7 +15,12 @@ export default function App({ Component, pageProps }) {
   return (
     <>
       <GlobalStyle />
-      <Component {...pageProps} handleAddCat={handleAddCat} catList={catList} />
+      <Component
+        {...pageProps}
+        handleAddCat={handleAddCat}
+        catList={catList}
+        catFoods={catfoods}
+      />
     </>
   );
 }

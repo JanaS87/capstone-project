@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import styled from "styled-components";
 import Link from "next/link";
 
-export default function CatDetailPage({ catList }) {
+export default function CatDetailPage({ catList, catFoods }) {
   const router = useRouter();
   const { id } = router.query;
 
@@ -14,6 +14,17 @@ export default function CatDetailPage({ catList }) {
 
   // if cat is not found
   if (!cat) return <p>Cat not found</p>;
+
+  const filteredGoodFood = cat.food.likes.map((good) =>
+    catFoods.find((food) => food.id === good)
+  );
+
+  const filteredBadFood = cat.food.dislikes.map((bad) =>
+    catFoods.find((bad) => food.id === bad)
+  );
+
+  console.log("good", filteredGoodFood);
+  console.log("bad", filteredBadFood);
 
   return (
     <>
@@ -28,32 +39,36 @@ export default function CatDetailPage({ catList }) {
             <p>
               Allergies:{" "}
               {cat.allergies.map((allergy) => (
-                <span key={allergy.value}>{allergy.label}</span>
+                <span key={allergy.id}>{allergy.name}</span>
               ))}
             </p>
             <p>
               Diseases:{" "}
               {cat.diseases.map((disease) => (
-                <span key={disease.value}>{disease.label}</span>
+                <span key={disease.id}>{disease.name}</span>
               ))}
             </p>
             <p>
               Intolerances:{" "}
               {cat.intolerances.map((intolerance) => (
-                <span key={intolerance.value}>{intolerance.label}</span>
+                <span key={intolerance.id}>{intolerance.name}</span>
               ))}
             </p>
           </div>
           <h4>Good Acceptance: </h4>
           <p>
-            {cat.goodAcceptance.map((food) => (
-              <span key={food.value}>{food.label}</span>
+            {filteredGoodFood.map((food) => (
+              <span key={food.id}>
+                {food.brand} - {food.variety}
+              </span>
             ))}
           </p>
           <h4>Bad Acceptance: </h4>
           <p>
-            {cat.badAcceptance.map((food) => (
-              <span key={food.value}>{food.label}</span>
+            {filteredBadFood.map((food) => (
+              <span key={food.id}>
+                {food.brand} - {food.variety}
+              </span>
             ))}
           </p>
         </StyledSection>
