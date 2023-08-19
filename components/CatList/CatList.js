@@ -22,6 +22,7 @@ const StyledList = styled.ul`
 `;
 
 const ListItem = styled.li`
+  max-width: 55%;
   padding: 0.5rem 1rem;
   box-shadow: 0px 1px 5px -2px #ff6d60;
   border-radius: 10px/20px;

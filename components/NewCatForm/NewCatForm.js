@@ -101,6 +101,8 @@ export default function NewCatForm({ onAddCat }) {
     // add new cat to the list
     onAddCat(newCat);
 
+    console.log("allergies:", cat.allergies);
+
     setCat({
       id: "",
       name: "",
@@ -125,7 +127,7 @@ export default function NewCatForm({ onAddCat }) {
           name="name"
           id="name"
           aria-describedby="name-info"
-          value={cat.name}
+          defaultValue={cat.name}
           maxLength={8}
           required
           onChange={handleChange}
@@ -137,7 +139,7 @@ export default function NewCatForm({ onAddCat }) {
           name="age"
           id="age"
           aria-describedby="age-info"
-          value={cat.age}
+          defaultValue={cat.age}
           className="ageInput"
           onChange={handleAgeChange}
           required
@@ -149,7 +151,7 @@ export default function NewCatForm({ onAddCat }) {
         name="allergies"
         id="allergies"
         aria-describedby="allergies-info"
-        value={cat.allergies}
+        defaultValue={cat.allergies}
         maxLength={50}
         onChange={handleChange}
       />
@@ -159,7 +161,7 @@ export default function NewCatForm({ onAddCat }) {
         name="diseases"
         id="diseases"
         aria-describedby="diseases-info"
-        value={cat.diseases}
+        defaultValue={cat.diseases}
         maxLength={50}
         onChange={handleChange}
       />
@@ -169,26 +171,29 @@ export default function NewCatForm({ onAddCat }) {
         name="intolerances"
         id="intolerances"
         aria-describedby="intolerances-info"
-        value={cat.intolerances}
+        defaultValue={cat.intolerances}
         maxLength={50}
         onChange={handleChange}
       />
+
       <label htmlFor="goodFood-select">Good Acceptance: </label>
-      <select
-        id="goodFood-select"
-        onChange={(event) => handleGoodFoodChange(event.target.value)}
-        value={selectedGoodFood}
-      >
-        <option value={""}>-- Please choose a food --</option>
-        {catfoods.map((food) => (
-          <option key={food.id} value={food.id}>
-            {food.brand} - {food.variety}
-          </option>
-        ))}
-      </select>
-      <Button type="button" onClick={handleAddGoodFood}>
-        Add
-      </Button>
+      <StyledInputGroup>
+        <select
+          id="goodFood-select"
+          onChange={(event) => handleGoodFoodChange(event.target.value)}
+          defaultValue={selectedGoodFood}
+        >
+          <option value={""}>-- Please choose a food --</option>
+          {catfoods.map((food) => (
+            <option key={food.id} value={food.id}>
+              {food.brand} - {food.variety}
+            </option>
+          ))}
+        </select>
+        <Button type="button" onClick={handleAddGoodFood}>
+          Add
+        </Button>
+      </StyledInputGroup>
       <div>
         {addedGoodFood.map((food) => (
           <div key={food.id}>
@@ -198,21 +203,23 @@ export default function NewCatForm({ onAddCat }) {
       </div>
 
       <label htmlFor="badFood-select">Bad Acceptance: </label>
-      <select
-        id="badFood-select"
-        onChange={(event) => handleBadFoodChange(event.target.value)}
-        value={selectedBadFood}
-      >
-        <option value={""}>-- Please choose a food --</option>
-        {catfoods.map((food) => (
-          <option key={food.id} value={food.id}>
-            {food.brand} - {food.variety}
-          </option>
-        ))}
-      </select>
-      <Button type="button" onClick={handleAddBadFood}>
-        Add
-      </Button>
+      <StyledInputGroup>
+        <select
+          id="badFood-select"
+          onChange={(event) => handleBadFoodChange(event.target.value)}
+          defaultValue={selectedBadFood}
+        >
+          <option value={""}>-- Please choose a food --</option>
+          {catfoods.map((food) => (
+            <option key={food.id} value={food.id}>
+              {food.brand} - {food.variety}
+            </option>
+          ))}
+        </select>
+        <Button type="button" onClick={handleAddBadFood}>
+          Add
+        </Button>
+      </StyledInputGroup>
       <div>
         {addedBadFood.map((food) => (
           <div key={food.id}>
@@ -241,7 +248,7 @@ const StyledInputGroup = styled.div`
 `;
 
 const StyledForm = styled.form`
-  max-width: 85%;
+  max-width: 45%;
   display: flex;
   flex-direction: column;
   padding: 0.5rem 1rem;
@@ -253,6 +260,7 @@ const StyledForm = styled.form`
 
   Button {
     max-width: 30%;
+    font-size: 1%.2;
     text-align: center;
     margin: 0 auto;
     background-color: #1d5d9b;

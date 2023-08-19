@@ -6,7 +6,7 @@ export default function HomePage({ catList }) {
   return (
     <>
       <StyledHeading>Your Cats</StyledHeading>
-      <Link href={"/newcat"}>Add New Cat</Link>
+      <StyledLink href={"/newcat"}>Add New Cat</StyledLink>
       <CatList catList={catList} />
     </>
   );
@@ -14,4 +14,14 @@ export default function HomePage({ catList }) {
 
 const StyledHeading = styled.h1`
   margin-left: 5%;
+`;
+
+const StyledLink = styled(Link)`
+  background: white;
+  color: red;
+  font-size: 1em;
+  margin: 1em;
+  padding: 0.25em 1em;
+  border: 2px solid red;
+  border-radius: 3px;
 `;

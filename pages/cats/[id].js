@@ -11,8 +11,14 @@ export default function CatDetailPage({ catList, catFoods }) {
   // find the cat with the right id
   const cat = catList.find((cat) => cat.id.toString() === id);
 
-  if (!cat) return <p>Cat not found</p>;
-
+  if (!cat) {
+    return (
+      <>
+        <p>Cat not found</p>
+        <StyledLink href={"/"}>Back</StyledLink>
+      </>
+    );
+  }
   console.log("Cat object:", cat);
 
   const filteredGoodFood = cat.food.likes.map((good) =>
@@ -35,49 +41,43 @@ export default function CatDetailPage({ catList, catFoods }) {
           <div>
             <p>
               Allergies:{" "}
-              {cat.allergies && cat.allergies.length > 0
-                ? cat.allergies.map((allergy) => (
-                    <span key={allergy.id}>{allergy.name}</span>
-                  ))
-                : "None"}
+              {cat.allergies.map((allergy) => (
+                <span key={allergy.id}>{allergy.name}</span>
+              ))}
             </p>
 
             <p>
-              Diseases:{" "}
-              {cat.diseases && cat.diseases.length > 0
-                ? cat.diseases.map((disease) => (
-                    <span key={disease.id}>{disease.name}</span>
-                  ))
-                : "None"}
+              Diseases:
+              {cat.diseases.map((disease) => (
+                <span key={disease.id}>{disease.name}</span>
+              ))}
             </p>
             <p>
               Intolerances:{" "}
-              {cat.intolerances && cat.intolerances.length > 0
-                ? cat.intolerances.map((intolerance) => (
-                    <span key={intolerance.id}>{intolerance.name}</span>
-                  ))
-                : "None"}
+              {cat.intolerances.map((intolerance) => (
+                <span key={intolerance.id}>{intolerance.name}</span>
+              ))}
             </p>
           </div>
           <h4>Good Acceptance: </h4>
-          <p>
+          <div>
             {filteredGoodFood.map((food) => (
-              <span key={food.id}>
+              <p key={food.id}>
                 {food.brand} - {food.variety}
-              </span>
+              </p>
             ))}
-          </p>
+          </div>
           <h4>Bad Acceptance: </h4>
-          <p>
+          <div>
             {filteredBadFood.map((food) => (
-              <span key={food.id}>
+              <p key={food.id}>
                 {food.brand} - {food.variety}
-              </span>
+              </p>
             ))}
-          </p>
+          </div>
         </StyledSection>
       </StyledWrapper>
-      <Link href={"/"}>Back</Link>
+      <StyledLink href={"/"}>Back</StyledLink>
     </>
   );
 }
@@ -116,4 +116,14 @@ const StyledSection = styled.section`
     background-color: white;
     margin: 0.8rem 0.4rem;
   }
+`;
+
+const StyledLink = styled(Link)`
+  background: white;
+  color: red;
+  font-size: 1em;
+  margin: 1em;
+  padding: 0.25em 1em;
+  border: 2px solid red;
+  border-radius: 3px;
 `;
