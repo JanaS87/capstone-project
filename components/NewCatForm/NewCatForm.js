@@ -102,16 +102,12 @@ export default function NewCatForm({ onAddCat }) {
     // generate new ID
     const newId = uid();
 
-    const catAllergies = allergies.map((allergy) => {
-      if (data[allergy] === "on") return allergy;
-    });
+    const catAllergies = allergies.filter((allergy) => data[allergy] === "on");
 
-    const catDiseases = diseases.map(
-      (disease) => data[`disease-${disease.id}`] === "on"
-    );
+    const catDiseases = diseases.filter((disease) => data[disease] === "on");
 
-    const catIntolerances = intolerances.map(
-      (intolerance) => data[`intolerance-${intolerance.id}`] === "on"
+    const catIntolerances = intolerances.filter(
+      (intolerance) => data[intolerance] === "on"
     );
 
     // create new cat object at the end of the array
@@ -180,21 +176,13 @@ export default function NewCatForm({ onAddCat }) {
           <div>
             <p>Diseases: </p>
             {diseases.map((disease) => (
-              <input
-                type="checkbox"
-                key={`disease-${disease.id}`}
-                name={`disease-${disease.id}`}
-              />
+              <input type="checkbox" key={disease} name={disease} />
             ))}
           </div>
           <div>
             <p>Intolerances: </p>
             {intolerances.map((intolerance) => (
-              <input
-                type="checkbox"
-                key={`intolerance-${intolerance.id}`}
-                name={`intolerance-${intolerance.id}`}
-              />
+              <input type="checkbox" key={intolerance} name={intolerance} />
             ))}
           </div>
         </fieldset>
