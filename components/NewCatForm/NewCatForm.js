@@ -22,11 +22,11 @@ export default function NewCatForm({ onAddCat }) {
   });
 
   const allergies = [
-    { id: "1", name: "Eggs" },
-    { id: "2", name: "Pollen" },
-    { id: "3", name: "Dust Mites" },
-    { id: "4", name: "Mold Spores" },
-    { id: "5", name: "Flea Bite" },
+    "Eggs",
+    "Pollen",
+    "Dust Mites",
+    "Mold Spores",
+    "Flea Bite",
   ];
 
   const diseases = [
@@ -102,16 +102,16 @@ export default function NewCatForm({ onAddCat }) {
     // generate new ID
     const newId = uid();
 
-    const catAllergies = allergies.map(
-      (allergy) => data[`allergy-${allergy.id}`].id
-    );
+    const catAllergies = allergies.map((allergy) => {
+      if (data[allergy] === "on") return allergy;
+    });
 
     const catDiseases = diseases.map(
-      (disease) => data[`disease-${disease.id}`].id
+      (disease) => data[`disease-${disease.id}`] === "on"
     );
 
     const catIntolerances = intolerances.map(
-      (intolerance) => data[`intolerance-${intolerance.id}`].id
+      (intolerance) => data[`intolerance-${intolerance.id}`] === "on"
     );
 
     // create new cat object at the end of the array
@@ -135,6 +135,8 @@ export default function NewCatForm({ onAddCat }) {
 
     // add new cat to the list
     onAddCat(newCat);
+
+    console.log(data);
 
     event.target.reset();
   }
@@ -172,12 +174,7 @@ export default function NewCatForm({ onAddCat }) {
           <div>
             <p>Allergies: </p>
             {allergies.map((allergy) => (
-              <input
-                type="checkbox"
-                key={`allergy-${allergy.id}`}
-                name={`allergy-${allergy.id}`}
-                value={`allergy-${allergy.id}`}
-              />
+              <input type="checkbox" key={allergy} name={allergy} />
             ))}
           </div>
           <div>
@@ -187,7 +184,6 @@ export default function NewCatForm({ onAddCat }) {
                 type="checkbox"
                 key={`disease-${disease.id}`}
                 name={`disease-${disease.id}`}
-                value={`diesease-${disease.id}`}
               />
             ))}
           </div>
@@ -198,109 +194,10 @@ export default function NewCatForm({ onAddCat }) {
                 type="checkbox"
                 key={`intolerance-${intolerance.id}`}
                 name={`intolerance-${intolerance.id}`}
-                value={`intolerance-${intolerance.id}`}
               />
             ))}
           </div>
         </fieldset>
-        {/* <fieldset>
-          <legend>Health Information</legend>
-          <div>
-            <p>Allergies: </p>
-            <input type="checkbox" name="allergies" value="1" label={"Eggs"} />
-            <input
-              type="checkbox"
-              name="allergies"
-              value="2"
-              label={"Pollen"}
-            />
-            <input
-              type="checkbox"
-              name="allergies"
-              value="3"
-              label={"Dust Mites"}
-            />
-            <input
-              type="checkbox"
-              name="allergies"
-              value="4"
-              label={"Mold Spores"}
-            />
-            <input
-              type="checkbox"
-              name="allergies"
-              value="5"
-              label={"Flea Bite"}
-            />
-          </div>
-          <div>
-            <p>Diseases: </p>
-            <input
-              type="checkbox"
-              box
-              name="diseases"
-              value="1"
-              label={"Feline Rhinitis"}
-            />
-            <input
-              type="checkbox"
-              name="diseases"
-              value="2"
-              label={"Feline Epidemic"}
-            />
-            <input
-              type="checkbox"
-              name="diseases"
-              value="3"
-              label={"Ectoparasites (flea, ticks, ear mites)"}
-            />
-            <input
-              type="checkbox"
-              name="diseases"
-              value="4"
-              label={"Endoparasites (worms)"}
-            />
-            <input
-              type="checkbox"
-              name="diseases"
-              value="5"
-              label={"CNI (chronic renal insufficiency"}
-            />
-            <input
-              type="checkbox"
-              name="diseases"
-              value="6"
-              label={"Diabetes"}
-            />
-          </div>
-          <div>
-            <p>Intolerances: </p>
-            <input
-              type="checkbox"
-              name="intolerances"
-              value="1"
-              label={"Grains"}
-            />
-            <input
-              type="checkbox"
-              name="intolerances"
-              value="2"
-              label={"Lactose"}
-            />
-            <input
-              type="checkbox"
-              name="intolerances"
-              value="3"
-              label={"Artifical Additives"}
-            />
-            <input
-              type="checkbox"
-              name="intolerances"
-              value="4"
-              label={"Beef"}
-            />
-          </div>
-        </fieldset> */}
       </div>
 
       <label htmlFor="goodFood-select">Good Acceptance: </label>
