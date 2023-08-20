@@ -11,9 +11,9 @@ export default function NewCatForm({ onAddCat }) {
     name: "",
     age: "",
     health: {
-      allergies: "",
-      diseases: "",
-      intolerances: "",
+      allergies: [],
+      diseases: [],
+      intolerances: [],
     },
     food: {
       likes: [],
@@ -36,6 +36,24 @@ export default function NewCatForm({ onAddCat }) {
   // state to save the chosen food to show it below the drop down
   const [addedGoodFood, setAddedGoodFood] = useState([]);
   const [addedBadFood, setAddedBadFood] = useState([]);
+
+  function handleAddGoodFood() {
+    const foodToAdd = catfoods.find((food) => food.id === selectedGoodFood);
+
+    if (foodToAdd) {
+      setAddedGoodFood([...addedGoodFood, foodToAdd]);
+    }
+    setSelectedGoodFood({});
+  }
+
+  function handleAddBadFood() {
+    const foodToAdd = catfoods.find((food) => food.id === selectedBadFood);
+
+    if (foodToAdd) {
+      setAddedBadFood([...addedBadFood, foodToAdd]);
+    }
+    setSelectedBadFood({});
+  }
 
   // updates the cat- state object when an input field changes
   function handleChange(event) {
@@ -67,9 +85,9 @@ export default function NewCatForm({ onAddCat }) {
       name: data.name,
       age: data.age,
       health: {
-        allergies: data.addedAllergies || "",
-        diseases: data.addedDiseases || "",
-        intolerances: data.addedIntolerances || "",
+        allergies: data.allergies || "None",
+        diseases: data.addedDiseases || "None",
+        intolerances: data.addedIntolerances || "None",
       },
       food: {
         likes: selectedGoodFood,
@@ -89,7 +107,7 @@ export default function NewCatForm({ onAddCat }) {
     <StyledForm onSubmit={handleSubmit}>
       <StyledInputGroup>
         <label htmlFor="name">Name: </label>
-        <TextInput
+        <input
           type="text"
           name="name"
           id="name"
@@ -117,51 +135,43 @@ export default function NewCatForm({ onAddCat }) {
           <legend>Health Information</legend>
           <div>
             <p>Allergies: </p>
-            <Checkbox name="addedAllergies" value="1" label={"Eggs"} />
-            <Checkbox name="addedAllergies" value="2" label={"Pollen"} />
-            <Checkbox name="addedAllergies" value="3" label={"Dust Mites"} />
-            <Checkbox name="addedAllergies" value="4" label={"Mold Spores"} />
-            <Checkbox name="addedAllergies" value="5" label={"Flea Bite"} />
+            <Checkbox name="allergies" value="1" label={"Eggs"} />
+            <Checkbox name="allergies" value="2" label={"Pollen"} />
+            <Checkbox name="allergies" value="3" label={"Dust Mites"} />
+            <Checkbox name="allergies" value="4" label={"Mold Spores"} />
+            <Checkbox name="allergies" value="5" label={"Flea Bite"} />
           </div>
           <div>
             <p>Diseases: </p>
+            <Checkbox name="diseases" value="1" label={"Feline Rhinitis"} />
+            <Checkbox name="diseases" value="2" label={"Feline Epidemic"} />
             <Checkbox
-              name="addedDiseases"
-              value="1"
-              label={"Feline Rhinitis"}
-            />
-            <Checkbox
-              name="addedDiseases"
-              value="2"
-              label={"Feline Epidemic"}
-            />
-            <Checkbox
-              name="addedDiseases"
+              name="diseases"
               value="3"
               label={"Ectoparasites (flea, ticks, ear mites)"}
             />
             <Checkbox
-              name="addedDiseases"
+              name="diseases"
               value="4"
               label={"Endoparasites (worms)"}
             />
             <Checkbox
-              name="addedDiseases"
+              name="diseases"
               value="5"
               label={"CNI (chronic renal insufficiency"}
             />
-            <Checkbox name="addedDiseases" value="6" label={"Diabetes"} />
+            <Checkbox name="diseases" value="6" label={"Diabetes"} />
           </div>
           <div>
             <p>Intolerances: </p>
-            <Checkbox name="addedIntolerances" value="1" label={"Grains"} />
-            <Checkbox name="addedIntolerances" value="2" label={"Lactose"} />
+            <Checkbox name="intolerances" value="1" label={"Grains"} />
+            <Checkbox name="intolerances" value="2" label={"Lactose"} />
             <Checkbox
-              name="addedIntolerances"
+              name="intolerances"
               value="3"
               label={"Artifical Additives"}
             />
-            <Checkbox name="addedIntolerances" value="4" label={"Beef"} />
+            <Checkbox name="intolerances" value="4" label={"Beef"} />
           </div>
         </fieldset>
       </div>
