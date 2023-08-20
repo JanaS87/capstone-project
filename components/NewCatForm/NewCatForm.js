@@ -7,20 +7,15 @@ import { uid } from "uid";
 const allergies = ["Eggs", "Pollen", "Dust Mites", "Mold Spores", "Flea Bite"];
 
 const diseases = [
-  { id: "1", name: "Feline Rhinitis" },
-  { id: "2", name: "Feline Epidemic" },
-  { id: "3", name: "Ectoparasites (flea, ticks, ear mites)" },
-  { id: "4", name: "Endoparasites (worms" },
-  { id: "5", name: "CNI (chronic renal insufficiency" },
-  { id: "6", name: "Diabetes" },
+  "Feline Rhinitis",
+  "Feline Epidemic",
+  "Ectoparasites (flea, ticks, ear mites)",
+  "Endoparasites (worms",
+  "CNI (chronic renal insufficiency",
+  "Diabetes",
 ];
 
-const intolerances = [
-  { id: "1", name: "Grains" },
-  { id: "2", name: "Lactose" },
-  { id: "3", name: "Artifical Additives" },
-  { id: "4", name: "Beef" },
-];
+const intolerances = ["Grains", "Lactose", "Artifical Additives", "Beef"];
 
 export default function NewCatForm({ onAddCat }) {
   const [cat, setCat] = useState({
@@ -70,40 +65,6 @@ export default function NewCatForm({ onAddCat }) {
       setAddedBadFood([...addedBadFood, foodToAdd]);
     }
     setSelectedBadFood({});
-  }
-
-  const [selectedAllergies, setSelectedAllergies] = useState([]);
-  const [selectedDiseases, setSelectedDiseases] = useState([]);
-  const [selectedIntolerances, setSelectedIntolerances] = useState([]);
-
-  function handleAllergyChange(allergy) {
-    setSelectedAllergies((prev) => {
-      if (prev.includes(allergy)) {
-        return prev.filter((a) => a !== allergy);
-      } else {
-        return [...prev, allergy];
-      }
-    });
-  }
-
-  function handleDiseaseChange(disease) {
-    setSelectedDiseases((prev) => {
-      if (prev.includes(disease)) {
-        return prev.filter((a) => a !== disease);
-      } else {
-        return [...prev, disease];
-      }
-    });
-  }
-
-  function handleIntoleranceChange(intolerance) {
-    setSelectedIntolerances((prev) => {
-      if (prev.includes(intolerance)) {
-        return prev.filter((a) => a !== intolerance);
-      } else {
-        return [...prev, intolerance];
-      }
-    });
   }
 
   // updates the cat- state object when an input field changes
@@ -159,7 +120,7 @@ export default function NewCatForm({ onAddCat }) {
     // add new cat to the list
     onAddCat(newCat);
 
-    console.log(data);
+    console.log(newCat);
 
     event.target.reset();
   }
@@ -197,37 +158,19 @@ export default function NewCatForm({ onAddCat }) {
           <div>
             <p>Allergies: </p>
             {allergies.map((allergy, index) => (
-              <input
-                type="checkbox"
-                checked={selectedAllergies.includes(allergy)}
-                onChange={() => handleAllergyChange(allergy)}
-                key={index}
-                name={allergy}
-              />
+              <input type="checkbox" key={index} name={allergy} />
             ))}
           </div>
           <div>
             <p>Diseases: </p>
             {diseases.map((disease, index) => (
-              <input
-                type="checkbox"
-                checked={selectedDiseases.includes(disease)}
-                onChange={() => handleDiseaseChange(disease)}
-                key={index}
-                name={disease}
-              />
+              <input type="checkbox" key={index} name={disease} />
             ))}
           </div>
           <div>
             <p>Intolerances: </p>
             {intolerances.map((intolerance, index) => (
-              <input
-                type="checkbox"
-                checked={selectedIntolerances.includes(intolerance)}
-                onChange={() => handleIntoleranceChange(intolerance)}
-                key={index}
-                name={intolerance}
-              />
+              <input type="checkbox" key={index} name={intolerance} />
             ))}
           </div>
         </fieldset>
