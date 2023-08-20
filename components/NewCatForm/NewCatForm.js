@@ -3,7 +3,24 @@ import styled from "styled-components";
 import Button from "../Button/Button";
 import { catfoods } from "@/data/catfooddata";
 import { uid } from "uid";
-import Checkbox from "../Checkbox/Checkbox";
+
+const allergies = ["Eggs", "Pollen", "Dust Mites", "Mold Spores", "Flea Bite"];
+
+const diseases = [
+  { id: "1", name: "Feline Rhinitis" },
+  { id: "2", name: "Feline Epidemic" },
+  { id: "3", name: "Ectoparasites (flea, ticks, ear mites)" },
+  { id: "4", name: "Endoparasites (worms" },
+  { id: "5", name: "CNI (chronic renal insufficiency" },
+  { id: "6", name: "Diabetes" },
+];
+
+const intolerances = [
+  { id: "1", name: "Grains" },
+  { id: "2", name: "Lactose" },
+  { id: "3", name: "Artifical Additives" },
+  { id: "4", name: "Beef" },
+];
 
 export default function NewCatForm({ onAddCat }) {
   const [cat, setCat] = useState({
@@ -20,30 +37,6 @@ export default function NewCatForm({ onAddCat }) {
       dislikes: [],
     },
   });
-
-  const allergies = [
-    "Eggs",
-    "Pollen",
-    "Dust Mites",
-    "Mold Spores",
-    "Flea Bite",
-  ];
-
-  const diseases = [
-    { id: "1", name: "Feline Rhinitis" },
-    { id: "2", name: "Feline Epidemic" },
-    { id: "3", name: "Ectoparasites (flea, ticks, ear mites)" },
-    { id: "4", name: "Endoparasites (worms" },
-    { id: "5", name: "CNI (chronic renal insufficiency" },
-    { id: "6", name: "Diabetes" },
-  ];
-
-  const intolerances = [
-    { id: "1", name: "Grains" },
-    { id: "2", name: "Lactose" },
-    { id: "3", name: "Artifical Additives" },
-    { id: "4", name: "Beef" },
-  ];
 
   const [selectedGoodFood, setSelectedGoodFood] = useState({});
   const [selectedBadFood, setSelectedBadFood] = useState({});
@@ -76,7 +69,41 @@ export default function NewCatForm({ onAddCat }) {
     if (foodToAdd) {
       setAddedBadFood([...addedBadFood, foodToAdd]);
     }
-    //setSelectedBadFood({});
+    setSelectedBadFood({});
+  }
+
+  const [selectedAllergies, setSelectedAllergies] = useState([]);
+  const [selectedDiseases, setSelectedDiseases] = useState([]);
+  const [selectedIntolerances, setSelectedIntolerances] = useState([]);
+
+  function handleAllergyChange(allergy) {
+    setSelectedAllergies((prev) => {
+      if (prev.includes(allergy)) {
+        return prev.filter((a) => a !== allergy);
+      } else {
+        return [...prev, allergy];
+      }
+    });
+  }
+
+  function handleDiseaseChange(disease) {
+    setSelectedDiseases((prev) => {
+      if (prev.includes(disease)) {
+        return prev.filter((a) => a !== disease);
+      } else {
+        return [...prev, disease];
+      }
+    });
+  }
+
+  function handleIntoleranceChange(intolerance) {
+    setSelectedIntolerances((prev) => {
+      if (prev.includes(intolerance)) {
+        return prev.filter((a) => a !== intolerance);
+      } else {
+        return [...prev, intolerance];
+      }
+    });
   }
 
   // updates the cat- state object when an input field changes
@@ -169,20 +196,38 @@ export default function NewCatForm({ onAddCat }) {
           <legend>Health Information</legend>
           <div>
             <p>Allergies: </p>
-            {allergies.map((allergy) => (
-              <input type="checkbox" key={allergy} name={allergy} />
+            {allergies.map((allergy, index) => (
+              <input
+                type="checkbox"
+                checked={selectedAllergies.includes(allergy)}
+                onChange={() => handleAllergyChange(allergy)}
+                key={index}
+                name={allergy}
+              />
             ))}
           </div>
           <div>
             <p>Diseases: </p>
-            {diseases.map((disease) => (
-              <input type="checkbox" key={disease} name={disease} />
+            {diseases.map((disease, index) => (
+              <input
+                type="checkbox"
+                checked={selectedDiseases.includes(disease)}
+                onChange={() => handleDiseaseChange(disease)}
+                key={index}
+                name={disease}
+              />
             ))}
           </div>
           <div>
             <p>Intolerances: </p>
-            {intolerances.map((intolerance) => (
-              <input type="checkbox" key={intolerance} name={intolerance} />
+            {intolerances.map((intolerance, index) => (
+              <input
+                type="checkbox"
+                checked={selectedIntolerances.includes(intolerance)}
+                onChange={() => handleIntoleranceChange(intolerance)}
+                key={index}
+                name={intolerance}
+              />
             ))}
           </div>
         </fieldset>

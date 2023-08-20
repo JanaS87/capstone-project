@@ -41,25 +41,25 @@ export default function CatDetailPage({ catList, catFoods }) {
           <div>
             <p>
               Allergies:
-              {cat.health.allergies.map((allergy) => (
-                <span key={allergy}>{allergy}</span>
+              {cat.health.allergies.map((allergy, index) => (
+                <span key={index}>{allergy.name}</span>
               ))}
             </p>
 
             <p>
               Diseases:
-              {cat.health.diseases.map((disease) => (
-                <span key={disease}>{disease}</span>
+              {cat.health.diseases.map((disease, index) => (
+                <span key={index}>{disease.name}</span>
               ))}
             </p>
             <p>
               Intolerances:{" "}
-              {cat.health.intolerances.map((intolerance) => (
-                <span key={intolerance}>{intolerance}</span>
+              {cat.health.intolerances.map((intolerance, index) => (
+                <span key={index}>{intolerance.name}</span>
               ))}
             </p>
           </div>
-          <h4>Good Acceptance: </h4>
+          {/* <h4>Good Acceptance: </h4>
           <div>
             {filteredGoodFood.map((food) => (
               <p key={food.id}>
@@ -74,7 +74,7 @@ export default function CatDetailPage({ catList, catFoods }) {
                 {food.brand} - {food.variety}
               </p>
             ))}
-          </div>
+          </div> */}
         </StyledSection>
       </StyledWrapper>
       <StyledLink href={"/"}>Back</StyledLink>
