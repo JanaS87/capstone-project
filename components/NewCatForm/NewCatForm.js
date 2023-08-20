@@ -25,23 +25,17 @@ export default function NewCatForm({ onAddCat }) {
   const [selectedBadFood, setSelectedBadFood] = useState({});
 
   // // any cat food is selected
-  // function handleGoodFoodChange(selectedOption) {
-  //   setSelectedGoodFood(selectedOption);
-  // }
+  function handleGoodFoodChange(selectedOption) {
+    setSelectedGoodFood({ ...selectedGoodFood, selectedOption });
+  }
 
-  // function handleBadFoodChange(selectedOption) {
-  //   setSelectedBadFood(selectedOption);
-  // }
+  function handleBadFoodChange(selectedOption) {
+    setSelectedBadFood({ ...selectedBadFood, selectedOption });
+  }
 
   // state to save the chosen food to show it below the drop down
-  // const [addedGoodFood, setAddedGoodFood] = useState([]);
-  // const [addedBadFood, setAddedBadFood] = useState([]);
-
-  //function handleAllergyChange() {}
-
-  // add the chosen food to the list, if it´s not already in it.
-  // checking this with some()
-  //
+  const [addedGoodFood, setAddedGoodFood] = useState([]);
+  const [addedBadFood, setAddedBadFood] = useState([]);
 
   // updates the cat- state object when an input field changes
   function handleChange(event) {
@@ -65,9 +59,6 @@ export default function NewCatForm({ onAddCat }) {
 
     // generate new ID
     const newId = uid();
-
-    setSelectedGoodFood(data.addedGoodFood);
-    setSelectedBadFood(data.addedBadFood);
 
     // create new cat object at the end of the array
     const newCat = {
@@ -179,6 +170,7 @@ export default function NewCatForm({ onAddCat }) {
       <StyledInputGroup>
         <select
           id="goodFood-select"
+          name="goodFood-select"
           onChange={(event) => handleGoodFoodChange(event.target.value)}
           defaultValue={selectedGoodFood}
         >
@@ -205,6 +197,7 @@ export default function NewCatForm({ onAddCat }) {
       <StyledInputGroup>
         <select
           id="badFood-select"
+          name="badFood-select"
           onChange={(event) => handleBadFoodChange(event.target.value)}
           defaultValue={selectedBadFood}
         >
@@ -234,10 +227,6 @@ export default function NewCatForm({ onAddCat }) {
 // Styling Section
 const AgeInput = styled.input`
   width: 50px;
-`;
-
-const TextInput = styled.input`
-  width: 75px;
 `;
 
 const StyledInputGroup = styled.div`
