@@ -47,6 +47,7 @@ export const cats = [
     age: 3,
     health: {
       allergies: [],
+      diseases: [],
       intolerances: [],
     },
     food: {

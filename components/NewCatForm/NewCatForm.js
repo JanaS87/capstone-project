@@ -196,11 +196,13 @@ export default function NewCatForm({ onAddCat }) {
         </Button>
       </StyledInputGroup>
       <div>
-        {addedGoodFood.map((food) => (
-          <div key={food.id}>
-            {food.brand} - {food.variety}
-          </div>
-        ))}
+        <ul>
+          {addedGoodFood.map((food) => (
+            <li key={food.id}>
+              {food.brand} - {food.variety}
+            </li>
+          ))}
+        </ul>
       </div>
 
       <label htmlFor="badFood-select">Bad Acceptance: </label>
@@ -223,11 +225,13 @@ export default function NewCatForm({ onAddCat }) {
         </Button>
       </StyledInputGroup>
       <div>
-        {addedBadFood.map((food) => (
-          <div key={food.id}>
-            {food.brand} - {food.variety}
-          </div>
-        ))}
+        <ul>
+          {addedBadFood.map((food) => (
+            <li key={food.id}>
+              {food.brand} - {food.variety}
+            </li>
+          ))}
+        </ul>
       </div>
       <Button type="submit">Save</Button>
     </StyledForm>
