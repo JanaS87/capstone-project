@@ -21,13 +21,13 @@ export default function CatDetailPage({ catList, catFoods }) {
   }
   console.log("Cat object:", cat);
 
-  const filteredGoodFood = cat.food.likes.map((good) =>
-    catFoods.find((food) => food.id === good)
-  );
+  // const filteredGoodFood = cat.food.likes.map((good) =>
+  //   catFoods.find((food) => food.id === good)
+  // );
 
-  const filteredBadFood = cat.food.dislikes.map((bad) =>
-    catFoods.find((food) => food.id === bad)
-  );
+  // const filteredBadFood = cat.food.dislikes.map((bad) =>
+  //   catFoods.find((food) => food.id === bad)
+  // );
 
   return (
     <>
@@ -40,27 +40,27 @@ export default function CatDetailPage({ catList, catFoods }) {
           <h4>Allergies, Diseases, Intolerances:</h4>
           <div>
             <p>
-              Allergies:{" "}
-              {cat.allergies.map((allergy) => (
+              Allergies:
+              {cat.health.allergies.map((allergy) => (
                 <span key={allergy.id}>{allergy.name}</span>
               ))}
             </p>
 
             <p>
               Diseases:
-              {cat.diseases.map((disease) => (
+              {cat.health.diseases.map((disease) => (
                 <span key={disease.id}>{disease.name}</span>
               ))}
             </p>
             <p>
               Intolerances:{" "}
-              {cat.intolerances.map((intolerance) => (
+              {cat.health.intolerances.map((intolerance) => (
                 <span key={intolerance.id}>{intolerance.name}</span>
               ))}
             </p>
           </div>
           <h4>Good Acceptance: </h4>
-          <div>
+          {/* <div>
             {filteredGoodFood.map((food) => (
               <p key={food.id}>
                 {food.brand} - {food.variety}
@@ -74,7 +74,7 @@ export default function CatDetailPage({ catList, catFoods }) {
                 {food.brand} - {food.variety}
               </p>
             ))}
-          </div>
+          </div> */}
         </StyledSection>
       </StyledWrapper>
       <StyledLink href={"/"}>Back</StyledLink>

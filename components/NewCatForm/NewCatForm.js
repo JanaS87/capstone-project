@@ -21,16 +21,40 @@ export default function NewCatForm({ onAddCat }) {
     },
   });
 
+  const allergies = [
+    { id: "1", name: "Eggs" },
+    { id: "2", name: "Pollen" },
+    { id: "3", name: "Dust Mites" },
+    { id: "4", name: "Mold Spores" },
+    { id: "5", name: "Flea Bite" },
+  ];
+
+  const diseases = [
+    { id: "1", name: "Feline Rhinitis" },
+    { id: "2", name: "Feline Epidemic" },
+    { id: "3", name: "Ectoparasites (flea, ticks, ear mites)" },
+    { id: "4", name: "Endoparasites (worms" },
+    { id: "5", name: "CNI (chronic renal insufficiency" },
+    { id: "6", name: "Diabetes" },
+  ];
+
+  const intolerances = [
+    { id: "1", name: "Grains" },
+    { id: "2", name: "Lactose" },
+    { id: "3", name: "Artifical Additives" },
+    { id: "4", name: "Beef" },
+  ];
+
   const [selectedGoodFood, setSelectedGoodFood] = useState({});
   const [selectedBadFood, setSelectedBadFood] = useState({});
 
   // // any cat food is selected
   function handleGoodFoodChange(selectedOption) {
-    setSelectedGoodFood({ ...selectedGoodFood, selectedOption });
+    setSelectedGoodFood(selectedOption);
   }
 
   function handleBadFoodChange(selectedOption) {
-    setSelectedBadFood({ ...selectedBadFood, selectedOption });
+    setSelectedBadFood(selectedOption);
   }
 
   // state to save the chosen food to show it below the drop down
@@ -52,7 +76,7 @@ export default function NewCatForm({ onAddCat }) {
     if (foodToAdd) {
       setAddedBadFood([...addedBadFood, foodToAdd]);
     }
-    setSelectedBadFood({});
+    //setSelectedBadFood({});
   }
 
   // updates the cat- state object when an input field changes
@@ -78,6 +102,18 @@ export default function NewCatForm({ onAddCat }) {
     // generate new ID
     const newId = uid();
 
+    const catAllergies = allergies.map(
+      (allergy) => data[`allergy-${allergy.id}`].id
+    );
+
+    const catDiseases = diseases.map(
+      (disease) => data[`disease-${disease.id}`].id
+    );
+
+    const catIntolerances = intolerances.map(
+      (intolerance) => data[`intolerance-${intolerance.id}`].id
+    );
+
     // create new cat object at the end of the array
     const newCat = {
       ...cat,
@@ -85,13 +121,13 @@ export default function NewCatForm({ onAddCat }) {
       name: data.name,
       age: data.age,
       health: {
-        allergies: data.allergies || "None",
-        diseases: data.addedDiseases || "None",
-        intolerances: data.addedIntolerances || "None",
+        allergies: catAllergies,
+        diseases: catDiseases,
+        intolerances: catIntolerances,
       },
       food: {
-        likes: selectedGoodFood,
-        dislikes: selectedBadFood,
+        likes: addedGoodFood,
+        dislikes: addedBadFood,
       },
     };
 
@@ -135,45 +171,136 @@ export default function NewCatForm({ onAddCat }) {
           <legend>Health Information</legend>
           <div>
             <p>Allergies: </p>
-            <Checkbox name="allergies" value="1" label={"Eggs"} />
-            <Checkbox name="allergies" value="2" label={"Pollen"} />
-            <Checkbox name="allergies" value="3" label={"Dust Mites"} />
-            <Checkbox name="allergies" value="4" label={"Mold Spores"} />
-            <Checkbox name="allergies" value="5" label={"Flea Bite"} />
+            {allergies.map((allergy) => (
+              <input
+                type="checkbox"
+                key={`allergy-${allergy.id}`}
+                name={`allergy-${allergy.id}`}
+                value={`allergy-${allergy.id}`}
+              />
+            ))}
           </div>
           <div>
             <p>Diseases: </p>
-            <Checkbox name="diseases" value="1" label={"Feline Rhinitis"} />
-            <Checkbox name="diseases" value="2" label={"Feline Epidemic"} />
-            <Checkbox
+            {diseases.map((disease) => (
+              <input
+                type="checkbox"
+                key={`disease-${disease.id}`}
+                name={`disease-${disease.id}`}
+                value={`diesease-${disease.id}`}
+              />
+            ))}
+          </div>
+          <div>
+            <p>Intolerances: </p>
+            {intolerances.map((intolerance) => (
+              <input
+                type="checkbox"
+                key={`intolerance-${intolerance.id}`}
+                name={`intolerance-${intolerance.id}`}
+                value={`intolerance-${intolerance.id}`}
+              />
+            ))}
+          </div>
+        </fieldset>
+        {/* <fieldset>
+          <legend>Health Information</legend>
+          <div>
+            <p>Allergies: </p>
+            <input type="checkbox" name="allergies" value="1" label={"Eggs"} />
+            <input
+              type="checkbox"
+              name="allergies"
+              value="2"
+              label={"Pollen"}
+            />
+            <input
+              type="checkbox"
+              name="allergies"
+              value="3"
+              label={"Dust Mites"}
+            />
+            <input
+              type="checkbox"
+              name="allergies"
+              value="4"
+              label={"Mold Spores"}
+            />
+            <input
+              type="checkbox"
+              name="allergies"
+              value="5"
+              label={"Flea Bite"}
+            />
+          </div>
+          <div>
+            <p>Diseases: </p>
+            <input
+              type="checkbox"
+              box
+              name="diseases"
+              value="1"
+              label={"Feline Rhinitis"}
+            />
+            <input
+              type="checkbox"
+              name="diseases"
+              value="2"
+              label={"Feline Epidemic"}
+            />
+            <input
+              type="checkbox"
               name="diseases"
               value="3"
               label={"Ectoparasites (flea, ticks, ear mites)"}
             />
-            <Checkbox
+            <input
+              type="checkbox"
               name="diseases"
               value="4"
               label={"Endoparasites (worms)"}
             />
-            <Checkbox
+            <input
+              type="checkbox"
               name="diseases"
               value="5"
               label={"CNI (chronic renal insufficiency"}
             />
-            <Checkbox name="diseases" value="6" label={"Diabetes"} />
+            <input
+              type="checkbox"
+              name="diseases"
+              value="6"
+              label={"Diabetes"}
+            />
           </div>
           <div>
             <p>Intolerances: </p>
-            <Checkbox name="intolerances" value="1" label={"Grains"} />
-            <Checkbox name="intolerances" value="2" label={"Lactose"} />
-            <Checkbox
+            <input
+              type="checkbox"
+              name="intolerances"
+              value="1"
+              label={"Grains"}
+            />
+            <input
+              type="checkbox"
+              name="intolerances"
+              value="2"
+              label={"Lactose"}
+            />
+            <input
+              type="checkbox"
               name="intolerances"
               value="3"
               label={"Artifical Additives"}
             />
-            <Checkbox name="intolerances" value="4" label={"Beef"} />
+            <input
+              type="checkbox"
+              name="intolerances"
+              value="4"
+              label={"Beef"}
+            />
           </div>
-        </fieldset>
+        </fieldset> */}
       </div>
 
       <label htmlFor="goodFood-select">Good Acceptance: </label>
