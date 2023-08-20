@@ -33,12 +33,13 @@ export default function NewCatForm({ onAddCat }) {
     },
   });
 
-  const [selectedGoodFood, setSelectedGoodFood] = useState({});
-  const [selectedBadFood, setSelectedBadFood] = useState({});
+  const [selectedGoodFood, setSelectedGoodFood] = useState();
+  const [selectedBadFood, setSelectedBadFood] = useState();
 
   // // any cat food is selected
   function handleGoodFoodChange(selectedOption) {
     setSelectedGoodFood(selectedOption);
+    console.log(selectedGoodFood);
   }
 
   function handleBadFoodChange(selectedOption) {
@@ -50,21 +51,20 @@ export default function NewCatForm({ onAddCat }) {
   const [addedBadFood, setAddedBadFood] = useState([]);
 
   function handleAddGoodFood() {
-    const foodToAdd = catfoods.find((food) => food.id === selectedGoodFood);
+    const foodToAdd = selectedGoodFood;
 
     if (foodToAdd) {
       setAddedGoodFood([...addedGoodFood, foodToAdd]);
+      console.log(foodToAdd);
     }
-    setSelectedGoodFood({});
   }
 
   function handleAddBadFood() {
-    const foodToAdd = catfoods.find((food) => food.id === selectedBadFood);
+    const foodToAdd = selectedBadFood;
 
     if (foodToAdd) {
       setAddedBadFood([...addedBadFood, foodToAdd]);
     }
-    setSelectedBadFood({});
   }
 
   // updates the cat- state object when an input field changes

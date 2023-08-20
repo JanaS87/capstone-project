@@ -19,7 +19,6 @@ export default function CatDetailPage({ catList, catFoods }) {
       </>
     );
   }
-  console.log("Cat object:", cat);
 
   const filteredGoodFood = cat.food.likes.map((good) =>
     catFoods.find((food) => food.id === good)
@@ -28,6 +27,8 @@ export default function CatDetailPage({ catList, catFoods }) {
   const filteredBadFood = cat.food.dislikes.map((bad) =>
     catFoods.find((food) => food.id === bad)
   );
+
+  console.log("Cat object:", cat);
 
   return (
     <>
