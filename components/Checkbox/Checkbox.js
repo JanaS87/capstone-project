@@ -1,8 +1,14 @@
-export default function Checkbox({ label, checked, onChange }) {
+export default function Checkbox({ label, checked, name, value, onChange }) {
   return (
     <>
       <label>
-        <input type="checkbox" checked={checked} onChange={onChange} />
+        <input
+          type="checkbox"
+          name={name}
+          checked={checked}
+          value={value}
+          onChange={onChange}
+        />
         {label}
       </label>
     </>
