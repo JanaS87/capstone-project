@@ -3,23 +3,30 @@ import styled from "styled-components";
 import Button from "../Button/Button";
 import { catfoods } from "@/data/catfooddata";
 import { uid } from "uid";
+import Checkbox from "../Checkbox/Checkbox";
 
 export default function NewCatForm({ onAddCat }) {
-  const [cat, setCat] = useState({
-    id: "",
-    name: "",
-    age: "",
-    allergies: [],
-    diseases: [],
-    intolerances: [],
-    food: {
-      likes: [],
-      dislikes: [],
-    },
-  });
+  // const [cat, setCat] = useState({
+  //   id: "",
+  //   name: "",
+  //   age: "",
+  //   health: {
+  //     allergies: [],
+  //     diseases: [],
+  //     intolerances: [],
+  //   },
+  //   food: {
+  //     likes: [],
+  //     dislikes: [],
+  //   },
+  // });
 
-  const [selectedGoodFood, setSelectedGoodFood] = useState({});
-  const [selectedBadFood, setSelectedBadFood] = useState({});
+  // const [selectedAllergies, setSelectedAllergies] = useState({});
+  // const [selectedDiseases, setSelectedDiseases] = useState({});
+  // const [selectedIntolerances, setSelectedIntolerancesund] = useState({});
+
+  // const [selectedGoodFood, setSelectedGoodFood] = useState({});
+  // const [selectedBadFood, setSelectedBadFood] = useState({});
 
   // any cat food is selected
   function handleGoodFoodChange(selectedOption) {
@@ -31,8 +38,10 @@ export default function NewCatForm({ onAddCat }) {
   }
 
   // state to save the chosen food to show it below the drop down
-  const [addedGoodFood, setAddedGoodFood] = useState([]);
-  const [addedBadFood, setAddedBadFood] = useState([]);
+  // const [addedGoodFood, setAddedGoodFood] = useState([]);
+  // const [addedBadFood, setAddedBadFood] = useState([]);
+
+  function handleAllergyChange() {}
 
   // add the chosen food to the list, if it´s not already in it.
   // checking this with some()
@@ -83,6 +92,9 @@ export default function NewCatForm({ onAddCat }) {
   function handleSubmit(event) {
     event.preventDefault();
 
+    const formData = new FormData(event.target);
+    const data = Object.fromEntries(formData);
+
     // generate new ID
     const newId = uid();
 
@@ -90,6 +102,11 @@ export default function NewCatForm({ onAddCat }) {
     const newCat = {
       ...cat,
       id: newId,
+      health: {
+        allergies: addedAllergies,
+        diseases: addedDiseases,
+        intolerances: addedIntolerances,
+      },
       food: {
         likes: addedGoodFood,
         dislikes: addedBadFood,
@@ -101,21 +118,7 @@ export default function NewCatForm({ onAddCat }) {
     // add new cat to the list
     onAddCat(newCat);
 
-    console.log("allergies:", cat.allergies);
-
-    setCat({
-      id: "",
-      name: "",
-      age: "",
-      food: {
-        likes: [],
-        dislikes: [],
-      },
-    });
-    setAddedGoodFood([]);
-    setAddedBadFood([]);
-
-    // event.target.reset();
+    event.target.reset();
   }
 
   return (
@@ -145,6 +148,37 @@ export default function NewCatForm({ onAddCat }) {
           required
         />
       </StyledInputGroup>
+      <div>
+        <fieldset>
+          <legend>Health Information</legend>
+          <div>
+            <p>Allergies: </p>
+            <Checkbox label={"Eggs"} />
+            <Checkbox label={"Pollen"} />
+            <Checkbox label={"Dust Mites"} />
+            <Checkbox label={"Mold Spores"} />
+            <Checkbox label={"Flea Bite"} />
+          </div>
+          <div>
+            <p>Diseases: </p>
+            <Checkbox label={"Feline Rhinitis"} />
+            <Checkbox label={"Feline Epidemic"} />
+            <Checkbox label={"Ectoparasites (flea, ticks, ear mites)"} />
+            <Checkbox label={"Endoparasites (worms)"} />
+            <Checkbox label={"CNI (chronic renal insufficiency"} />
+            <Checkbox label={"Diabetes"} />
+          </div>
+          <div>
+            <p>Intolerances: </p>
+            <Checkbox label={"Grains"} />
+            <Checkbox label={"Lactose"} />
+            <Checkbox label={"Artifical Additives"} />
+            <Checkbox label={"Beef"} />
+          </div>
+        </fieldset>
+      </div>
+
+      {/*
       <label htmlFor="allergies">Allergies: </label>
       <input
         type="text"
@@ -175,6 +209,7 @@ export default function NewCatForm({ onAddCat }) {
         maxLength={50}
         onChange={handleChange}
       />
+  */}
 
       <label htmlFor="goodFood-select">Good Acceptance: </label>
       <StyledInputGroup>
