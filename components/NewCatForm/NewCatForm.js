@@ -158,19 +158,43 @@ export default function NewCatForm({ onAddCat }) {
           <div>
             <p>Allergies: </p>
             {allergies.map((allergy, index) => (
-              <input type="checkbox" key={index} name={allergy} />
+              <>
+                <input
+                  type="checkbox"
+                  key={index}
+                  name={allergy}
+                  id={allergy}
+                />
+                <label htmlFor={allergy}>{allergy}</label>
+              </>
             ))}
           </div>
           <div>
             <p>Diseases: </p>
             {diseases.map((disease, index) => (
-              <input type="checkbox" key={index} name={disease} />
+              <>
+                <input
+                  type="checkbox"
+                  key={index}
+                  name={disease}
+                  id={disease}
+                />
+                <label htmlFor={disease}>{disease}</label>
+              </>
             ))}
           </div>
           <div>
             <p>Intolerances: </p>
             {intolerances.map((intolerance, index) => (
-              <input type="checkbox" key={index} name={intolerance} />
+              <>
+                <input
+                  type="checkbox"
+                  key={index}
+                  name={intolerance}
+                  id={intolerance}
+                />
+                <label htmlFor={intolerance}>{intolerance}</label>
+              </>
             ))}
           </div>
         </fieldset>
