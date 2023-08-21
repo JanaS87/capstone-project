@@ -40,12 +40,12 @@ export default function CatDetailPage({ catList, catFoods }) {
           </p>
           <h4>Allergies, Diseases, Intolerances:</h4>
           <div>
-            <ul>
-              <p>Allergies</p>
+            <StyledList>
+              <p>Allergies: </p>
               {cat.health.allergies.map((allergy, index) => (
-                <li key={index}>{allergy}</li>
+                <StyledItem key={index}>{allergy}</StyledItem>
               ))}
-            </ul>
+            </StyledList>
 
             <ul>
               <p>Diseases: </p>
@@ -92,7 +92,7 @@ const StyledHead = styled.h1`
 `;
 
 const StyledWrapper = styled.div`
-  max-width: 65%;
+  max-width: 85%;
   list-style-type: none;
   margin-bottom: 1.3rem;
 
@@ -131,4 +131,14 @@ const StyledLink = styled(Link)`
   padding: 0.25em 1em;
   border: 2px solid red;
   border-radius: 3px;
+`;
+
+const StyledList = styled.ul`
+  display: flex;
+  flex-direction: column;
+`;
+
+const StyledItem = styled.li`
+  list-style: none;
+  margin-left: 10%;
 `;

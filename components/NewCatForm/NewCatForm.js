@@ -155,54 +155,45 @@ export default function NewCatForm({ onAddCat }) {
       <div>
         <fieldset>
           <legend>Health Information</legend>
-          <div>
+          <>
             <p>Allergies: </p>
-            {allergies.map((allergy, index) => (
-              <>
-                <input
-                  type="checkbox"
-                  key={index}
-                  name={allergy}
-                  id={allergy}
-                />
-                <label htmlFor={allergy}>{allergy}</label>
-              </>
-            ))}
-          </div>
+            <StyledCheckBoxWrapper>
+              {allergies.map((allergy, index) => (
+                <StyledCheckBoxWrapper key={index}>
+                  <input type="checkbox" name={allergy} id={allergy} />
+                  <label htmlFor={allergy}>{allergy}</label>
+                </StyledCheckBoxWrapper>
+              ))}
+            </StyledCheckBoxWrapper>
+          </>
           <div>
             <p>Diseases: </p>
-            {diseases.map((disease, index) => (
-              <>
-                <input
-                  type="checkbox"
-                  key={index}
-                  name={disease}
-                  id={disease}
-                />
-                <label htmlFor={disease}>{disease}</label>
-              </>
-            ))}
+            <StyledCheckBoxWrapper>
+              {diseases.map((disease, index) => (
+                <StyledCheckBoxWrapper key={index}>
+                  <input type="checkbox" name={disease} id={disease} />
+                  <label htmlFor={disease}>{disease}</label>
+                </StyledCheckBoxWrapper>
+              ))}
+            </StyledCheckBoxWrapper>
           </div>
           <div>
             <p>Intolerances: </p>
-            {intolerances.map((intolerance, index) => (
-              <>
-                <input
-                  type="checkbox"
-                  key={index}
-                  name={intolerance}
-                  id={intolerance}
-                />
-                <label htmlFor={intolerance}>{intolerance}</label>
-              </>
-            ))}
+            <StyledCheckBoxWrapper>
+              {intolerances.map((intolerance, index) => (
+                <StyledLastBox key={index}>
+                  <input type="checkbox" name={intolerance} id={intolerance} />
+                  <label htmlFor={intolerance}>{intolerance}</label>
+                </StyledLastBox>
+              ))}
+            </StyledCheckBoxWrapper>
           </div>
         </fieldset>
       </div>
 
       <label htmlFor="goodFood-select">Good Acceptance: </label>
       <StyledInputGroup>
-        <select
+        <StyledSelect
           id="goodFood-select"
           name="goodFood-select"
           onChange={(event) => handleGoodFoodChange(event.target.value)}
@@ -214,7 +205,7 @@ export default function NewCatForm({ onAddCat }) {
               {food.brand} - {food.variety}
             </option>
           ))}
-        </select>
+        </StyledSelect>
         <Button type="button" onClick={handleAddGoodFood}>
           Add
         </Button>
@@ -231,7 +222,7 @@ export default function NewCatForm({ onAddCat }) {
 
       <label htmlFor="badFood-select">Bad Acceptance: </label>
       <StyledInputGroup>
-        <select
+        <StyledSelect
           id="badFood-select"
           name="badFood-select"
           onChange={(event) => handleBadFoodChange(event.target.value)}
@@ -243,7 +234,7 @@ export default function NewCatForm({ onAddCat }) {
               {food.brand} - {food.variety}
             </option>
           ))}
-        </select>
+        </StyledSelect>
         <Button type="button" onClick={handleAddBadFood}>
           Add
         </Button>
@@ -271,10 +262,18 @@ const StyledInputGroup = styled.div`
   display: flex;
   background-color: white;
   gap: 0.8rem;
+
+  label {
+    font-weight: bold;
+  }
+
+  input {
+    max-width: 30%;
+  }
 `;
 
 const StyledForm = styled.form`
-  max-width: 45%;
+  max-width: 100%;
   display: flex;
   flex-direction: column;
   padding: 0.5rem 1rem;
@@ -286,7 +285,7 @@ const StyledForm = styled.form`
 
   Button {
     max-width: 30%;
-    font-size: 12%;
+    font-size: 15%;
     text-align: center;
     margin: 0 auto;
     background-color: #1d5d9b;
@@ -296,4 +295,24 @@ const StyledForm = styled.form`
   input {
     background-color: white;
   }
+`;
+
+const StyledCheckBoxWrapper = styled.article`
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+`;
+
+const StyledSelect = styled.select`
+  width: 100%;
+  font-size: 0.6em;
+  padding: 2%;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+`;
+
+const StyledLastBox = styled.article`
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
 `;
