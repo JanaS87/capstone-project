@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Button from "../Button/Button";
 import { catfoods } from "@/data/catfooddata";
 import { uid } from "uid";
+import { useRouter } from "next/router";
 
 const allergies = ["Eggs", "Pollen", "Dust Mites", "Mold Spores", "Flea Bite"];
 
@@ -18,6 +19,7 @@ const diseases = [
 const intolerances = ["Grains", "Lactose", "Artifical Additives", "Beef"];
 
 export default function NewCatForm({ onAddCat }) {
+  const router = useRouter();
   const [cat, setCat] = useState({
     id: "",
     name: "",
@@ -123,6 +125,8 @@ export default function NewCatForm({ onAddCat }) {
     console.log(newCat);
 
     event.target.reset();
+
+    router.push("/");
   }
 
   return (
