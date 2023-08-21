@@ -212,11 +212,23 @@ export default function NewCatForm({ onAddCat }) {
       </StyledInputGroup>
       <div>
         <ul>
-          {addedGoodFood.map((food) => (
+          {addedGoodFood.map((foodId) => {
+            // help from a friend
+            const food = catfoods.find((food) => food.id === foodId);
+            if (food) {
+              return (
+                <li key={food.id}>
+                  {food.brand} - {food.variety}
+                </li>
+              );
+            }
+            return null;
+          })}
+          {/* {addedGoodFood.map((food) => (
             <li key={food.id}>
               {food.brand} - {food.variety}
             </li>
-          ))}
+          ))} */}
         </ul>
       </div>
 
@@ -241,11 +253,23 @@ export default function NewCatForm({ onAddCat }) {
       </StyledInputGroup>
       <div>
         <ul>
-          {addedBadFood.map((food) => (
+          {addedBadFood.map((foodId) => {
+            // help from a friend
+            const food = catfoods.find((food) => food.id === foodId);
+            if (food) {
+              return (
+                <li key={food.id}>
+                  {food.brand} - {food.variety}
+                </li>
+              );
+            }
+            return null;
+          })}
+          {/* {addedBadFood.map((food) => (
             <li key={food.id}>
               {food.brand} - {food.variety}
             </li>
-          ))}
+          ))} */}
         </ul>
       </div>
       <Button type="submit">Save</Button>
