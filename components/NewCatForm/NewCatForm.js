@@ -228,11 +228,6 @@ export default function NewCatForm({ onAddCat }) {
             }
             return null;
           })}
-          {/* {addedGoodFood.map((food) => (
-            <li key={food.id}>
-              {food.brand} - {food.variety}
-            </li>
-          ))} */}
         </ul>
       </div>
 
@@ -269,11 +264,6 @@ export default function NewCatForm({ onAddCat }) {
             }
             return null;
           })}
-          {/* {addedBadFood.map((food) => (
-            <li key={food.id}>
-              {food.brand} - {food.variety}
-            </li>
-          ))} */}
         </ul>
       </div>
       <Button type="submit">Save</Button>
