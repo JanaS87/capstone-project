@@ -6,7 +6,7 @@ export default function HomePage({ catList }) {
   return (
     <>
       <StyledHeading>Your Cats</StyledHeading>
-      <StyledLink href={"/newcat"}>Add New Cat</StyledLink>
+      <StyledLink href={"/addcat"}>Add New Cat</StyledLink>
       <CatList catList={catList} />
     </>
   );
