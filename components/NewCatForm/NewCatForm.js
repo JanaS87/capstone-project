@@ -73,15 +73,6 @@ export default function NewCatForm({ onAddCat }) {
   function handleChange(event) {
     setCat({ ...cat, [event.target.name]: event.target.value || "" });
   }
-  // you can only enter two numbers (internet)
-  function handleAgeChange(event) {
-    const ageValue = event.target.value;
-    if (ageValue.length > 2) {
-      setCat({ ...cat, age: ageValue.slice(0, 2) });
-    } else {
-      setCat({ ...cat, age: ageValue });
-    }
-  }
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -149,10 +140,9 @@ export default function NewCatForm({ onAddCat }) {
           type="number"
           name="age"
           id="age"
+          max={25}
           aria-describedby="age-info"
           defaultValue={cat.age}
-          className="ageInput"
-          onChange={handleAgeChange}
           required
         />
       </StyledInputGroup>
