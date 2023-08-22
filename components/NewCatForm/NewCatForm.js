@@ -77,6 +77,12 @@ export default function NewCatForm({ onAddCat }) {
   function handleSubmit(event) {
     event.preventDefault();
 
+    // validate user entry (catname)
+    if (cat.name.includes(" ")) {
+      alert("Whitespace is not allowed!");
+      return;
+    }
+
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData);
 
@@ -131,6 +137,8 @@ export default function NewCatForm({ onAddCat }) {
           aria-describedby="name-info"
           defaultValue={cat.name}
           maxLength={8}
+          pattern="^[^\s]+$"
+          title="Bitte Namen eingeben!"
           required
           onChange={handleChange}
         />
