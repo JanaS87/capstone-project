@@ -1,20 +1,15 @@
-import { cats } from "../../data/catdata";
 import CatCard from "../CatCard/CatCard.js";
 import { styled } from "styled-components";
 
-export default function CatList() {
+export default function CatList({ catList }) {
   return (
-    <>
-      <StyledHeading>Your Cats</StyledHeading>
-      <StyledList>
-        {cats &&
-          cats.map((cat) => (
-            <ListItem key={cat.id}>
-              <CatCard cat={cat} />
-            </ListItem>
-          ))}
-      </StyledList>
-    </>
+    <StyledList>
+      {catList.map((cat) => (
+        <ListItem key={cat.id}>
+          <CatCard cat={cat} />
+        </ListItem>
+      ))}
+    </StyledList>
   );
 }
 
@@ -27,6 +22,7 @@ const StyledList = styled.ul`
 `;
 
 const ListItem = styled.li`
+  max-width: 55%;
   padding: 0.5rem 1rem;
   box-shadow: 0px 1px 5px -2px #ff6d60;
   border-radius: 10px/20px;
@@ -35,8 +31,4 @@ const ListItem = styled.li`
   h3 {
     background-color: white;
   }
-`;
-
-const StyledHeading = styled.h1`
-  margin-left: 5%;
 `;
