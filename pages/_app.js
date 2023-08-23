@@ -5,11 +5,15 @@ import { catfoods } from "@/data/catfooddata";
 
 export default function App({ Component, pageProps }) {
   const [catList, setCatList] = useState(cats);
+  const [searchTerm, setSearchTerm] = useState("");
 
   function handleAddCat(newCat) {
-    console.log("handleAddCat called with:", newCat);
     // update catList with new cat
     setCatList([...catList, newCat]);
+  }
+
+  function handleSearchTermChange(event) {
+    setSearchTerm(event.target.value);
   }
 
   return (
@@ -20,6 +24,9 @@ export default function App({ Component, pageProps }) {
         handleAddCat={handleAddCat}
         catList={catList}
         catFoods={catfoods}
+        searchTerm={searchTerm}
+        setSearchTerm={setSearchTerm}
+        handleSearchTermChange={handleSearchTermChange}
       />
     </>
   );
