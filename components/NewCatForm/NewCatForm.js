@@ -137,7 +137,7 @@ export default function NewCatForm({ onAddCat }) {
           aria-describedby="name-info"
           defaultValue={cat.name}
           maxLength={8}
-          pattern="^[^\s]+$"
+          pattern="^[A-Za-z]+$"
           title="Bitte Namen eingeben!"
           required
           onChange={handleChange}
@@ -148,6 +148,7 @@ export default function NewCatForm({ onAddCat }) {
           type="number"
           name="age"
           id="age"
+          min={0}
           max={25}
           aria-describedby="age-info"
           defaultValue={cat.age}
