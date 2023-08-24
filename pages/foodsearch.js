@@ -1,6 +1,7 @@
 import FoodList from "@/components/CatFoodList/CatFoodList";
 import { styled } from "styled-components";
 import { catfoods } from "@/data/catfooddata";
+import Navigation from "@/components/Navigation/Navigation";
 
 export default function CatFoodSearch({ searchTerm, handleSearchTermChange }) {
   return (
@@ -15,6 +16,7 @@ export default function CatFoodSearch({ searchTerm, handleSearchTermChange }) {
         onChange={handleSearchTermChange}
       />
       <FoodList catfoods={catfoods} searchTerm={searchTerm} />
+      <Navigation />
     </>
   );
 }
