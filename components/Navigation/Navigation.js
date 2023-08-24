@@ -24,7 +24,7 @@ export default function Navigation() {
                   ? "var(--navbar-icon-active)"
                   : "var(--navbar-icon-inactive)"
               }
-            />{" "}
+            />
             <StyledNavText>Overview</StyledNavText>
           </StyledNavItem>
         </StyledLink>
@@ -38,7 +38,7 @@ export default function Navigation() {
                   ? "var(--navbar-icon-active)"
                   : "var(--navbar-icon-inactive)"
               }
-            />{" "}
+            />
             <StyledNavText>Food Search</StyledNavText>
           </StyledNavItem>
         </StyledLink>
