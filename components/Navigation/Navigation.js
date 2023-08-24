@@ -4,6 +4,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCat, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { useRouter } from "next/router";
 
+// installed the fontawesome- react package
+// for my navigation icons.
+
 export default function Navigation() {
   const router = useRouter();
   const isCatOverview = router.pathname === "/";
