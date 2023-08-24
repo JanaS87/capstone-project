@@ -55,6 +55,11 @@ export default function NewCatForm({ onAddCat }) {
   function handleAddGoodFood() {
     const foodToAdd = selectedGoodFood;
 
+    if (addedBadFood.includes(foodToAdd)) {
+      alert(`Food is already in "Bad Acceptance"`);
+      return;
+    }
+
     if (foodToAdd) {
       setAddedGoodFood([...addedGoodFood, foodToAdd]);
       console.log(foodToAdd);
@@ -63,6 +68,11 @@ export default function NewCatForm({ onAddCat }) {
 
   function handleAddBadFood() {
     const foodToAdd = selectedBadFood;
+
+    if (addedGoodFood.includes(foodToAdd)) {
+      alert(`Food is already in "Good Acceptance"`);
+      return;
+    }
 
     if (foodToAdd) {
       setAddedBadFood([...addedBadFood, foodToAdd]);
@@ -137,7 +147,7 @@ export default function NewCatForm({ onAddCat }) {
           aria-describedby="name-info"
           defaultValue={cat.name}
           maxLength={8}
-          pattern="^[^\s]+$"
+          pattern="^[A-Za-z]+$"
           title="Bitte Namen eingeben!"
           required
           onChange={handleChange}
@@ -148,6 +158,7 @@ export default function NewCatForm({ onAddCat }) {
           type="number"
           name="age"
           id="age"
+          min={0}
           max={25}
           aria-describedby="age-info"
           defaultValue={cat.age}
