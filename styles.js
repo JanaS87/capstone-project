@@ -5,16 +5,21 @@ export default createGlobalStyle`
   *::before,
   *::after {
     box-sizing: border-box;
-    //background-color:#F3E99F;
   }
 
-  @media (max-width: 320px) {
-    body {
-    
+  body {
+    padding-bottom: 190px;
+  }
+
+  html, body, #__next {
+    height: 100%;
     margin: 0;
-    font-family: system-ui;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    display: flex;
+    flex-direction: column;
   }
-  }
+
+
 
   input[type="number"]::-webkit-inner-spin-button,
   input[type="number"]::-webkit-outer-spin-button {

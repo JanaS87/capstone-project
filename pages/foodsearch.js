@@ -1,5 +1,5 @@
 import FoodList from "@/components/CatFoodList/CatFoodList";
-import { styled } from "styled-components";
+import styled from "styled-components";
 import { catfoods } from "@/data/catfooddata";
 import Navigation from "@/components/Navigation/Navigation";
 

@@ -14,16 +14,16 @@ export default function CatList({ catList }) {
 }
 
 const StyledList = styled.ul`
-  max-width: 65%;
+  max-width: 100%;
   list-style-type: none;
   display: grid;
-  padding-left: 0;
+  padding-left: 1rem;
   gap: 1rem;
 `;
 
 const ListItem = styled.li`
-  max-width: 55%;
-  padding: 0.5rem 1rem;
+  max-width: 65%;
+  padding: 0.5rem 2rem;
   box-shadow: 0px 1px 5px -2px #ff6d60;
   border-radius: 10px/20px;
   font-size: 1.3em;
