@@ -1,6 +1,4 @@
-import FoodList from "@/components/CatFoodList/CatFoodList";
 import CatList from "@/components/CatList/CatList";
-import { catfoods } from "@/data/catfooddata";
 import Link from "next/link";
 import { styled } from "styled-components";
 

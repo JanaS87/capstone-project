@@ -1,5 +1,6 @@
 import FoodList from "@/components/CatFoodList/CatFoodList";
 import { styled } from "styled-components";
+import { catfoods } from "@/data/catfooddata";
 
 export default function CatFoodSearch({ searchTerm, handleSearchTermChange }) {
   return (
