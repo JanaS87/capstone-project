@@ -26,7 +26,7 @@ const ListItem = styled.li`
   padding: 0.5rem 2rem;
   box-shadow: 0px 1px 5px -2px #ff6d60;
   border-radius: 10px/20px;
-  font-size: 1.3em;
+  font-size: 1.1em;
   background-color: white;
   h3 {
     background-color: white;

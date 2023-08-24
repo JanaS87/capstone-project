@@ -2,20 +2,45 @@ import Link from "next/link";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCat, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import { useRouter } from "next/router";
 
 export default function Navigation() {
+  const router = useRouter();
+  const isCatOverview = router.pathname === "/";
+  const isFoodSearch = router.pathname === "/foodsearch";
+
+  console.log("Current Path:", router.pathname);
+  console.log("Is Cat Overview:", isCatOverview);
+  console.log("Is Food Search:", isFoodSearch);
+
   return (
     <>
       <StyledContainer>
         <StyledLink href={"/"}>
           <StyledNavItem>
-            <FontAwesomeIcon icon={faCat} /> Overview
+            <FontAwesomeIcon
+              icon={faCat}
+              color={
+                isCatOverview
+                  ? "var(--navbar-icon-active)"
+                  : "var(--navbar-icon-inactive)"
+              }
+            />{" "}
+            Overview
           </StyledNavItem>
         </StyledLink>
 
         <StyledLink href={"/foodsearch"}>
           <StyledNavItem>
-            <FontAwesomeIcon icon={faMagnifyingGlass} /> Food Search
+            <FontAwesomeIcon
+              icon={faMagnifyingGlass}
+              color={
+                isFoodSearch
+                  ? "var(--navbar-icon-active)"
+                  : "var(--navbar-icon-inactive)"
+              }
+            />{" "}
+            Food Search
           </StyledNavItem>
         </StyledLink>
       </StyledContainer>
@@ -32,6 +57,7 @@ const StyledContainer = styled.div`
   z-index: 9999;
   box-shadow: 0 -1px 10px rgba(0, 0, 0, 0.1);
   font-size: 1.5em;
+  background-color: #1d5d9b;
 `;
 
 const StyledLink = styled(Link)`
@@ -49,6 +75,18 @@ const StyledNavItem = styled.div`
 
   svg {
     font-size: 1.2em;
+  }
+  svg.faCat {
+    color: var(--navbar-icon-inactive);
+  }
+  svg.faCat.active {
+    color: var(--navbar-icon-active);
+  }
+  svg.faMagnifyingGlass {
+    color: var(--navbar-icon-inactive);
+  }
+  svg.faMagnifyGlass.active {
+    color: var(--navbar-icon-active);
   }
 
   div {

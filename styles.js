@@ -7,9 +7,12 @@ export default createGlobalStyle`
     box-sizing: border-box;
   }
 
-  body {
-    padding-bottom: 190px;
-  }
+:root {
+  --navbar-icon-active: #F86F03;
+  --navbar-icon-inactive: #FFB085;
+}
+
+
 
   html, body, #__next {
     height: 100%;

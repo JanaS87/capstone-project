@@ -27,7 +27,7 @@ const StyledList = styled.ul`
 
 const ListItem = styled.li`
   max-width: 75%;
-  padding: 0.2rem 0.4%;
+  padding: 0.2rem 0.6rem;
   box-shadow: 0px 1px 5px -2px #ff6d60;
   border-radius: 10px/20px;
   font-size: 0.8em;
