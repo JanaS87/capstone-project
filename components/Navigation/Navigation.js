@@ -9,10 +9,6 @@ export default function Navigation() {
   const isCatOverview = router.pathname === "/";
   const isFoodSearch = router.pathname === "/foodsearch";
 
-  console.log("Current Path:", router.pathname);
-  console.log("Is Cat Overview:", isCatOverview);
-  console.log("Is Food Search:", isFoodSearch);
-
   return (
     <>
       <StyledContainer>
