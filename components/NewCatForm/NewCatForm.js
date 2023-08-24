@@ -55,6 +55,11 @@ export default function NewCatForm({ onAddCat }) {
   function handleAddGoodFood() {
     const foodToAdd = selectedGoodFood;
 
+    if (addedBadFood.includes(foodToAdd)) {
+      alert(`Food is already in "Bad Acceptance"`);
+      return;
+    }
+
     if (foodToAdd) {
       setAddedGoodFood([...addedGoodFood, foodToAdd]);
       console.log(foodToAdd);
@@ -63,6 +68,11 @@ export default function NewCatForm({ onAddCat }) {
 
   function handleAddBadFood() {
     const foodToAdd = selectedBadFood;
+
+    if (addedGoodFood.includes(foodToAdd)) {
+      alert(`Food is already in "Good Acceptance"`);
+      return;
+    }
 
     if (foodToAdd) {
       setAddedBadFood([...addedBadFood, foodToAdd]);
