@@ -19,11 +19,12 @@ const StyledHeading = styled.h1`
 `;
 
 const StyledLink = styled(Link)`
+  max-width: 40%;
   background: white;
-  color: red;
+  color: #1d5d9b;
   font-size: 1em;
   margin: 1em;
   padding: 0.25em 1em;
-  border: 2px solid red;
+  border: 2px solid #1d5d9b;
   border-radius: 3px;
 `;

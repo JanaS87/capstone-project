@@ -22,7 +22,7 @@ export default function Navigation() {
                   : "var(--navbar-icon-inactive)"
               }
             />{" "}
-            Overview
+            <StyledNavText>Overview</StyledNavText>
           </StyledNavItem>
         </StyledLink>
 
@@ -36,7 +36,7 @@ export default function Navigation() {
                   : "var(--navbar-icon-inactive)"
               }
             />{" "}
-            Food Search
+            <StyledNavText>Food Search</StyledNavText>
           </StyledNavItem>
         </StyledLink>
       </StyledContainer>
@@ -57,9 +57,10 @@ const StyledContainer = styled.div`
 `;
 
 const StyledLink = styled(Link)`
-  font-size: 0.8em;
+  font-size: 1.3em;
   cursor: pointer;
   text-decoration: none;
+  color: white;
 `;
 
 const StyledNavItem = styled.div`
@@ -84,8 +85,8 @@ const StyledNavItem = styled.div`
   svg.faMagnifyGlass.active {
     color: var(--navbar-icon-active);
   }
+`;
 
-  div {
-    margin-top: 10px;
-  }
+const StyledNavText = styled.span`
+  font-size: 0.5em;
 `;
