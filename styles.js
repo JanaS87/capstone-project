@@ -9,7 +9,7 @@ export default createGlobalStyle`
 
 :root {
   --navbar-icon-active: #F86F03;
-  --navbar-icon-inactive: #FFB085;
+  --navbar-icon-inactive: #D2E9E9;
 }
 
 
