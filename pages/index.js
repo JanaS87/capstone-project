@@ -4,11 +4,7 @@ import { catfoods } from "@/data/catfooddata";
 import Link from "next/link";
 import { styled } from "styled-components";
 
-export default function HomePage({
-  catList,
-  searchTerm,
-  handleSearchTermChange,
-}) {
+export default function HomePage({ catList }) {
   return (
     <>
       <StyledHeading>Your Cats</StyledHeading>

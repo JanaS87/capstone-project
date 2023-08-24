@@ -1,7 +1,7 @@
 import FoodList from "@/components/CatFoodList/CatFoodList";
 import { styled } from "styled-components";
 
-export default function CatFoodSearch() {
+export default function CatFoodSearch({ searchTerm, handleSearchTermChange }) {
   return (
     <>
       <StyledHeading>Food Search</StyledHeading>
