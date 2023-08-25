@@ -25,8 +25,6 @@ export default function FoodDetailsPage({ catList, catFoods }) {
     cat.food.dislikes.includes(id)
   );
 
-  console.log("Food object:", food);
-
   return (
     <>
       <StyledHeaderWrapping>
