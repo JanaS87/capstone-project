@@ -30,39 +30,39 @@ export default function FoodDetailsPage({ catList, catFoods }) {
   return (
     <>
       <StyledHeaderWrapping>
-        <h1>{food.brand}</h1>
-        <h2>
+        <StyledHeading>{food.brand}</StyledHeading>
+        <StyledHeading2>
           <span>{food.variety}</span>
-        </h2>
+        </StyledHeading2>
       </StyledHeaderWrapping>
       <StyledSection>
         <StyledGrid>
           <div>
             <h3>Ingridients: </h3>
-            <ul>
+            <StyledList>
               {food.ingredients.map((ingredient, index) => (
                 <StyledItem key={index}>{ingredient}</StyledItem>
               ))}
-            </ul>
+            </StyledList>
           </div>
           <div>
             <h3>Analytical Constituents: </h3>
-            <ul>
+            <StyledList>
               {food.analyticalConstituents.map((analytical, index) => (
                 <StyledItem key={index}>{analytical}</StyledItem>
               ))}
-            </ul>
+            </StyledList>
           </div>
         </StyledGrid>
 
         <StyledGrid>
           <div>
             <h3>Additives: </h3>
-            <ul>
+            <StyledList>
               {food.additives.map((additive, index) => (
                 <StyledItem key={index}>{additive}</StyledItem>
               ))}
-            </ul>
+            </StyledList>
           </div>
           <div>
             <h3>Food Type: </h3>
@@ -72,23 +72,23 @@ export default function FoodDetailsPage({ catList, catFoods }) {
         <StyledGrid>
           <div>
             <h3>Likes: </h3>
-            <ul>
+            <StyledList>
               {filteredCatLikes.map((catLike) => (
                 <StyledItem key={catLike.id}>{catLike.name}</StyledItem>
               ))}
-            </ul>
+            </StyledList>
           </div>
           <div>
             <h3>Dislikes: </h3>
-            <ul>
+            <StyledList>
               {filteredCatDislikes.map((dislike) => (
                 <StyledItem key={dislike.id}>{dislike.name}</StyledItem>
               ))}
-            </ul>
+            </StyledList>
           </div>
         </StyledGrid>
       </StyledSection>
-      <Link href={"/foodsearch"}>Back</Link>
+      <StyledLink href={"/foodsearch"}>Back</StyledLink>
     </>
   );
 }
@@ -106,7 +106,32 @@ const StyledGrid = styled.div`
   gap: 2rem;
 `;
 
+const StyledList = styled.ul`
+  margin: 2px;
+  padding: 0;
+`;
+
 const StyledItem = styled.li`
   list-style: none;
   margin-left: 0;
+`;
+
+const StyledLink = styled(Link)`
+  background: white;
+  color: red;
+  font-size: 1em;
+  margin: 1em;
+  padding: 0.25em 1em;
+  border: 2px solid red;
+  border-radius: 3px;
+  cursor: pointer;
+  text-decoration: none;
+`;
+
+const StyledHeading = styled.h1`
+  margin-left: 5%;
+`;
+
+const StyledHeading2 = styled.h2`
+  margin-left: 5%;
 `;
