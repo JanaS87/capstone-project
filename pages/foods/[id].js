@@ -93,7 +93,9 @@ export default function FoodDetailsPage({ catList, catFoods }) {
   );
 }
 
-const StyledHeaderWrapping = styled.div``;
+const StyledHeaderWrapping = styled.div`
+  gap: 0;
+`;
 const StyledSection = styled.section`
   padding: 1.2rem 1.3rem;
   box-shadow: 0px 1px 5px -2px #ff6d60;
@@ -131,12 +133,18 @@ const StyledLink = styled(Link)`
   cursor: pointer;
   text-decoration: none;
   max-width: 12%;
+  &:hover {
+    background-color: green;
+    color: white;
+  }
 `;
 
 const StyledHeading = styled.h1`
   margin-left: 5%;
+  margin-bottom: 0;
 `;
 
 const StyledHeading2 = styled.h2`
   margin-left: 5%;
+  margin-top: 2%;
 `;

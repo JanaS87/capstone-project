@@ -14,4 +14,8 @@ export default function FoodCard({ food }) {
 const StyledLink = styled(Link)`
   cursor: pointer;
   text-decoration: none;
+  &:hover,
+  :active {
+    font-size: 110%;
+  }
 `;

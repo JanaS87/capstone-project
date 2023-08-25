@@ -19,7 +19,7 @@ const StyledHeading = styled.h1`
 `;
 
 const StyledLink = styled(Link)`
-  max-width: 40%;
+  max-width: 21%;
   background: white;
   color: #1d5d9b;
   font-size: 1em;
@@ -27,4 +27,5 @@ const StyledLink = styled(Link)`
   padding: 0.25em 1em;
   border: 2px solid #1d5d9b;
   border-radius: 3px;
+  text-decoration: none;
 `;
