@@ -122,7 +122,7 @@ export const catfoods = [
       "Rohasche (2.0%)",
       "Feuchtigkeit (75.0%)",
     ],
-    additives: "Taurin 700 mg per kg",
+    additives: ["Taurin 700 mg per kg"],
     type: "wet",
     cat: {
       likes: ["1", "3", "4"],
@@ -141,7 +141,7 @@ export const catfoods = [
       "Rohasche (1.5%)",
       "Feuchtigkeit (77.0%)",
     ],
-    additives: "Taurin 700 mg per kg",
+    additives: ["Taurin 700 mg per kg"],
     type: "wet",
     cat: {
       likes: [],
