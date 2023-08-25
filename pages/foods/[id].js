@@ -73,17 +73,25 @@ export default function FoodDetailsPage({ catList, catFoods }) {
           <div>
             <h3>Likes: </h3>
             <StyledList>
-              {filteredCatLikes.map((catLike) => (
-                <StyledItem key={catLike.id}>{catLike.name}</StyledItem>
-              ))}
+              {filteredCatLikes.length > 0 ? (
+                filteredCatLikes.map((catLike) => (
+                  <StyledItem key={catLike.id}>{catLike.name}</StyledItem>
+                ))
+              ) : (
+                <StyledItem>Oh, it seems no cat liked this food </StyledItem>
+              )}
             </StyledList>
           </div>
           <div>
             <h3>Dislikes: </h3>
             <StyledList>
-              {filteredCatDislikes.map((dislike) => (
-                <StyledItem key={dislike.id}>{dislike.name}</StyledItem>
-              ))}
+              {filteredCatDislikes.length > 0 ? (
+                filteredCatDislikes.map((dislike) => (
+                  <StyledItem key={dislike.id}>{dislike.name}</StyledItem>
+                ))
+              ) : (
+                <StyledItem>Great, no cat hated this food</StyledItem>
+              )}
             </StyledList>
           </div>
         </StyledGrid>
