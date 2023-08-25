@@ -71,7 +71,7 @@ export default function FoodDetailsPage({ catList, catFoods }) {
         </StyledGrid>
         <StyledGrid>
           <div>
-            <h3>Likes: </h3>
+            <h3>Good Acceptance: </h3>
             <StyledList>
               {filteredCatLikes.length > 0 ? (
                 filteredCatLikes.map((catLike) => (
@@ -83,7 +83,7 @@ export default function FoodDetailsPage({ catList, catFoods }) {
             </StyledList>
           </div>
           <div>
-            <h3>Dislikes: </h3>
+            <h3>Bad Acceptance: </h3>
             <StyledList>
               {filteredCatDislikes.length > 0 ? (
                 filteredCatDislikes.map((dislike) => (
