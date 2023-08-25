@@ -134,7 +134,7 @@ const StyledLink = styled(Link)`
   text-decoration: none;
   max-width: 12%;
   &:hover {
-    background-color: green;
+    background-color: #f86f03;
     color: white;
   }
 `;
