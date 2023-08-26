@@ -1,13 +1,37 @@
 import styled from "styled-components";
 import Button from "../Button/Button";
+import ReactModal from "react-modal";
 
-export default function HealthIssuesModal({ onClose }) {
-  const handleCloseClick = (e) => {
-    e.preventDefault();
-    onClose();
-  };
+export default function HealthIssuesModal({
+  isOpen,
+  onRequestClose,
+  allergies,
+  diseases,
+  intolerances,
+}) {
+  function handleCloseClick(event) {
+    event.preventDefault();
+    onRequestClose();
+  }
+
+  function handleSubmit(event) {
+    event.preventDefault();
+
+    const formData = new FormData(event.target);
+
+    const selectedAllergies = allergies.filter((allergy) =>
+      formData.get(allergy)
+    );
+    const selectedDiseases = diseases.filter((disease) =>
+      formData.get(disease)
+    );
+    const selectedIntolerances = intolerances.filter((intolerance) =>
+      formData.get(intolerance)
+    );
+  }
+
   return (
-    <>
+    <ReactModal isOpen={isOpen} onRequestClose={onRequestClose}>
       <form onSubmit={handleSubmit}>
         <div>
           <p>Allergies: </p>
@@ -45,7 +69,7 @@ export default function HealthIssuesModal({ onClose }) {
         <Button type="submit">Save</Button>
       </form>
       <button onClick={handleCloseClick}>X</button>
-    </>
+    </ReactModal>
   );
 }
 

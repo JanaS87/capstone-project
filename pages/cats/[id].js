@@ -3,9 +3,11 @@ import styled from "styled-components";
 import Link from "next/link";
 import Button from "@/components/Button/Button";
 import { useState } from "react";
+import HealthIssuesModal from "@/components/Modal/HealthIssuesModal";
 
 export default function CatDetailPage({ catList, catFoods }) {
   const [isActive, setIsActive] = useState(false);
+  const [isHealthModalOpen, setIsHealthModalOpen] = useState(false);
 
   const router = useRouter();
   const { id } = router.query;
@@ -34,7 +36,10 @@ export default function CatDetailPage({ catList, catFoods }) {
 
   return (
     <>
-      <StyledHead>{cat.name}</StyledHead>
+      <div>
+        <StyledHead>{cat.name}</StyledHead>
+        {isActive && <h2>What would you like to change?</h2>}
+      </div>
       <StyledWrapper>
         <StyledSection>
           <p>
@@ -42,7 +47,9 @@ export default function CatDetailPage({ catList, catFoods }) {
           </p>
           <h4>
             Allergies, Diseases, Intolerances:{" "}
-            {isActive && <Button>Edit</Button>}
+            {isActive && (
+              <Button onClick={() => setIsHealthModalOpen(true)}>Edit</Button>
+            )}
           </h4>
           <div>
             <StyledList>
@@ -90,6 +97,10 @@ export default function CatDetailPage({ catList, catFoods }) {
       <StyledContainer>
         <StyledLink href={"/"}>Back</StyledLink>
         <Button onClick={() => setIsActive(!isActive)}>Edit</Button>
+        <HealthIssuesModal
+          isOpen={isHealthModalOpen}
+          onRequestClose={() => setIsHealthModalOpen}
+        />
       </StyledContainer>
     </>
   );
