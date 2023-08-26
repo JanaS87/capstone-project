@@ -3,12 +3,8 @@ import styled from "styled-components";
 import Link from "next/link";
 import Button from "@/components/Button/Button";
 import { useState } from "react";
-import HealthIssuesModal from "@/components/Modal/HealthIssuesModal";
 
 export default function CatDetailPage({ catList, catFoods }) {
-  const [isActive, setIsActive] = useState(false);
-  const [isHealthModalOpen, setIsHealthModalOpen] = useState(false);
-
   const router = useRouter();
   const { id } = router.query;
 
@@ -38,19 +34,13 @@ export default function CatDetailPage({ catList, catFoods }) {
     <>
       <div>
         <StyledHead>{cat.name}</StyledHead>
-        {isActive && <h2>What would you like to change?</h2>}
       </div>
       <StyledWrapper>
         <StyledSection>
           <p>
             <strong>Age:</strong> <span>{cat.age}</span>
           </p>
-          <h4>
-            Allergies, Diseases, Intolerances:{" "}
-            {isActive && (
-              <Button onClick={() => setIsHealthModalOpen(true)}>Edit</Button>
-            )}
-          </h4>
+          <h4>Allergies, Diseases, Intolerances:</h4>
           <div>
             <StyledList>
               <p>Allergies: </p>
@@ -72,7 +62,7 @@ export default function CatDetailPage({ catList, catFoods }) {
               ))}
             </ul>
           </div>
-          <h4>Good Acceptance: {isActive && <Button>Edit</Button>}</h4>
+          <h4>Good Acceptance: </h4>
           <div>
             <ul>
               {filteredGoodFood.map((food) => (
@@ -82,7 +72,7 @@ export default function CatDetailPage({ catList, catFoods }) {
               ))}
             </ul>
           </div>
-          <h4>Bad Acceptance: {isActive && <Button>Edit</Button>}</h4>
+          <h4>Bad Acceptance: </h4>
           <div>
             <ul>
               {filteredBadFood.map((food) => (
@@ -96,11 +86,9 @@ export default function CatDetailPage({ catList, catFoods }) {
       </StyledWrapper>
       <StyledContainer>
         <StyledLink href={"/"}>Back</StyledLink>
-        <Button onClick={() => setIsActive(!isActive)}>Edit</Button>
-        <HealthIssuesModal
-          isOpen={isHealthModalOpen}
-          onRequestClose={() => setIsHealthModalOpen}
-        />
+        <button onClick={() => router.push(`/update/updatecat?id=${cat.id}`)}>
+          Edit
+        </button>
       </StyledContainer>
     </>
   );
