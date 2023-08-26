@@ -1,10 +1,14 @@
-import { Modal } from "bootstrap";
 import styled from "styled-components";
+import Button from "../Button/Button";
 
 export default function HealthIssuesModal({ onClose }) {
+  const handleCloseClick = (e) => {
+    e.preventDefault();
+    onClose();
+  };
   return (
-    <Modal>
-      <form>
+    <>
+      <form onSubmit={handleSubmit}>
         <div>
           <p>Allergies: </p>
           <StyledCheckBoxWrapper>
@@ -38,9 +42,10 @@ export default function HealthIssuesModal({ onClose }) {
             ))}
           </StyledCheckBoxWrapper>
         </div>
+        <Button type="submit">Save</Button>
       </form>
-      <button onClick={onClose}>Close</button>
-    </Modal>
+      <button onClick={handleCloseClick}>X</button>
+    </>
   );
 }
 

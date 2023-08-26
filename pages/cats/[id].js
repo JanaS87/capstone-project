@@ -1,8 +1,12 @@
 import { useRouter } from "next/router";
 import styled from "styled-components";
 import Link from "next/link";
+import Button from "@/components/Button/Button";
+import { useState } from "react";
 
 export default function CatDetailPage({ catList, catFoods }) {
+  const [isActive, setIsActive] = useState(false);
+
   const router = useRouter();
   const { id } = router.query;
 
@@ -36,7 +40,10 @@ export default function CatDetailPage({ catList, catFoods }) {
           <p>
             <strong>Age:</strong> <span>{cat.age}</span>
           </p>
-          <h4>Allergies, Diseases, Intolerances:</h4>
+          <h4>
+            Allergies, Diseases, Intolerances:{" "}
+            {isActive && <Button>Edit</Button>}
+          </h4>
           <div>
             <StyledList>
               <p>Allergies: </p>
@@ -58,7 +65,7 @@ export default function CatDetailPage({ catList, catFoods }) {
               ))}
             </ul>
           </div>
-          <h4>Good Acceptance: </h4>
+          <h4>Good Acceptance: {isActive && <Button>Edit</Button>}</h4>
           <div>
             <ul>
               {filteredGoodFood.map((food) => (
@@ -68,7 +75,7 @@ export default function CatDetailPage({ catList, catFoods }) {
               ))}
             </ul>
           </div>
-          <h4>Bad Acceptance: </h4>
+          <h4>Bad Acceptance: {isActive && <Button>Edit</Button>}</h4>
           <div>
             <ul>
               {filteredBadFood.map((food) => (
@@ -80,8 +87,10 @@ export default function CatDetailPage({ catList, catFoods }) {
           </div>
         </StyledSection>
       </StyledWrapper>
-      <StyledLink href={"/"}>Back</StyledLink>
-      <StyledLink href={`/updatecat/${cat.id}`}>Edit</StyledLink>
+      <StyledContainer>
+        <StyledLink href={"/"}>Back</StyledLink>
+        <Button onClick={() => setIsActive(!isActive)}>Edit</Button>
+      </StyledContainer>
     </>
   );
 }
@@ -123,6 +132,7 @@ const StyledSection = styled.section`
 `;
 
 const StyledLink = styled(Link)`
+  max-width: 12%;
   background: white;
   color: red;
   font-size: 1em;
@@ -140,4 +150,11 @@ const StyledList = styled.ul`
 const StyledItem = styled.li`
   list-style: none;
   margin-left: 10%;
+`;
+
+const StyledContainer = styled.div`
+  max-width: 80%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 `;
