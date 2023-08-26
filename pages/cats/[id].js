@@ -28,8 +28,6 @@ export default function CatDetailPage({ catList, catFoods }) {
     catFoods.find((food) => food.id === bad)
   );
 
-  console.log("Cat object:", cat);
-
   return (
     <>
       <StyledHead>{cat.name}</StyledHead>
@@ -83,6 +81,7 @@ export default function CatDetailPage({ catList, catFoods }) {
         </StyledSection>
       </StyledWrapper>
       <StyledLink href={"/"}>Back</StyledLink>
+      <StyledLink href={`/updatecat/${cat.id}`}>Edit</StyledLink>
     </>
   );
 }
