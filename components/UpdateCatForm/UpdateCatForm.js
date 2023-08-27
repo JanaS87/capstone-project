@@ -18,22 +18,24 @@ const diseases = [
 
 const intolerances = ["Grains", "Lactose", "Artifical Additives", "Beef"];
 
-export default function NewCatForm({ onAddCat }) {
+export default function NewCatForm(props) {
   const router = useRouter();
-  const [cat, setCat] = useState({
-    id: "",
-    name: "",
-    age: "",
-    health: {
-      allergies: [],
-      diseases: [],
-      intolerances: [],
-    },
-    food: {
-      likes: [],
-      dislikes: [],
-    },
-  });
+  const [cat, setCat] = useState(
+    props.cat || {
+      id: "",
+      name: "",
+      age: "",
+      health: {
+        allergies: [],
+        diseases: [],
+        intolerances: [],
+      },
+      food: {
+        likes: [],
+        dislikes: [],
+      },
+    }
+  );
 
   const [selectedGoodFood, setSelectedGoodFood] = useState();
   const [selectedBadFood, setSelectedBadFood] = useState();
@@ -110,7 +112,6 @@ export default function NewCatForm({ onAddCat }) {
     // create new cat object at the end of the array
     const newCat = {
       ...cat,
-      id: newId,
       name: data.name,
       age: data.age,
       health: {
@@ -124,12 +125,7 @@ export default function NewCatForm({ onAddCat }) {
       },
     };
 
-    console.log("onAddCat type:", typeof onAddCat);
-
-    // add new cat to the list
-    onAddCat(newCat);
-
-    console.log(newCat);
+    props.onUpdateCat(cat);
 
     event.target.reset();
 

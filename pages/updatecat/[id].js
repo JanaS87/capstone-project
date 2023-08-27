@@ -2,6 +2,7 @@ import { useRouter } from "next/router";
 import styled from "styled-components";
 import Link from "next/link";
 import UpdateCatForm from "../../components/UpdateCatForm/UpdateCatForm.js";
+import NewCatForm from "@/components/NewCatForm/NewCatForm.js";
 
 export default function UpdateCat({ catList, catFoods }) {
   const router = useRouter();
@@ -27,7 +28,7 @@ export default function UpdateCat({ catList, catFoods }) {
         <h1>{cat.name}</h1>
         <h2>What would you like to change?</h2>
       </div>
-      <UpdateCatForm />
+      <NewCatForm />
     </>
   );
 }
