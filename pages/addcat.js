@@ -15,6 +15,7 @@ export default function NewCatPage({ handleAddCat }) {
 }
 
 const StyledLink = styled(Link)`
+  max-width: 20%;
   background: white;
   color: red;
   font-size: 1em;

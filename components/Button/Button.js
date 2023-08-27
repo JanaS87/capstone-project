@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export default styled.button`
-  font-size: 1rem; /* Adjust font size */
+  font-size: 3rem; /* Adjust font size */
   padding: 5px 15px; /* Adjust padding */
   border: 1px solid #ff6d60;
   color: white;

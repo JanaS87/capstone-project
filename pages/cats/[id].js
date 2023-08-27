@@ -52,13 +52,13 @@ export default function CatDetailPage({ catList, catFoods }) {
             <ul>
               <p>Diseases: </p>
               {cat.health.diseases.map((disease, index) => (
-                <li key={index}>{disease}</li>
+                <StyledItem key={index}>{disease}</StyledItem>
               ))}
             </ul>
             <ul>
               <p>Intolerances:</p>
               {cat.health.intolerances.map((intolerance, index) => (
-                <li key={index}>{intolerance}</li>
+                <StyledItem key={index}>{intolerance}</StyledItem>
               ))}
             </ul>
           </div>
@@ -66,9 +66,9 @@ export default function CatDetailPage({ catList, catFoods }) {
           <div>
             <ul>
               {filteredGoodFood.map((food) => (
-                <li key={food.id}>
+                <StyledListItem key={food.id}>
                   {food.brand} - {food.variety}
-                </li>
+                </StyledListItem>
               ))}
             </ul>
           </div>
@@ -76,9 +76,9 @@ export default function CatDetailPage({ catList, catFoods }) {
           <div>
             <ul>
               {filteredBadFood.map((food) => (
-                <li key={food.id}>
+                <StyledListItem key={food.id}>
                   {food.brand} - {food.variety}
-                </li>
+                </StyledListItem>
               ))}
             </ul>
           </div>
@@ -98,6 +98,7 @@ const StyledHead = styled.h1`
 
 const StyledWrapper = styled.div`
   max-width: 85%;
+  margin: 0 1em;
   list-style-type: none;
   margin-bottom: 1.3rem;
 
@@ -129,7 +130,7 @@ const StyledSection = styled.section`
 `;
 
 const StyledLink = styled(Link)`
-  max-width: 12%;
+  max-width: 25%;
   background: white;
   color: red;
   font-size: 1em;
@@ -147,6 +148,10 @@ const StyledList = styled.ul`
 const StyledItem = styled.li`
   list-style: none;
   margin-left: 10%;
+`;
+
+const StyledListItem = styled.li`
+  list-style: none;
 `;
 
 const StyledContainer = styled.div`

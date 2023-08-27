@@ -29,11 +29,13 @@ export default function UpdateCat({ catList, catFoods }) {
         <h2>What would you like to change?</h2>
       </div>
       <NewCatForm />
+      <StyledLink href={`/cats/${cat.id}`}>Back</StyledLink>
     </>
   );
 }
 
 const StyledLink = styled(Link)`
+  max-width: 20%;
   background: white;
   color: red;
   font-size: 1em;

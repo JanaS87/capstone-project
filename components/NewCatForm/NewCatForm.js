@@ -219,9 +219,9 @@ export default function NewCatForm({ onAddCat }) {
             </option>
           ))}
         </StyledSelect>
-        <Button type="button" onClick={handleAddGoodFood}>
+        <StyledButton type="button" onClick={handleAddGoodFood}>
           Add
-        </Button>
+        </StyledButton>
       </StyledInputGroup>
       <div>
         <ul>
@@ -255,9 +255,9 @@ export default function NewCatForm({ onAddCat }) {
             </option>
           ))}
         </StyledSelect>
-        <Button type="button" onClick={handleAddBadFood}>
+        <StyledButton type="button" onClick={handleAddBadFood}>
           Add
-        </Button>
+        </StyledButton>
       </StyledInputGroup>
       <div>
         <ul>
@@ -275,7 +275,7 @@ export default function NewCatForm({ onAddCat }) {
           })}
         </ul>
       </div>
-      <Button type="submit">Save</Button>
+      <StyledSaveButton type="submit">Add Cat</StyledSaveButton>
     </StyledForm>
   );
 }
@@ -310,14 +310,6 @@ const StyledForm = styled.form`
   background-color: white;
   gap: 1rem;
 
-  Button {
-    max-width: 30%;
-    font-size: 15%;
-    text-align: center;
-    margin: 0 auto;
-    background-color: #1d5d9b;
-  }
-
   label,
   input {
     background-color: white;
@@ -342,4 +334,20 @@ const StyledLastBox = styled.article`
   display: flex;
   gap: 0.5rem;
   flex-wrap: wrap;
+`;
+
+const StyledButton = styled.button`
+  text-align: center;
+  margin: 0 auto;
+  background-color: #1d5d9b;
+  color: white;
+  font-size: 15px;
+`;
+
+const StyledSaveButton = styled.button`
+  text-align: center;
+  margin: 0 auto;
+  background-color: #1d5d9b;
+  color: white;
+  font-size: 20px;
 `;
