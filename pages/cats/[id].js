@@ -86,9 +86,7 @@ export default function CatDetailPage({ catList, catFoods }) {
       </StyledWrapper>
       <StyledContainer>
         <StyledLink href={"/"}>Back</StyledLink>
-        <button onClick={() => router.push(`/update/updatecat?id=${cat.id}`)}>
-          Edit
-        </button>
+        <StyledLink href={`/updatecat/${cat.id}`}>Edit</StyledLink>
       </StyledContainer>
     </>
   );
