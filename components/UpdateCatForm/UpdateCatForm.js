@@ -53,8 +53,8 @@ export default function UpdateCatForm({ onEditCat, handleDeleteCat, cat }) {
   }
 
   // state to save the chosen food to show it below the drop down
-  const [addedGoodFood, setAddedGoodFood] = useState([]);
-  const [addedBadFood, setAddedBadFood] = useState([]);
+  const [addedGoodFood, setAddedGoodFood] = useState(cat.food.likes);
+  const [addedBadFood, setAddedBadFood] = useState(cat.food.dislikes);
 
   function handleAddGoodFood() {
     const foodToAdd = selectedGoodFood;
@@ -105,17 +105,8 @@ export default function UpdateCatForm({ onEditCat, handleDeleteCat, cat }) {
   function handleSubmit(event) {
     event.preventDefault();
 
-    // // validate user entry (catname)
-    // if (cat.name.includes(" ")) {
-    //   alert("Whitespace is not allowed!");
-    //   return;
-    // }
-
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData);
-
-    // generate new ID
-    // const newId = uid();
 
     const catAllergies = allergies.filter((allergy) => data[allergy] === "on");
 
@@ -126,11 +117,11 @@ export default function UpdateCatForm({ onEditCat, handleDeleteCat, cat }) {
     );
 
     // create new cat object at the end of the array
-    const newCat = {
+    const editCat = {
       ...cat,
-      id: newId,
-      name: data.name,
-      age: data.age,
+      id: cat.id,
+      name: cat.name,
+      age: cat.age,
       health: {
         allergies: catAllergies,
         diseases: catDiseases,
@@ -145,13 +136,13 @@ export default function UpdateCatForm({ onEditCat, handleDeleteCat, cat }) {
     console.log("onAddCat type:", typeof onAddCat);
 
     // add new cat to the list
-    onAddCat(newCat);
+    onEditCat(editCat);
 
-    console.log(newCat);
+    console.log(editCat);
 
     event.target.reset();
 
-    router.push("/");
+    //router.push("/");
   }
 
   return (
@@ -169,6 +160,7 @@ export default function UpdateCatForm({ onEditCat, handleDeleteCat, cat }) {
                     name={allergy}
                     id={allergy}
                     checked={cat.health.allergies.includes(allergy)}
+                    onChange={handleChange}
                   />
                   <label htmlFor={allergy}>{allergy}</label>
                 </StyledCheckBoxWrapper>
@@ -185,6 +177,7 @@ export default function UpdateCatForm({ onEditCat, handleDeleteCat, cat }) {
                     name={disease}
                     id={disease}
                     checked={cat.health.diseases.includes(disease)}
+                    onChange={handleChange}
                   />
                   <label htmlFor={disease}>{disease}</label>
                 </StyledCheckBoxWrapper>
@@ -201,6 +194,7 @@ export default function UpdateCatForm({ onEditCat, handleDeleteCat, cat }) {
                     name={intolerance}
                     id={intolerance}
                     checked={cat.health.intolerances.includes(intolerance)}
+                    onChange={handleChange}
                   />
                   <label htmlFor={intolerance}>{intolerance}</label>
                 </StyledLastBox>
@@ -231,7 +225,7 @@ export default function UpdateCatForm({ onEditCat, handleDeleteCat, cat }) {
       </StyledInputGroup>
       <div>
         <ul>
-          {addedGoodFood.map((foodId) => {
+          {addedGoodFood.map((foodId, index) => {
             // help from a friend
             const food = catfoods.find((food) => food.id === foodId);
             if (food) {
@@ -268,7 +262,7 @@ export default function UpdateCatForm({ onEditCat, handleDeleteCat, cat }) {
       </StyledInputGroup>
       <div>
         <ul>
-          {addedBadFood.map((foodId) => {
+          {addedBadFood.map((foodId, index) => {
             // help from a friend
             const food = catfoods.find((food) => food.id === foodId);
             if (food) {
@@ -283,7 +277,7 @@ export default function UpdateCatForm({ onEditCat, handleDeleteCat, cat }) {
           })}
         </ul>
       </div>
-      <StyledSaveButton type="submit">Add Cat</StyledSaveButton>
+      <StyledSaveButton type="submit">Save Cat</StyledSaveButton>
     </StyledForm>
   );
 }
