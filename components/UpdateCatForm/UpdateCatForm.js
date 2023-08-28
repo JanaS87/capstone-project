@@ -168,7 +168,7 @@ export default function UpdateCatForm({ onEditCat, handleDeleteCat, cat }) {
                     type="checkbox"
                     name={allergy}
                     id={allergy}
-                    checked={true}
+                    checked={cat.health.allergies.includes(allergy)}
                   />
                   <label htmlFor={allergy}>{allergy}</label>
                 </StyledCheckBoxWrapper>
@@ -180,7 +180,12 @@ export default function UpdateCatForm({ onEditCat, handleDeleteCat, cat }) {
             <StyledCheckBoxWrapper>
               {diseases.map((disease, index) => (
                 <StyledCheckBoxWrapper key={index}>
-                  <input type="checkbox" name={disease} id={disease} />
+                  <input
+                    type="checkbox"
+                    name={disease}
+                    id={disease}
+                    checked={cat.health.diseases.includes(disease)}
+                  />
                   <label htmlFor={disease}>{disease}</label>
                 </StyledCheckBoxWrapper>
               ))}
@@ -191,7 +196,12 @@ export default function UpdateCatForm({ onEditCat, handleDeleteCat, cat }) {
             <StyledCheckBoxWrapper>
               {intolerances.map((intolerance, index) => (
                 <StyledLastBox key={index}>
-                  <input type="checkbox" name={intolerance} id={intolerance} />
+                  <input
+                    type="checkbox"
+                    name={intolerance}
+                    id={intolerance}
+                    checked={cat.health.intolerances.includes(intolerance)}
+                  />
                   <label htmlFor={intolerance}>{intolerance}</label>
                 </StyledLastBox>
               ))}
