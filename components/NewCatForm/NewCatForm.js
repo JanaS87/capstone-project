@@ -18,12 +18,7 @@ const diseases = [
 
 const intolerances = ["Grains", "Lactose", "Artifical Additives", "Beef"];
 
-export default function NewCatForm({
-  onAddCat,
-  onEditCat,
-  handleUpdateCat,
-  handleDeleteCat,
-}) {
+export default function NewCatForm({ onAddCat }) {
   const router = useRouter();
   const [cat, setCat] = useState({
     id: "",
@@ -133,8 +128,6 @@ export default function NewCatForm({
 
     // add new cat to the list
     onAddCat(newCat);
-
-    onEditCat();
 
     console.log(newCat);
 

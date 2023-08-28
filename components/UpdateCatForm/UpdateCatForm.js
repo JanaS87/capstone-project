@@ -18,24 +18,26 @@ const diseases = [
 
 const intolerances = ["Grains", "Lactose", "Artifical Additives", "Beef"];
 
-export default function NewCatForm(props) {
+export default function UpdateCatForm({ onEditCat, handleDeleteCat, cat }) {
   const router = useRouter();
-  const [cat, setCat] = useState(
-    props.cat || {
-      id: "",
-      name: "",
-      age: "",
-      health: {
-        allergies: [],
-        diseases: [],
-        intolerances: [],
-      },
-      food: {
-        likes: [],
-        dislikes: [],
-      },
-    }
-  );
+  // const [cat, setCat] = useState(
+  //   currentCat || {
+  //     id: "",
+  //     name: "",
+  //     age: "",
+  //     health: {
+  //       allergies: [],
+  //       diseases: [],
+  //       intolerances: [],
+  //     },
+  //     food: {
+  //       likes: [],
+  //       dislikes: [],
+  //     },
+  //   }
+  // );
+
+  // was kann davon weg und was brauche ich???
 
   const [selectedGoodFood, setSelectedGoodFood] = useState();
   const [selectedBadFood, setSelectedBadFood] = useState();
@@ -81,6 +83,20 @@ export default function NewCatForm(props) {
     }
   }
 
+  // if the wrong food accidentally choosed
+
+  function handleRemoveGoodFood(index) {
+    const newAddedGoodFood = addedGoodFood.slice();
+    newAddedGoodFood.splice(index, 1);
+    setAddedGoodFood(newAddedGoodFood);
+  }
+
+  function handleRemoveBadFood(index) {
+    const newAddedBadFood = addedBadFood.slice();
+    newAddedBadFood.splice(index, 1);
+    setAddedBadFood(newAddedBadFood);
+  }
+
   // updates the cat- state object when an input field changes
   function handleChange(event) {
     setCat({ ...cat, [event.target.name]: event.target.value || "" });
@@ -89,17 +105,17 @@ export default function NewCatForm(props) {
   function handleSubmit(event) {
     event.preventDefault();
 
-    // validate user entry (catname)
-    if (cat.name.includes(" ")) {
-      alert("Whitespace is not allowed!");
-      return;
-    }
+    // // validate user entry (catname)
+    // if (cat.name.includes(" ")) {
+    //   alert("Whitespace is not allowed!");
+    //   return;
+    // }
 
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData);
 
     // generate new ID
-    const newId = uid();
+    // const newId = uid();
 
     const catAllergies = allergies.filter((allergy) => data[allergy] === "on");
 
@@ -112,6 +128,7 @@ export default function NewCatForm(props) {
     // create new cat object at the end of the array
     const newCat = {
       ...cat,
+      id: newId,
       name: data.name,
       age: data.age,
       health: {
@@ -125,7 +142,12 @@ export default function NewCatForm(props) {
       },
     };
 
-    props.onUpdateCat(cat);
+    console.log("onAddCat type:", typeof onAddCat);
+
+    // add new cat to the list
+    onAddCat(newCat);
+
+    console.log(newCat);
 
     event.target.reset();
 
@@ -134,7 +156,7 @@ export default function NewCatForm(props) {
 
   return (
     <StyledForm onSubmit={handleSubmit}>
-      <div>
+      <>
         <fieldset>
           <legend>Health Information</legend>
           <>
@@ -142,7 +164,12 @@ export default function NewCatForm(props) {
             <StyledCheckBoxWrapper>
               {allergies.map((allergy, index) => (
                 <StyledCheckBoxWrapper key={index}>
-                  <input type="checkbox" name={allergy} id={allergy} />
+                  <input
+                    type="checkbox"
+                    name={allergy}
+                    id={allergy}
+                    checked={true}
+                  />
                   <label htmlFor={allergy}>{allergy}</label>
                 </StyledCheckBoxWrapper>
               ))}
@@ -171,7 +198,7 @@ export default function NewCatForm(props) {
             </StyledCheckBoxWrapper>
           </div>
         </fieldset>
-      </div>
+      </>
 
       <label htmlFor="goodFood-select">Good Acceptance: </label>
       <StyledInputGroup>
@@ -188,9 +215,9 @@ export default function NewCatForm(props) {
             </option>
           ))}
         </StyledSelect>
-        <Button type="button" onClick={handleAddGoodFood}>
+        <StyledButton type="button" onClick={handleAddGoodFood}>
           Add
-        </Button>
+        </StyledButton>
       </StyledInputGroup>
       <div>
         <ul>
@@ -199,9 +226,10 @@ export default function NewCatForm(props) {
             const food = catfoods.find((food) => food.id === foodId);
             if (food) {
               return (
-                <li key={food.id}>
+                <StyledListItem key={food.id}>
                   {food.brand} - {food.variety}
-                </li>
+                  <button onClick={() => handleRemoveGoodFood(index)}>X</button>
+                </StyledListItem>
               );
             }
             return null;
@@ -224,9 +252,9 @@ export default function NewCatForm(props) {
             </option>
           ))}
         </StyledSelect>
-        <Button type="button" onClick={handleAddBadFood}>
+        <StyledButton type="button" onClick={handleAddBadFood}>
           Add
-        </Button>
+        </StyledButton>
       </StyledInputGroup>
       <div>
         <ul>
@@ -235,16 +263,17 @@ export default function NewCatForm(props) {
             const food = catfoods.find((food) => food.id === foodId);
             if (food) {
               return (
-                <li key={food.id}>
+                <StyledListItem key={food.id}>
                   {food.brand} - {food.variety}
-                </li>
+                  <button onClick={() => handleRemoveBadFood(index)}>X</button>
+                </StyledListItem>
               );
             }
             return null;
           })}
         </ul>
       </div>
-      <Button type="submit">Save</Button>
+      <StyledSaveButton type="submit">Add Cat</StyledSaveButton>
     </StyledForm>
   );
 }
@@ -279,14 +308,6 @@ const StyledForm = styled.form`
   background-color: white;
   gap: 1rem;
 
-  Button {
-    max-width: 30%;
-    font-size: 15%;
-    text-align: center;
-    margin: 0 auto;
-    background-color: #1d5d9b;
-  }
-
   label,
   input {
     background-color: white;
@@ -311,4 +332,24 @@ const StyledLastBox = styled.article`
   display: flex;
   gap: 0.5rem;
   flex-wrap: wrap;
+`;
+
+const StyledButton = styled.button`
+  text-align: center;
+  margin: 0 auto;
+  background-color: #1d5d9b;
+  color: white;
+  font-size: 15px;
+`;
+
+const StyledSaveButton = styled.button`
+  text-align: center;
+  margin: 0 auto;
+  background-color: #1d5d9b;
+  color: white;
+  font-size: 20px;
+`;
+
+const StyledListItem = styled.li`
+  list-style: none;
 `;

@@ -23,10 +23,10 @@ const StyledList = styled.ul`
 
 const ListItem = styled.li`
   max-width: 65%;
-  height: 70px;
+  height: 60px;
   padding: 0.1rem 2rem;
   box-shadow: 0px 1px 5px -2px #ff6d60;
   border-radius: 10px/20px;
-  font-size: 1.1em;
+  font-size: 1em;
   background-color: white;
 `;

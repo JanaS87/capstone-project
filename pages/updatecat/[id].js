@@ -4,7 +4,7 @@ import Link from "next/link";
 import UpdateCatForm from "../../components/UpdateCatForm/UpdateCatForm.js";
 import NewCatForm from "@/components/NewCatForm/NewCatForm.js";
 
-export default function UpdateCat({ catList, catFoods }) {
+export default function UpdateCat({ catList, catFoods, handleUpdateCat }) {
   const router = useRouter();
   const { id } = router.query;
 
@@ -28,7 +28,11 @@ export default function UpdateCat({ catList, catFoods }) {
         <h1>{cat.name}</h1>
         <h2>What would you like to change?</h2>
       </div>
-      {/* <NewCatForm onEditCat={handleUpdateCat} onDeleteCat={handleDeleteCat} /> */}
+      <UpdateCatForm
+        onEditCat={handleUpdateCat}
+        //onDeleteCat={handleDeleteCat}
+        cat={cat}
+      />
       <StyledLink href={`/cats/${cat.id}`}>Back</StyledLink>
     </>
   );
