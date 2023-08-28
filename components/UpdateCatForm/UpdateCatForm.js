@@ -26,6 +26,68 @@ export default function UpdateCatForm({ onEditCat, handleDeleteCat, cat }) {
   const [selectedGoodFood, setSelectedGoodFood] = useState([]);
   const [selectedBadFood, setSelectedBadFood] = useState([]);
 
+  function handleGoodFoodChange(selectedOption) {
+    checkFoodList(selectedOption);
+
+    if (cat.food.likes.includes(selectedOption)) {
+      const updatedLikedCatFood = cat.food.likes.filter(
+        (catFood) => catFood !== selectedOption
+      );
+      setSelectedGoodFood(updatedLikedCatFood);
+      setAddedGoodFood(updatedLikedCatFood);
+    } else {
+      const updatedLikedCatFood = [...cat.food.likes, selectedOption];
+      setSelectedGoodFood(updatedLikedCatFood);
+      setAddedGoodFood(updatedLikedCatFood);
+    }
+  }
+
+  function handleBadFoodChange(selectedOption) {
+    checkFoodList(selectedOption);
+
+    if (cat.food.dislikes.includes(selectedOption)) {
+      const updatedDislikedCatFood = cat.food.dislikes.filter(
+        (catFood) => catFood !== selectedOption
+      );
+      setSelectedBadFood(updatedDislikedCatFood);
+      setAddedBadFood(updatedDislikedCatFood);
+    } else {
+      const updatedDislikedCatFood = [...cat.food.dislikes, selectedOption];
+      setSelectedBadFood(updatedDislikedCatFood);
+      setAddedBadFood(updatedDislikedCatFood);
+    }
+  }
+
+  // function handleGoodFoodChange(selectedOption) {
+  //   checkFoodList(selectedOption);
+
+  //   if (cat.food.likes.includes(selectedOption)) {
+  //     const updatedLikedCatFood = cat.food.likes.filter(
+  //       (catFood) => catFood !== selectedOption
+  //     );
+  //     setSelectedGoodFood(updatedLikedCatFood);
+  //   } else {
+  //     const updatedLikedCatFood = [...cat.food.likes, selectedOption];
+  //     setSelectedGoodFood(updatedLikedCatFood);
+  //     console.log("update", updatedLikedCatFood);
+  //   }
+  // }
+
+  // function handleBadFoodChange(selectedOption) {
+  //   checkFoodList(selectedOption);
+
+  //   if (cat.food.dislikes.includes(selectedOption)) {
+  //     const updatedDislikedCatFood = cat.food.dislikes.filter(
+  //       (catFood) => catFood !== selectedOption
+  //     );
+  //     setSelectedBadFood(updatedDislikedCatFood);
+  //   } else {
+  //     const updatedDislikedCatFood = [...cat.food.dislikes, selectedOption];
+  //     setSelectedBadFood(updatedDislikedCatFood);
+  //     console.log("update", updatedDislikedCatFood);
+  //   }
+  // }
+
   // // any cat food is selected
   // function handleGoodFoodChange(selectedOption) {
   //   checkFoodList(selectedOption);
@@ -45,39 +107,39 @@ export default function UpdateCatForm({ onEditCat, handleDeleteCat, cat }) {
   //   setSelectedBadFood(updatedDislikedCatFood);
   // }
 
-  function handleGoodFoodChange(selectedOption) {
-    checkFoodList(selectedOption);
+  // function handleGoodFoodChange(selectedOption) {
+  //   checkFoodList(selectedOption);
 
-    if (!cat.food.likes.includes(selectedOption)) {
-      const updatedLikedCatFood = [...selectedGoodFood, selectedOption];
-      setSelectedGoodFood(updatedLikedCatFood);
-      console.log("update", updatedLikedCatFood);
-    }
+  //   if (!cat.food.likes.includes(selectedOption)) {
+  //     const updatedLikedCatFood = [...selectedGoodFood, selectedOption];
+  //     setSelectedGoodFood(updatedLikedCatFood);
+  //     console.log("update", updatedLikedCatFood);
+  //   }
 
-    if (!cat.food.likes.includes(selectedOption)) {
-      const updatedLikedCatFood = cat.food.likes.filter(
-        (catFood) => catFood !== selectedOption
-      );
-      setSelectedGoodFood(updatedLikedCatFood);
-    }
-  }
+  //   if (!cat.food.likes.includes(selectedOption)) {
+  //     const updatedLikedCatFood = cat.food.likes.filter(
+  //       (catFood) => catFood !== selectedOption
+  //     );
+  //     setSelectedGoodFood(updatedLikedCatFood);
+  //   }
+  // }
 
-  function handleBadFoodChange(selectedOption) {
-    checkFoodList(selectedOption);
+  // function handleBadFoodChange(selectedOption) {
+  //   checkFoodList(selectedOption);
 
-    if (!cat.food.dislikes.includes(selectedOption)) {
-      const updatedDislikedCatFood = [...selectedBadFood, selectedOption];
-      setSelectedBadFood(updatedDislikedCatFood);
-      console.log("update", updatedDislikedCatFood);
-    }
+  //   if (!cat.food.dislikes.includes(selectedOption)) {
+  //     const updatedDislikedCatFood = [...selectedBadFood, selectedOption];
+  //     setSelectedBadFood(updatedDislikedCatFood);
+  //     console.log("update", updatedDislikedCatFood);
+  //   }
 
-    if (!cat.food.dislikes.includes(selectedOption)) {
-      const updatedDislikedCatFood = cat.food.dislikes.filter(
-        (catFood) => catFood !== selectedOption
-      );
-      setSelectedBadFood(updatedDislikedCatFood);
-    }
-  }
+  //   if (!cat.food.dislikes.includes(selectedOption)) {
+  //     const updatedDislikedCatFood = cat.food.dislikes.filter(
+  //       (catFood) => catFood !== selectedOption
+  //     );
+  //     setSelectedBadFood(updatedDislikedCatFood);
+  //   }
+  // }
 
   // state to save the chosen food to show it below the drop down
   const [addedGoodFood, setAddedGoodFood] = useState(cat.food.likes);
@@ -105,17 +167,17 @@ export default function UpdateCatForm({ onEditCat, handleDeleteCat, cat }) {
 
   // if the wrong food accidentally choosed
 
-  function handleRemoveGoodFood(index) {
-    const newAddedGoodFood = addedGoodFood.slice();
-    newAddedGoodFood.splice(index, 1);
-    setAddedGoodFood(newAddedGoodFood);
-  }
+  // function handleRemoveGoodFood(index) {
+  //   const newAddedGoodFood = addedGoodFood.slice();
+  //   newAddedGoodFood.splice(index, 1);
+  //   setAddedGoodFood(newAddedGoodFood);
+  // }
 
-  function handleRemoveBadFood(index) {
-    const newAddedBadFood = addedBadFood.slice();
-    newAddedBadFood.splice(index, 1);
-    setAddedBadFood(newAddedBadFood);
-  }
+  // function handleRemoveBadFood(index) {
+  //   const newAddedBadFood = addedBadFood.slice();
+  //   newAddedBadFood.splice(index, 1);
+  //   setAddedBadFood(newAddedBadFood);
+  // }
 
   // updates the cat- state object when an input field changes
   function handleChange(event) {
