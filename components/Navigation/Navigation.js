@@ -57,6 +57,7 @@ const StyledContainer = styled.div`
   box-shadow: 0 -1px 10px rgba(0, 0, 0, 0.1);
   font-size: 1.5em;
   background-color: #1d5d9b;
+  height: 8.5%;
 `;
 
 const StyledLink = styled(Link)`
