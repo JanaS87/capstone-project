@@ -18,7 +18,12 @@ const diseases = [
 
 const intolerances = ["Grains", "Lactose", "Artifical Additives", "Beef"];
 
-export default function NewCatForm({ onAddCat }) {
+export default function NewCatForm({
+  onAddCat,
+  onEditCat,
+  handleUpdateCat,
+  handleDeleteCat,
+}) {
   const router = useRouter();
   const [cat, setCat] = useState({
     id: "",
@@ -129,6 +134,8 @@ export default function NewCatForm({ onAddCat }) {
     // add new cat to the list
     onAddCat(newCat);
 
+    onEditCat();
+
     console.log(newCat);
 
     event.target.reset();
@@ -230,9 +237,9 @@ export default function NewCatForm({ onAddCat }) {
             const food = catfoods.find((food) => food.id === foodId);
             if (food) {
               return (
-                <li key={food.id}>
+                <StyledListItem key={food.id}>
                   {food.brand} - {food.variety}
-                </li>
+                </StyledListItem>
               );
             }
             return null;
@@ -266,9 +273,9 @@ export default function NewCatForm({ onAddCat }) {
             const food = catfoods.find((food) => food.id === foodId);
             if (food) {
               return (
-                <li key={food.id}>
+                <StyledListItem key={food.id}>
                   {food.brand} - {food.variety}
-                </li>
+                </StyledListItem>
               );
             }
             return null;
@@ -350,4 +357,8 @@ const StyledSaveButton = styled.button`
   background-color: #1d5d9b;
   color: white;
   font-size: 20px;
+`;
+
+const StyledListItem = styled.li`
+  list-style: none;
 `;

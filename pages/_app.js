@@ -22,7 +22,7 @@ export default function App({ Component, pageProps }) {
   }
 
   // update an existing cat
-  function handleUpdate(updatedCat) {
+  function handleUpdateCat(updatedCat) {
     const updatedCats = cats.map((cat) => {
       if (updatedCat.id !== cat.id) {
         return cat;
@@ -32,7 +32,8 @@ export default function App({ Component, pageProps }) {
     setCatList(updatedCats);
   }
 
-  function handleDelete(deleteCat) {
+  // deleting an existing cat
+  function handleDeleteCat(deleteCat) {
     const catsWithoutDeletedCat = cats.filter((cat) => cat.id !== deleteCat.id);
 
     router.push("/");
@@ -50,8 +51,8 @@ export default function App({ Component, pageProps }) {
         searchTerm={searchTerm}
         setSearchTerm={setSearchTerm}
         handleSearchTermChange={handleSearchTermChange}
-        handleUpdate={handleUpdate}
-        handleDelete={handleDelete}
+        handleUpdate={handleUpdateCat}
+        handleDelete={handleDeleteCat}
       />
     </>
   );

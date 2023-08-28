@@ -28,7 +28,7 @@ export default function UpdateCat({ catList, catFoods }) {
         <h1>{cat.name}</h1>
         <h2>What would you like to change?</h2>
       </div>
-      <NewCatForm />
+      {/* <NewCatForm onEditCat={handleUpdateCat} onDeleteCat={handleDeleteCat} /> */}
       <StyledLink href={`/cats/${cat.id}`}>Back</StyledLink>
     </>
   );
