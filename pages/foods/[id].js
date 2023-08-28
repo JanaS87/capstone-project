@@ -107,7 +107,7 @@ const StyledSection = styled.section`
   box-shadow: 0px 1px 5px -2px #ff6d60;
   border-radius: 10px/20px;
   background-color: white;
-  max-width: 85%;
+  max-width: 93%;
   list-style-type: none;
   margin-bottom: 1.3rem;
   margin-left: 1rem;
@@ -138,7 +138,7 @@ const StyledLink = styled(Link)`
   border-radius: 3px;
   cursor: pointer;
   text-decoration: none;
-  max-width: 12%;
+  max-width: 20%;
   &:hover {
     background-color: #f86f03;
     color: white;
