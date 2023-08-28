@@ -23,7 +23,7 @@ export default function App({ Component, pageProps }) {
 
   // update an existing cat
   function handleUpdateCat(updatedCat) {
-    const updatedCats = cats.map((cat) => {
+    const updatedCats = catList.map((cat) => {
       if (updatedCat.id !== cat.id) {
         return cat;
       }
@@ -51,8 +51,8 @@ export default function App({ Component, pageProps }) {
         searchTerm={searchTerm}
         setSearchTerm={setSearchTerm}
         handleSearchTermChange={handleSearchTermChange}
-        handleUpdate={handleUpdateCat}
-        handleDelete={handleDeleteCat}
+        handleUpdateCat={handleUpdateCat}
+        handleDeleteCat={handleDeleteCat}
       />
     </>
   );
