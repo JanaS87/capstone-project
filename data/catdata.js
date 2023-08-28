@@ -4,7 +4,7 @@ export const cats = [
     name: "Luna",
     age: 5,
     health: {
-      allergies: ["House dust"],
+      allergies: ["Eggs"],
       diseases: [],
       intolerances: [],
     },
@@ -20,7 +20,7 @@ export const cats = [
     health: {
       allergies: [],
       diseases: ["diabetes"],
-      intolerances: ["gluten"],
+      intolerances: ["lactose"],
     },
     food: {
       likes: ["2", "4"],
