@@ -17,7 +17,7 @@ const diseases = [
 
 const intolerances = ["Grains", "Lactose", "Artifical Additives", "Beef"];
 
-export default function UpdateCatForm({ onEditCat, handleDeleteCat, cat }) {
+export default function UpdateCatForm({ onEditCat, cat }) {
   const router = useRouter();
 
   const [selectedGoodFood, setSelectedGoodFood] = useState("");
@@ -244,7 +244,6 @@ export default function UpdateCatForm({ onEditCat, handleDeleteCat, cat }) {
 }
 
 // Styling Section
-
 const StyledInputGroup = styled.div`
   display: flex;
   background-color: white;
