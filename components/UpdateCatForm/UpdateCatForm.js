@@ -4,6 +4,7 @@ import Button from "../Button/Button";
 import { catfoods } from "@/data/catfooddata";
 import { uid } from "uid";
 import { useRouter } from "next/router";
+import { checkCustomRoutes } from "next/dist/lib/load-custom-routes";
 
 const allergies = ["Eggs", "Pollen", "Dust Mites", "Mold Spores", "Flea Bite"];
 
@@ -61,55 +62,6 @@ export default function UpdateCatForm({ onEditCat, handleDeleteCat, cat }) {
   // function handleGoodFoodChange(selectedOption) {
   //   checkFoodList(selectedOption);
 
-  //   if (cat.food.likes.includes(selectedOption)) {
-  //     const updatedLikedCatFood = cat.food.likes.filter(
-  //       (catFood) => catFood !== selectedOption
-  //     );
-  //     setSelectedGoodFood(updatedLikedCatFood);
-  //   } else {
-  //     const updatedLikedCatFood = [...cat.food.likes, selectedOption];
-  //     setSelectedGoodFood(updatedLikedCatFood);
-  //     console.log("update", updatedLikedCatFood);
-  //   }
-  // }
-
-  // function handleBadFoodChange(selectedOption) {
-  //   checkFoodList(selectedOption);
-
-  //   if (cat.food.dislikes.includes(selectedOption)) {
-  //     const updatedDislikedCatFood = cat.food.dislikes.filter(
-  //       (catFood) => catFood !== selectedOption
-  //     );
-  //     setSelectedBadFood(updatedDislikedCatFood);
-  //   } else {
-  //     const updatedDislikedCatFood = [...cat.food.dislikes, selectedOption];
-  //     setSelectedBadFood(updatedDislikedCatFood);
-  //     console.log("update", updatedDislikedCatFood);
-  //   }
-  // }
-
-  // // any cat food is selected
-  // function handleGoodFoodChange(selectedOption) {
-  //   checkFoodList(selectedOption);
-
-  //   const updatedLikedCatFood = cat.food.likes.includes(selectedOption)
-  //     ? cat.food.likes.filter((catFood) => catFood !== selectedOption)
-  //     : [...cat.food.likes, selectedOption];
-  //   setSelectedGoodFood(updatedLikedCatFood);
-  // }
-
-  // function handleBadFoodChange(selectedOption) {
-  //   checkFoodList(selectedOption);
-
-  //   const updatedDislikedCatFood = cat.food.dislikes.includes(selectedOption)
-  //     ? cat.food.dislikes.filter((catFood) => catFood !== selectedOption)
-  //     : [...cat.food.dislikes, selectedOption];
-  //   setSelectedBadFood(updatedDislikedCatFood);
-  // }
-
-  // function handleGoodFoodChange(selectedOption) {
-  //   checkFoodList(selectedOption);
-
   //   if (!cat.food.likes.includes(selectedOption)) {
   //     const updatedLikedCatFood = [...selectedGoodFood, selectedOption];
   //     setSelectedGoodFood(updatedLikedCatFood);
@@ -149,35 +101,43 @@ export default function UpdateCatForm({ onEditCat, handleDeleteCat, cat }) {
     if (addedBadFood.includes(selectedOption)) {
       alert(`Food is already in "Bad Acceptance"`);
       return;
+    } else if (!addedBadFood.includes(selectedOption)) {
+      setSelectedBadFood(selectedOption);
     }
 
     if (addedGoodFood.includes(selectedOption)) {
       alert(`Food is already in "Good Acceptance"`);
       return;
+    } else if (!addedGoodFood.includes(selectedOption)) {
+      setSelectedGoodFood(selectedOption);
     }
   }
 
   function handleAddGoodFood() {
     setAddedGoodFood(selectedGoodFood);
+    setSelectedGoodFood([]);
   }
 
   function handleAddBadFood() {
     setAddedBadFood(selectedBadFood);
+    setSelectedBadFood([]);
   }
 
   // if the wrong food accidentally choosed
 
-  // function handleRemoveGoodFood(index) {
-  //   const newAddedGoodFood = addedGoodFood.slice();
-  //   newAddedGoodFood.splice(index, 1);
-  //   setAddedGoodFood(newAddedGoodFood);
-  // }
+  function handleRemoveGoodFood(id) {
+    const goodFoodListWithoutTheGiven = addedGoodFood.filter(
+      (food) => food.id !== id
+    );
+    setAddedGoodFood(goodFoodListWithoutTheGiven);
+  }
 
-  // function handleRemoveBadFood(index) {
-  //   const newAddedBadFood = addedBadFood.slice();
-  //   newAddedBadFood.splice(index, 1);
-  //   setAddedBadFood(newAddedBadFood);
-  // }
+  function handleRemoveBadFood(id) {
+    const badFoodListWithoutTheGiven = addedBadFood.filter(
+      (food) => food.id !== id
+    );
+    setAddedBadFood(badFoodListWithoutTheGiven);
+  }
 
   // updates the cat- state object when an input field changes
   function handleChange(event) {
@@ -288,7 +248,7 @@ export default function UpdateCatForm({ onEditCat, handleDeleteCat, cat }) {
         <StyledSelect
           id="goodFood-select"
           name="goodFood-select"
-          onChange={(event) => handleGoodFoodChange(event.target.value)}
+          onChange={(event) => checkFoodList(event.target.value)}
           defaultValue={selectedGoodFood}
         >
           <option value={""}>-- Please choose a food --</option>
@@ -304,14 +264,14 @@ export default function UpdateCatForm({ onEditCat, handleDeleteCat, cat }) {
       </StyledInputGroup>
       <div>
         <ul>
-          {addedGoodFood.map((foodId, index) => {
+          {addedGoodFood.map((foodId) => {
             // help from a friend
             const food = catfoods.find((food) => food.id === foodId);
             if (food) {
               return (
                 <StyledListItem key={food.id}>
                   {food.brand} - {food.variety}
-                  <button onClick={() => handleGoodFoodChange(food.id)}>
+                  <button onClick={() => handleRemoveGoodFood(food.id)}>
                     X
                   </button>
                 </StyledListItem>
@@ -327,7 +287,7 @@ export default function UpdateCatForm({ onEditCat, handleDeleteCat, cat }) {
         <StyledSelect
           id="badFood-select"
           name="badFood-select"
-          onChange={(event) => handleBadFoodChange(event.target.value)}
+          onChange={(event) => checkFoodList(event.target.value)}
           defaultValue={selectedBadFood}
         >
           <option value={""}>-- Please choose a food --</option>
@@ -343,14 +303,14 @@ export default function UpdateCatForm({ onEditCat, handleDeleteCat, cat }) {
       </StyledInputGroup>
       <div>
         <ul>
-          {addedBadFood.map((foodId, index) => {
+          {addedBadFood.map((foodId) => {
             // help from a friend
             const food = catfoods.find((food) => food.id === foodId);
             if (food) {
               return (
                 <StyledListItem key={food.id}>
                   {food.brand} - {food.variety}
-                  <button onClick={() => handleBadFoodChange(food.id)}>
+                  <button onClick={() => handleRemoveBadFood(food.id)}>
                     X
                   </button>
                 </StyledListItem>
