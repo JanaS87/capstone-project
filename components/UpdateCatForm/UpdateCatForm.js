@@ -26,31 +26,77 @@ export default function UpdateCatForm({ onEditCat, cat }) {
   const [addedGoodFood, setAddedGoodFood] = useState(cat.food.likes);
   const [addedBadFood, setAddedBadFood] = useState(cat.food.dislikes);
 
-  function checkFoodList(selectedOption) {
-    if (addedBadFood.includes(selectedOption)) {
-      alert(`Food is already in "Bad Acceptance"`);
-      return;
-    } else if (!addedBadFood.includes(selectedOption)) {
-      setSelectedBadFood(selectedOption);
-    }
+  // function checkFoodList(selectedOption) {
+  //   if (addedBadFood.includes(selectedOption)) {
+  //     alert(`Food is already in "Bad Acceptance"`);
+  //     return;
+  //   }
 
-    if (addedGoodFood.includes(selectedOption)) {
+  //   if (addedGoodFood.includes(selectedOption)) {
+  //     alert(`Food is already in "Good Acceptance"`);
+  //     return;
+  //   }
+
+  //   setSelectedBadFood(selectedOption);
+  //   setSelectedGoodFood(selectedOption);
+  // }
+  function handleAddGoodFood() {
+    const foodToAdd = selectedGoodFood;
+    if (!foodToAdd) {
+      return;
+    }
+    if (addedGoodFood.includes(foodToAdd)) {
       alert(`Food is already in "Good Acceptance"`);
       return;
-    } else if (!addedGoodFood.includes(selectedOption)) {
-      setSelectedGoodFood(selectedOption);
     }
-  }
-
-  function handleAddGoodFood() {
-    setAddedGoodFood([...addedGoodFood, selectedGoodFood]);
+    if (addedBadFood.includes(foodToAdd)) {
+      alert(`Food is already in "Bad Acceptance"`);
+      return;
+    }
+    setAddedGoodFood([...addedGoodFood, foodToAdd]);
     setSelectedGoodFood("");
   }
 
   function handleAddBadFood() {
-    setAddedBadFood([...addedBadFood, selectedBadFood]);
+    const foodToAdd = selectedBadFood;
+    if (!foodToAdd) {
+      return;
+    }
+    if (addedBadFood.includes(foodToAdd)) {
+      alert(`Food is already in "Bad Acceptance"`);
+      return;
+    }
+    if (addedGoodFood.includes(foodToAdd)) {
+      alert(`Food is already in "Good Acceptance"`);
+      return;
+    }
+    setAddedBadFood([...addedBadFood, foodToAdd]);
     setSelectedBadFood("");
   }
+
+  // function handleAddGoodFood() {
+  //   const foodToAdd = selectedGoodFood;
+  //   if (addedBadFood.includes(foodToAdd)) {
+  //     alert(`Food is already in "Bad Acceptance"`);
+  //     return;
+  //   }
+  //   if (foodToAdd) {
+  //     setAddedGoodFood([...addedGoodFood, selectedGoodFood]);
+  //   }
+  //   setSelectedGoodFood("");
+  // }
+
+  // function handleAddBadFood() {
+  //   const foodToAdd = selectedBadFood;
+  //   if (addedGoodFood.includes(foodToAdd)) {
+  //     alert(`Food is already in "Good Acceptance"`);
+  //     return;
+  //   }
+  //   if (foodToAdd) {
+  //     setAddedBadFood([...addedBadFood, selectedBadFood]);
+  //   }
+  //   setSelectedBadFood("");
+  // }
 
   // if the wrong food was accidentally choosed, remove it
 
@@ -161,7 +207,8 @@ export default function UpdateCatForm({ onEditCat, cat }) {
         <StyledSelect
           id="goodFood-select"
           name="goodFood-select"
-          onChange={(event) => checkFoodList(event.target.value)}
+          //onChange={(event) => checkFoodList(event.target.value)}
+          onChange={(event) => setSelectedGoodFood(event.target.value)}
         >
           <option value={""}>-- Please choose a food --</option>
           {catfoods.map((food) => (
@@ -202,7 +249,8 @@ export default function UpdateCatForm({ onEditCat, cat }) {
         <StyledSelect
           id="badFood-select"
           name="badFood-select"
-          onChange={(event) => checkFoodList(event.target.value)}
+          //onChange={(event) => checkFoodList(event.target.value)}
+          onChange={(event) => setSelectedBadFood(event.target.value)}
         >
           <option value={""}>-- Please choose a food --</option>
           {catfoods.map((food) => (
