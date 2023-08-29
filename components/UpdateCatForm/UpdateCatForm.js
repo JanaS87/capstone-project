@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import Button from "../Button/Button";
 import { catfoods } from "@/data/catfooddata";
-import { uid } from "uid";
 import { useRouter } from "next/router";
 
 const allergies = ["Eggs", "Pollen", "Dust Mites", "Mold Spores", "Flea Bite"];
@@ -18,86 +16,105 @@ const diseases = [
 
 const intolerances = ["Grains", "Lactose", "Artifical Additives", "Beef"];
 
-export default function NewCatForm({ onAddCat }) {
+export default function UpdateCatForm({ onEditCat, cat }) {
   const router = useRouter();
-  const [cat, setCat] = useState({
-    id: "",
-    name: "",
-    age: "",
-    health: {
-      allergies: [],
-      diseases: [],
-      intolerances: [],
-    },
-    food: {
-      likes: [],
-      dislikes: [],
-    },
-  });
 
-  const [selectedGoodFood, setSelectedGoodFood] = useState();
-  const [selectedBadFood, setSelectedBadFood] = useState();
-
-  // // any cat food is selected
-  function handleGoodFoodChange(selectedOption) {
-    setSelectedGoodFood(selectedOption);
-    console.log(selectedGoodFood);
-  }
-
-  function handleBadFoodChange(selectedOption) {
-    setSelectedBadFood(selectedOption);
-  }
+  const [selectedGoodFood, setSelectedGoodFood] = useState("");
+  const [selectedBadFood, setSelectedBadFood] = useState("");
 
   // state to save the chosen food to show it below the drop down
-  const [addedGoodFood, setAddedGoodFood] = useState([]);
-  const [addedBadFood, setAddedBadFood] = useState([]);
+  const [addedGoodFood, setAddedGoodFood] = useState(cat.food.likes);
+  const [addedBadFood, setAddedBadFood] = useState(cat.food.dislikes);
 
+  // function checkFoodList(selectedOption) {
+  //   if (addedBadFood.includes(selectedOption)) {
+  //     alert(`Food is already in "Bad Acceptance"`);
+  //     return;
+  //   }
+
+  //   if (addedGoodFood.includes(selectedOption)) {
+  //     alert(`Food is already in "Good Acceptance"`);
+  //     return;
+  //   }
+
+  //   setSelectedBadFood(selectedOption);
+  //   setSelectedGoodFood(selectedOption);
+  // }
   function handleAddGoodFood() {
     const foodToAdd = selectedGoodFood;
-
-    if (addedBadFood.includes(foodToAdd)) {
-      alert(`Food is already in "Bad Acceptance"`);
+    if (!foodToAdd) {
       return;
     }
-
-    if (foodToAdd) {
-      setAddedGoodFood([...addedGoodFood, foodToAdd]);
-      console.log(foodToAdd);
-    }
-  }
-
-  function handleAddBadFood() {
-    const foodToAdd = selectedBadFood;
-
     if (addedGoodFood.includes(foodToAdd)) {
       alert(`Food is already in "Good Acceptance"`);
       return;
     }
-
-    if (foodToAdd) {
-      setAddedBadFood([...addedBadFood, foodToAdd]);
+    if (addedBadFood.includes(foodToAdd)) {
+      alert(`Food is already in "Bad Acceptance"`);
+      return;
     }
+    setAddedGoodFood([...addedGoodFood, foodToAdd]);
+    setSelectedGoodFood("");
   }
 
-  // updates the cat- state object when an input field changes
-  function handleChange(event) {
-    setCat({ ...cat, [event.target.name]: event.target.value || "" });
+  function handleAddBadFood() {
+    const foodToAdd = selectedBadFood;
+    if (!foodToAdd) {
+      return;
+    }
+    if (addedBadFood.includes(foodToAdd)) {
+      alert(`Food is already in "Bad Acceptance"`);
+      return;
+    }
+    if (addedGoodFood.includes(foodToAdd)) {
+      alert(`Food is already in "Good Acceptance"`);
+      return;
+    }
+    setAddedBadFood([...addedBadFood, foodToAdd]);
+    setSelectedBadFood("");
+  }
+
+  // function handleAddGoodFood() {
+  //   const foodToAdd = selectedGoodFood;
+  //   if (addedBadFood.includes(foodToAdd)) {
+  //     alert(`Food is already in "Bad Acceptance"`);
+  //     return;
+  //   }
+  //   if (foodToAdd) {
+  //     setAddedGoodFood([...addedGoodFood, selectedGoodFood]);
+  //   }
+  //   setSelectedGoodFood("");
+  // }
+
+  // function handleAddBadFood() {
+  //   const foodToAdd = selectedBadFood;
+  //   if (addedGoodFood.includes(foodToAdd)) {
+  //     alert(`Food is already in "Good Acceptance"`);
+  //     return;
+  //   }
+  //   if (foodToAdd) {
+  //     setAddedBadFood([...addedBadFood, selectedBadFood]);
+  //   }
+  //   setSelectedBadFood("");
+  // }
+
+  // if the wrong food was accidentally choosed, remove it
+
+  function handleRemoveGoodFood(id) {
+    const goodFoodToRemove = addedGoodFood.filter((food) => food !== id);
+    setAddedGoodFood(goodFoodToRemove);
+  }
+
+  function handleRemoveBadFood(id) {
+    const badFoodToRemove = addedBadFood.filter((food) => food !== id);
+    setAddedBadFood(badFoodToRemove);
   }
 
   function handleSubmit(event) {
     event.preventDefault();
 
-    // validate user entry (catname)
-    if (cat.name.includes(" ")) {
-      alert("Whitespace is not allowed!");
-      return;
-    }
-
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData);
-
-    // generate new ID
-    const newId = uid();
 
     const catAllergies = allergies.filter((allergy) => data[allergy] === "on");
 
@@ -107,12 +124,9 @@ export default function NewCatForm({ onAddCat }) {
       (intolerance) => data[intolerance] === "on"
     );
 
-    // create new cat object at the end of the array
-    const newCat = {
+    // update the cat object at the end of the array
+    const updatedCat = {
       ...cat,
-      id: newId,
-      name: data.name,
-      age: data.age,
       health: {
         allergies: catAllergies,
         diseases: catDiseases,
@@ -124,48 +138,15 @@ export default function NewCatForm({ onAddCat }) {
       },
     };
 
-    console.log("onAddCat type:", typeof onAddCat);
+    // update cat
+    onEditCat(updatedCat);
 
-    // add new cat to the list
-    onAddCat(newCat);
-
-    console.log(newCat);
-
-    event.target.reset();
-
-    router.push("/");
+    router.push(`/cats/${cat.id}`);
   }
 
   return (
     <StyledForm onSubmit={handleSubmit}>
-      <StyledInputGroup>
-        <label htmlFor="name">Name: </label>
-        <input
-          type="text"
-          name="name"
-          id="name"
-          aria-describedby="name-info"
-          defaultValue={cat.name}
-          maxLength={8}
-          pattern="^[A-Za-z]+$"
-          title="Bitte Namen eingeben!"
-          required
-          onChange={handleChange}
-        />
-
-        <label htmlFor="age">Age: </label>
-        <AgeInput
-          type="number"
-          name="age"
-          id="age"
-          min={0}
-          max={25}
-          aria-describedby="age-info"
-          defaultValue={cat.age}
-          required
-        />
-      </StyledInputGroup>
-      <div>
+      <>
         <fieldset>
           <legend>Health Information</legend>
           <>
@@ -173,7 +154,12 @@ export default function NewCatForm({ onAddCat }) {
             <StyledCheckBoxWrapper>
               {allergies.map((allergy, index) => (
                 <StyledCheckBoxWrapper key={index}>
-                  <input type="checkbox" name={allergy} id={allergy} />
+                  <input
+                    type="checkbox"
+                    name={allergy}
+                    id={allergy}
+                    defaultChecked={cat.health.allergies.includes(allergy)}
+                  />
                   <label htmlFor={allergy}>{allergy}</label>
                 </StyledCheckBoxWrapper>
               ))}
@@ -184,7 +170,12 @@ export default function NewCatForm({ onAddCat }) {
             <StyledCheckBoxWrapper>
               {diseases.map((disease, index) => (
                 <StyledCheckBoxWrapper key={index}>
-                  <input type="checkbox" name={disease} id={disease} />
+                  <input
+                    type="checkbox"
+                    name={disease}
+                    id={disease}
+                    defaultChecked={cat.health.diseases.includes(disease)}
+                  />
                   <label htmlFor={disease}>{disease}</label>
                 </StyledCheckBoxWrapper>
               ))}
@@ -195,22 +186,29 @@ export default function NewCatForm({ onAddCat }) {
             <StyledCheckBoxWrapper>
               {intolerances.map((intolerance, index) => (
                 <StyledLastBox key={index}>
-                  <input type="checkbox" name={intolerance} id={intolerance} />
+                  <input
+                    type="checkbox"
+                    name={intolerance}
+                    id={intolerance}
+                    defaultChecked={cat.health.intolerances.includes(
+                      intolerance
+                    )}
+                  />
                   <label htmlFor={intolerance}>{intolerance}</label>
                 </StyledLastBox>
               ))}
             </StyledCheckBoxWrapper>
           </div>
         </fieldset>
-      </div>
+      </>
 
       <label htmlFor="goodFood-select">Good Acceptance: </label>
       <StyledInputGroup>
         <StyledSelect
           id="goodFood-select"
           name="goodFood-select"
-          onChange={(event) => handleGoodFoodChange(event.target.value)}
-          defaultValue={selectedGoodFood}
+          //onChange={(event) => checkFoodList(event.target.value)}
+          onChange={(event) => setSelectedGoodFood(event.target.value)}
         >
           <option value={""}>-- Please choose a food --</option>
           {catfoods.map((food) => (
@@ -232,6 +230,12 @@ export default function NewCatForm({ onAddCat }) {
               return (
                 <StyledListItem key={food.id}>
                   {food.brand} - {food.variety}
+                  <button
+                    type="button"
+                    onClick={() => handleRemoveGoodFood(food.id)}
+                  >
+                    X
+                  </button>
                 </StyledListItem>
               );
             }
@@ -245,8 +249,8 @@ export default function NewCatForm({ onAddCat }) {
         <StyledSelect
           id="badFood-select"
           name="badFood-select"
-          onChange={(event) => handleBadFoodChange(event.target.value)}
-          defaultValue={selectedBadFood}
+          //onChange={(event) => checkFoodList(event.target.value)}
+          onChange={(event) => setSelectedBadFood(event.target.value)}
         >
           <option value={""}>-- Please choose a food --</option>
           {catfoods.map((food) => (
@@ -268,6 +272,12 @@ export default function NewCatForm({ onAddCat }) {
               return (
                 <StyledListItem key={food.id}>
                   {food.brand} - {food.variety}
+                  <button
+                    type="button"
+                    onClick={() => handleRemoveBadFood(food.id)}
+                  >
+                    X
+                  </button>
                 </StyledListItem>
               );
             }
@@ -275,16 +285,12 @@ export default function NewCatForm({ onAddCat }) {
           })}
         </ul>
       </div>
-      <StyledSaveButton type="submit">Add Cat</StyledSaveButton>
+      <StyledSaveButton type="submit">Save Cat</StyledSaveButton>
     </StyledForm>
   );
 }
 
 // Styling Section
-const AgeInput = styled.input`
-  width: 50px;
-`;
-
 const StyledInputGroup = styled.div`
   display: flex;
   background-color: white;
