@@ -2,9 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import Button from "../Button/Button";
 import { catfoods } from "@/data/catfooddata";
-import { uid } from "uid";
 import { useRouter } from "next/router";
-import { checkCustomRoutes } from "next/dist/lib/load-custom-routes";
 
 const allergies = ["Eggs", "Pollen", "Dust Mites", "Mold Spores", "Flea Bite"];
 
