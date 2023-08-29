@@ -4,6 +4,9 @@ import { cats } from "@/data/catdata";
 import { catfoods } from "@/data/catfooddata";
 import useLocalStorageState from "use-local-storage-state";
 import { useRouter } from "next/router";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
 
 export default function App({ Component, pageProps }) {
   const router = useRouter();
@@ -36,13 +39,16 @@ export default function App({ Component, pageProps }) {
   function handleDeleteCat(deleteCat) {
     const catsWithoutDeletedCat = cats.filter((cat) => cat.id !== deleteCat.id);
 
-    router.push("/");
     setCatList(catsWithoutDeletedCat);
+
+    toast.success("Cat successfully removed!");
+    router.push("/");
   }
 
   return (
     <>
       <GlobalStyle />
+      <ToastContainer />
       <Component
         {...pageProps}
         handleAddCat={handleAddCat}
