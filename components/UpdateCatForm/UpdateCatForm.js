@@ -20,76 +20,8 @@ const intolerances = ["Grains", "Lactose", "Artifical Additives", "Beef"];
 export default function UpdateCatForm({ onEditCat, handleDeleteCat, cat }) {
   const router = useRouter();
 
-  // was kann davon weg und was brauche ich???
-
-  const [selectedGoodFood, setSelectedGoodFood] = useState([]);
-  const [selectedBadFood, setSelectedBadFood] = useState([]);
-
-  function handleGoodFoodChange(selectedOption) {
-    checkFoodList(selectedOption);
-
-    if (cat.food.likes.includes(selectedOption)) {
-      const updatedLikedCatFood = cat.food.likes.filter(
-        (catFood) => catFood !== selectedOption
-      );
-      setSelectedGoodFood(updatedLikedCatFood);
-      setAddedGoodFood(updatedLikedCatFood);
-    } else {
-      const updatedLikedCatFood = [...cat.food.likes, selectedOption];
-      setSelectedGoodFood(updatedLikedCatFood);
-      setAddedGoodFood(updatedLikedCatFood);
-    }
-  }
-
-  function handleBadFoodChange(selectedOption) {
-    checkFoodList(selectedOption);
-
-    if (cat.food.dislikes.includes(selectedOption)) {
-      const updatedDislikedCatFood = cat.food.dislikes.filter(
-        (catFood) => catFood !== selectedOption
-      );
-      setSelectedBadFood(updatedDislikedCatFood);
-      setAddedBadFood(updatedDislikedCatFood);
-    } else {
-      const updatedDislikedCatFood = [...cat.food.dislikes, selectedOption];
-      setSelectedBadFood(updatedDislikedCatFood);
-      setAddedBadFood(updatedDislikedCatFood);
-    }
-  }
-
-  // function handleGoodFoodChange(selectedOption) {
-  //   checkFoodList(selectedOption);
-
-  //   if (!cat.food.likes.includes(selectedOption)) {
-  //     const updatedLikedCatFood = [...selectedGoodFood, selectedOption];
-  //     setSelectedGoodFood(updatedLikedCatFood);
-  //     console.log("update", updatedLikedCatFood);
-  //   }
-
-  //   if (!cat.food.likes.includes(selectedOption)) {
-  //     const updatedLikedCatFood = cat.food.likes.filter(
-  //       (catFood) => catFood !== selectedOption
-  //     );
-  //     setSelectedGoodFood(updatedLikedCatFood);
-  //   }
-  // }
-
-  // function handleBadFoodChange(selectedOption) {
-  //   checkFoodList(selectedOption);
-
-  //   if (!cat.food.dislikes.includes(selectedOption)) {
-  //     const updatedDislikedCatFood = [...selectedBadFood, selectedOption];
-  //     setSelectedBadFood(updatedDislikedCatFood);
-  //     console.log("update", updatedDislikedCatFood);
-  //   }
-
-  //   if (!cat.food.dislikes.includes(selectedOption)) {
-  //     const updatedDislikedCatFood = cat.food.dislikes.filter(
-  //       (catFood) => catFood !== selectedOption
-  //     );
-  //     setSelectedBadFood(updatedDislikedCatFood);
-  //   }
-  // }
+  const [selectedGoodFood, setSelectedGoodFood] = useState("");
+  const [selectedBadFood, setSelectedBadFood] = useState("");
 
   // state to save the chosen food to show it below the drop down
   const [addedGoodFood, setAddedGoodFood] = useState(cat.food.likes);
@@ -112,34 +44,25 @@ export default function UpdateCatForm({ onEditCat, handleDeleteCat, cat }) {
   }
 
   function handleAddGoodFood() {
-    setAddedGoodFood(selectedGoodFood);
-    setSelectedGoodFood([]);
+    setAddedGoodFood([...addedGoodFood, selectedGoodFood]);
+    setSelectedGoodFood("");
   }
 
   function handleAddBadFood() {
-    setAddedBadFood(selectedBadFood);
-    setSelectedBadFood([]);
+    setAddedBadFood([...addedBadFood, selectedBadFood]);
+    setSelectedBadFood("");
   }
 
-  // if the wrong food accidentally choosed
+  // if the wrong food was accidentally choosed, remove it
 
   function handleRemoveGoodFood(id) {
-    const goodFoodListWithoutTheGiven = addedGoodFood.filter(
-      (food) => food.id !== id
-    );
-    setAddedGoodFood(goodFoodListWithoutTheGiven);
+    const goodFoodToRemove = addedGoodFood.filter((food) => food !== id);
+    setAddedGoodFood(goodFoodToRemove);
   }
 
   function handleRemoveBadFood(id) {
-    const badFoodListWithoutTheGiven = addedBadFood.filter(
-      (food) => food.id !== id
-    );
-    setAddedBadFood(badFoodListWithoutTheGiven);
-  }
-
-  // updates the cat- state object when an input field changes
-  function handleChange(event) {
-    setCat({ ...cat, [event.target.name]: event.target.value || "" });
+    const badFoodToRemove = addedBadFood.filter((food) => food !== id);
+    setAddedBadFood(badFoodToRemove);
   }
 
   function handleSubmit(event) {
@@ -156,7 +79,7 @@ export default function UpdateCatForm({ onEditCat, handleDeleteCat, cat }) {
       (intolerance) => data[intolerance] === "on"
     );
 
-    // create new cat object at the end of the array
+    // update the cat object at the end of the array
     const updatedCat = {
       ...cat,
       health: {
@@ -172,10 +95,6 @@ export default function UpdateCatForm({ onEditCat, handleDeleteCat, cat }) {
 
     // update cat
     onEditCat(updatedCat);
-
-    console.log(updatedCat);
-
-    event.target.reset();
 
     router.push(`/cats/${cat.id}`);
   }
@@ -195,7 +114,6 @@ export default function UpdateCatForm({ onEditCat, handleDeleteCat, cat }) {
                     name={allergy}
                     id={allergy}
                     defaultChecked={cat.health.allergies.includes(allergy)}
-                    //onChange={handleChange}
                   />
                   <label htmlFor={allergy}>{allergy}</label>
                 </StyledCheckBoxWrapper>
@@ -212,7 +130,6 @@ export default function UpdateCatForm({ onEditCat, handleDeleteCat, cat }) {
                     name={disease}
                     id={disease}
                     defaultChecked={cat.health.diseases.includes(disease)}
-                    //onChange={handleChange}
                   />
                   <label htmlFor={disease}>{disease}</label>
                 </StyledCheckBoxWrapper>
@@ -231,7 +148,6 @@ export default function UpdateCatForm({ onEditCat, handleDeleteCat, cat }) {
                     defaultChecked={cat.health.intolerances.includes(
                       intolerance
                     )}
-                    //onChange={handleChange}
                   />
                   <label htmlFor={intolerance}>{intolerance}</label>
                 </StyledLastBox>
@@ -247,7 +163,6 @@ export default function UpdateCatForm({ onEditCat, handleDeleteCat, cat }) {
           id="goodFood-select"
           name="goodFood-select"
           onChange={(event) => checkFoodList(event.target.value)}
-          defaultValue={selectedGoodFood}
         >
           <option value={""}>-- Please choose a food --</option>
           {catfoods.map((food) => (
@@ -269,7 +184,10 @@ export default function UpdateCatForm({ onEditCat, handleDeleteCat, cat }) {
               return (
                 <StyledListItem key={food.id}>
                   {food.brand} - {food.variety}
-                  <button onClick={() => handleRemoveGoodFood(food.id)}>
+                  <button
+                    type="button"
+                    onClick={() => handleRemoveGoodFood(food.id)}
+                  >
                     X
                   </button>
                 </StyledListItem>
@@ -286,7 +204,6 @@ export default function UpdateCatForm({ onEditCat, handleDeleteCat, cat }) {
           id="badFood-select"
           name="badFood-select"
           onChange={(event) => checkFoodList(event.target.value)}
-          defaultValue={selectedBadFood}
         >
           <option value={""}>-- Please choose a food --</option>
           {catfoods.map((food) => (
@@ -308,7 +225,10 @@ export default function UpdateCatForm({ onEditCat, handleDeleteCat, cat }) {
               return (
                 <StyledListItem key={food.id}>
                   {food.brand} - {food.variety}
-                  <button onClick={() => handleRemoveBadFood(food.id)}>
+                  <button
+                    type="button"
+                    onClick={() => handleRemoveBadFood(food.id)}
+                  >
                     X
                   </button>
                 </StyledListItem>
