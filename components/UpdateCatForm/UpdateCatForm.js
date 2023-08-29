@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import Button from "../Button/Button";
 import { catfoods } from "@/data/catfooddata";
 import { useRouter } from "next/router";
 
