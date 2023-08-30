@@ -14,12 +14,6 @@ export default function FoodDetailsPage({
   const { id } = router.query;
   const [isEditing, setIsEditing] = useState(false);
 
-  const [selectedGoodCat, setSelectedGoodCat] = useState("");
-  const [selectedBadCat, setSelectedBadCat] = useState("");
-
-  const [addedGoodCat, setAddedGoodCat] = useState(foodList.cat.likes);
-  const [addedBadCat, setAddedBadCat] = useState(foodList.cat.dislikes);
-
   if (!id) return <h1>Loading</h1>;
 
   if (!food) {
@@ -38,38 +32,6 @@ export default function FoodDetailsPage({
   const filteredCatDislikes = catList.filter((cat) =>
     cat.food.dislikes.includes(id)
   );
-
-  function handleRemoveGoodCat(catId) {
-    const updatedCatList = catList.map((cat) => {
-      if (cat.id === catId) {
-        return {
-          ...cat,
-          food: {
-            ...cat.food,
-            likes: cat.food.likes.filter((foodId) => foodId !== id),
-          },
-        };
-      }
-      return cat;
-    });
-    setCatList(updatedCatList);
-  }
-
-  function handleRemoveBadCat(catId) {
-    const updatedCatList = catList.map((cat) => {
-      if (cat.id === catId) {
-        return {
-          ...cat,
-          food: {
-            ...cat.food,
-            dislikes: cat.food.dislikes.filter((foodId) => foodId !== id),
-          },
-        };
-      }
-      return cat;
-    });
-    setCatList(updatedCatList);
-  }
 
   function handleEdit() {
     setIsEditing(true);
