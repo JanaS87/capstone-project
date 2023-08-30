@@ -18,7 +18,8 @@ export default function App({ Component, pageProps }) {
     defaultValue: catfoods,
   });
   const [searchTerm, setSearchTerm] = useState("");
-  const [isEditing, setIsEditing] = useState(false);
+  const [isEditingGood, setIsEditingGood] = useState(false);
+  const [isEditingBad, setIsEditingBad] = useState(false);
 
   function handleAddCat(newCat) {
     // update catList with new cat
@@ -115,8 +116,10 @@ export default function App({ Component, pageProps }) {
         handleUpdateFood={handleUpdateFood}
         handleRemoveGoodCat={handleRemoveGoodCat}
         handleRemoveBadCat={handleRemoveBadCat}
-        isEditing={isEditing}
-        setIsEditing={setIsEditing}
+        isEditingGood={isEditingGood}
+        setIsEditingGood={setIsEditingGood}
+        isEditingBad={isEditingBad}
+        setIsEditingBad={setIsEditingBad}
       />
     </>
   );

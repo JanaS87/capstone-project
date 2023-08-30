@@ -7,6 +7,7 @@ export default function EditBadFoodForm({
   foodList,
   catList,
   setCatList,
+  setIsEditingBad,
 }) {
   const [selectedBadCat, setSelectedBadCat] = useState("");
   const [addedBadCat, setAddedBadCat] = useState(food.cat.dislikes);
@@ -55,6 +56,7 @@ export default function EditBadFoodForm({
     };
 
     onEditBadFood(updatedFood);
+    setIsEditingBad(false);
   }
 
   return (

@@ -13,8 +13,10 @@ export default function FoodDetailsPage({
   handleUpdateFood,
   handleRemoveGoodCat,
   handleRemoveBadCat,
-  isEditing,
-  setIsEditing,
+  isEditingGood,
+  setIsEditingGood,
+  isEditingBad,
+  setIsEditingBad,
 }) {
   const router = useRouter();
   const { id } = router.query;
@@ -38,8 +40,12 @@ export default function FoodDetailsPage({
     cat.food.dislikes.includes(id)
   );
 
-  function handleEdit() {
-    setIsEditing(true);
+  function handleEditGood() {
+    setIsEditingGood(true);
+  }
+
+  function handleEditBad() {
+    setIsEditingBad(true);
   }
 
   return (
@@ -86,8 +92,14 @@ export default function FoodDetailsPage({
         </StyledGrid>
         <StyledGrid>
           <div>
-            <h3>Good Acceptance: </h3>
-            {isEditing ? (
+            <StyledContainer>
+              <h3>Good Acceptance: </h3>
+              <StyledButton type="button" onClick={handleEditGood}>
+                Edit
+              </StyledButton>
+            </StyledContainer>
+
+            {isEditingGood ? (
               <>
                 <EditGoodFoodForm
                   onEditGoodFood={handleUpdateFood}
@@ -95,6 +107,7 @@ export default function FoodDetailsPage({
                   onRemoveGoodCat={handleRemoveGoodCat}
                   catList={catList}
                   setCatList={setCatList}
+                  setIsEditingGood={setIsEditingGood}
                 />
                 <StyledList>
                   {filteredCatLikes.length > 0 ? (
@@ -131,8 +144,13 @@ export default function FoodDetailsPage({
             )}
           </div>
           <div>
-            <h3>Bad Acceptance: </h3>
-            {isEditing ? (
+            <StyledContainer>
+              <h3>Bad Acceptance: </h3>
+              <StyledButton type="button" onClick={handleEditBad}>
+                Edit
+              </StyledButton>
+            </StyledContainer>
+            {isEditingBad ? (
               <>
                 <EditBadFoodForm
                   onEditBadFood={handleUpdateFood}
@@ -140,6 +158,7 @@ export default function FoodDetailsPage({
                   onRemoveBadCat={handleRemoveBadCat}
                   catList={catList}
                   setCatList={setCatList}
+                  setIsEditingBad={setIsEditingBad}
                 />
 
                 <StyledList>
@@ -175,9 +194,6 @@ export default function FoodDetailsPage({
             )}
           </div>
         </StyledGrid>
-        <StyledButton type="button" onClick={handleEdit}>
-          Edit
-        </StyledButton>
       </StyledSection>
       <StyledLink href={"/foodsearch"}>Back</StyledLink>
     </>
@@ -245,4 +261,9 @@ const StyledHeading2 = styled.h2`
 const StyledButton = styled.button`
   margin-left: auto;
   margin-right: 1rem;
+`;
+
+const StyledContainer = styled.div`
+  display: flex;
+  flex-direction: row;
 `;
