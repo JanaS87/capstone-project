@@ -2,7 +2,8 @@ import { useRouter } from "next/router";
 import styled from "styled-components";
 import Link from "next/link";
 import { useState } from "react";
-import EditGoodFoodForm from "@/components/EditFoodForm/EditBadFoodForm";
+import EditGoodFoodForm from "@/components/EditFoodForm/EditGoodFoodForm";
+import EditBadFoodForm from "@/components/EditFoodForm/EditBadFoodForm";
 
 export default function FoodDetailsPage({
   catList,
@@ -11,6 +12,7 @@ export default function FoodDetailsPage({
   foodList,
   handleUpdateFood,
   handleRemoveGoodCat,
+  handleRemoveBadCat,
 }) {
   const router = useRouter();
   const { id } = router.query;
@@ -90,6 +92,8 @@ export default function FoodDetailsPage({
                   onEditGoodFood={handleUpdateFood}
                   food={food}
                   onRemoveGoodCat={handleRemoveGoodCat}
+                  catList={catList}
+                  setCatList={setCatList}
                 />
                 <StyledList>
                   {filteredCatLikes.length > 0 ? (
@@ -97,7 +101,9 @@ export default function FoodDetailsPage({
                       <StyledItem key={catLike.id}>
                         <button
                           type="button"
-                          onClick={() => handleRemoveGoodCat(catLike.id)}
+                          onClick={() =>
+                            handleRemoveGoodCat(catLike.id, food.id)
+                          }
                         >
                           X
                         </button>
@@ -127,7 +133,13 @@ export default function FoodDetailsPage({
             <h3>Bad Acceptance: </h3>
             {isEditing ? (
               <>
-                {/* // Hier kommt die form für die BÖSE KATZE */}
+                <EditBadFoodForm
+                  onEditBadFood={handleUpdateFood}
+                  food={food}
+                  onRemoveBadCat={handleRemoveBadCat}
+                  catList={catList}
+                  setCatList={setCatList}
+                />
 
                 <StyledList>
                   {filteredCatDislikes.length > 0 ? (
@@ -135,7 +147,9 @@ export default function FoodDetailsPage({
                       <StyledItem key={dislike.id}>
                         <button
                           type="button"
-                          onClick={() => handleRemoveBadCat(dislike.id)}
+                          onClick={() =>
+                            handleRemoveBadCat(dislike.id, food.id)
+                          }
                         >
                           X
                         </button>

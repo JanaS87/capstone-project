@@ -4,11 +4,12 @@ export default function EditBadFoodForm({
   onEditBadFood,
   onRemoveBadCat,
   food,
+  foodList,
   catList,
   setCatList,
 }) {
   const [selectedBadCat, setSelectedBadCat] = useState("");
-  const [addedBadCat, setAddedBadCat] = useState(foodList.cat.dislikes);
+  const [addedBadCat, setAddedBadCat] = useState(food.cat.dislikes);
 
   function handleAddBadCat() {
     const catToAdd = selectedBadCat;
@@ -17,11 +18,11 @@ export default function EditBadFoodForm({
     }
     const updatedCatList = catList.map((cat) => {
       if (cat.id === catToAdd) {
-        if (cat.food.dislikes.includes(id)) {
+        if (cat.food.dislikes.includes(food.id)) {
           alert(`Cat is already in "Bad Acceptance"`);
           return cat;
         }
-        if (cat.food.likes.includes(id)) {
+        if (cat.food.likes.includes(food.id)) {
           alert(`Cat is already in "Good Acceptance"`);
           return cat;
         }
@@ -29,7 +30,7 @@ export default function EditBadFoodForm({
           ...cat,
           food: {
             ...cat.food,
-            dislikes: [...cat.food.dislikes, id],
+            dislikes: [...cat.food.dislikes, food.id],
           },
         };
       }
@@ -74,6 +75,7 @@ export default function EditBadFoodForm({
         <button type="button" onClick={handleAddBadCat}>
           Add
         </button>
+        <button type="submit">Save</button>
       </form>
     </>
   );

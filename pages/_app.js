@@ -73,7 +73,7 @@ export default function App({ Component, pageProps }) {
       return cat;
     });
     setCatList(updatedCatList);
-    setFoodList(updatedCatList);
+    setFoodList(updatedFood);
   }
 
   function handleRemoveBadCat(catId, foodId) {
@@ -90,7 +90,7 @@ export default function App({ Component, pageProps }) {
       return cat;
     });
     setCatList(updatedCatList);
-    setFoodList(updatedCatList);
+    setFoodList(updatedFood);
   }
 
   return (

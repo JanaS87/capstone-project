@@ -4,6 +4,7 @@ export default function EditGoodFoodForm({
   onEditGoodFood,
   onRemoveGoodCat,
   food,
+  foodList,
   catList,
   setCatList,
 }) {
@@ -17,11 +18,11 @@ export default function EditGoodFoodForm({
     }
     const updatedCatList = catList.map((cat) => {
       if (cat.id === catToAdd) {
-        if (cat.food.likes.includes(id)) {
+        if (cat.food.likes.includes(food.id)) {
           alert(`Cat is already in "Good Acceptance"`);
           return cat;
         }
-        if (cat.food.dislikes.includes(id)) {
+        if (cat.food.dislikes.includes(food.id)) {
           alert(`Cat is already in "Bad Acceptance"`);
           return cat;
         }
@@ -29,7 +30,7 @@ export default function EditGoodFoodForm({
           ...cat,
           food: {
             ...cat.food,
-            likes: [...cat.food.likes, id],
+            likes: [...cat.food.likes, food.id],
           },
         };
       }
@@ -49,7 +50,7 @@ export default function EditGoodFoodForm({
     const updatedFood = {
       ...food,
       cat: {
-        likes: addedGoodCat,
+        likes: data.addedGoodCat,
       },
     };
 
