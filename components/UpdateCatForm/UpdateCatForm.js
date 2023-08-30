@@ -9,14 +9,14 @@ const diseases = [
   "Feline Rhinitis",
   "Feline Epidemic",
   "Ectoparasites (flea, ticks, ear mites)",
-  "Endoparasites (worms",
-  "CNI (chronic renal insufficiency",
+  "Endoparasites (worms)",
+  "CNI (chronic renal insufficiency)",
   "Diabetes",
 ];
 
 const intolerances = ["Grains", "Lactose", "Artifical Additives", "Beef"];
 
-export default function UpdateCatForm({ onEditCat, cat }) {
+export default function UpdateCatForm({ onEditCat, onDeleteCat, cat }) {
   const router = useRouter();
 
   const [selectedGoodFood, setSelectedGoodFood] = useState("");
@@ -26,20 +26,6 @@ export default function UpdateCatForm({ onEditCat, cat }) {
   const [addedGoodFood, setAddedGoodFood] = useState(cat.food.likes);
   const [addedBadFood, setAddedBadFood] = useState(cat.food.dislikes);
 
-  // function checkFoodList(selectedOption) {
-  //   if (addedBadFood.includes(selectedOption)) {
-  //     alert(`Food is already in "Bad Acceptance"`);
-  //     return;
-  //   }
-
-  //   if (addedGoodFood.includes(selectedOption)) {
-  //     alert(`Food is already in "Good Acceptance"`);
-  //     return;
-  //   }
-
-  //   setSelectedBadFood(selectedOption);
-  //   setSelectedGoodFood(selectedOption);
-  // }
   function handleAddGoodFood() {
     const foodToAdd = selectedGoodFood;
     if (!foodToAdd) {
@@ -73,30 +59,6 @@ export default function UpdateCatForm({ onEditCat, cat }) {
     setAddedBadFood([...addedBadFood, foodToAdd]);
     setSelectedBadFood("");
   }
-
-  // function handleAddGoodFood() {
-  //   const foodToAdd = selectedGoodFood;
-  //   if (addedBadFood.includes(foodToAdd)) {
-  //     alert(`Food is already in "Bad Acceptance"`);
-  //     return;
-  //   }
-  //   if (foodToAdd) {
-  //     setAddedGoodFood([...addedGoodFood, selectedGoodFood]);
-  //   }
-  //   setSelectedGoodFood("");
-  // }
-
-  // function handleAddBadFood() {
-  //   const foodToAdd = selectedBadFood;
-  //   if (addedGoodFood.includes(foodToAdd)) {
-  //     alert(`Food is already in "Good Acceptance"`);
-  //     return;
-  //   }
-  //   if (foodToAdd) {
-  //     setAddedBadFood([...addedBadFood, selectedBadFood]);
-  //   }
-  //   setSelectedBadFood("");
-  // }
 
   // if the wrong food was accidentally choosed, remove it
 
@@ -222,26 +184,26 @@ export default function UpdateCatForm({ onEditCat, cat }) {
         </StyledButton>
       </StyledInputGroup>
       <div>
-        <ul>
+        <StyledList>
           {addedGoodFood.map((foodId) => {
             // help from a friend
             const food = catfoods.find((food) => food.id === foodId);
             if (food) {
               return (
                 <StyledListItem key={food.id}>
-                  {food.brand} - {food.variety}
-                  <button
+                  <StyledRemoveFoodButton
                     type="button"
                     onClick={() => handleRemoveGoodFood(food.id)}
                   >
                     X
-                  </button>
+                  </StyledRemoveFoodButton>
+                  {food.brand} - {food.variety}
                 </StyledListItem>
               );
             }
             return null;
           })}
-        </ul>
+        </StyledList>
       </div>
 
       <label htmlFor="badFood-select">Bad Acceptance: </label>
@@ -264,28 +226,40 @@ export default function UpdateCatForm({ onEditCat, cat }) {
         </StyledButton>
       </StyledInputGroup>
       <div>
-        <ul>
+        <StyledList>
           {addedBadFood.map((foodId) => {
             // help from a friend
             const food = catfoods.find((food) => food.id === foodId);
             if (food) {
               return (
                 <StyledListItem key={food.id}>
-                  {food.brand} - {food.variety}
-                  <button
+                  <StyledRemoveFoodButton
                     type="button"
                     onClick={() => handleRemoveBadFood(food.id)}
                   >
                     X
-                  </button>
+                  </StyledRemoveFoodButton>
+                  {food.brand} - {food.variety}
                 </StyledListItem>
               );
             }
             return null;
           })}
-        </ul>
+        </StyledList>
       </div>
-      <StyledSaveButton type="submit">Save Cat</StyledSaveButton>
+      <StyledButtonContainer>
+        <StyledSaveButton type="submit">Save Cat</StyledSaveButton>
+        <StyledRemoveButton
+          type="button"
+          onClick={() => {
+            if (window.confirm("Are you sure you want to delete this cat?")) {
+              onDeleteCat(cat);
+            }
+          }}
+        >
+          Remove Cat
+        </StyledRemoveButton>
+      </StyledButtonContainer>
     </StyledForm>
   );
 }
@@ -348,6 +322,7 @@ const StyledButton = styled.button`
   background-color: #1d5d9b;
   color: white;
   font-size: 15px;
+  cursor: pointer;
 `;
 
 const StyledSaveButton = styled.button`
@@ -356,8 +331,34 @@ const StyledSaveButton = styled.button`
   background-color: #1d5d9b;
   color: white;
   font-size: 20px;
+  cursor: pointer;
+`;
+
+const StyledRemoveButton = styled.button`
+  background-color: red;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+`;
+
+const StyledList = styled.ul`
+  margin: 0;
+  padding: 0;
 `;
 
 const StyledListItem = styled.li`
   list-style: none;
+  font-size: 0.95rem;
+  margin-bottom: 3.5%;
+`;
+
+const StyledRemoveFoodButton = styled.button`
+  background-color: #e3e3e3;
+  cursor: pointer;
+  margin-right: 2%;
+`;
+
+const StyledButtonContainer = styled.div`
+  display: flex;
+  flex-direction: row;
 `;
