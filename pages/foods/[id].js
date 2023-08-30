@@ -1,14 +1,25 @@
 import { useRouter } from "next/router";
 import styled from "styled-components";
 import Link from "next/link";
+import { useState } from "react";
 
-export default function FoodDetailsPage({ catList, catFoods }) {
+export default function FoodDetailsPage({
+  catList,
+  setCatList,
+  catFoods,
+  handleUpdateCat,
+}) {
   const router = useRouter();
   const { id } = router.query;
+  const [isEditing, setIsEditing] = useState(false);
+
+  const [selectedGoodCat, setSelectedGoodCat] = useState("");
+  const [selectedBadCat, setSelectedBadCat] = useState("");
+
+  const [addedGoodCat, setAddedGoodCat] = useState(catFoods.cat.likes);
+  const [addedBadCat, setAddedBadCat] = useState(catFoods.cat.dislikes);
 
   if (!id) return <h1>Loading</h1>;
-
-  const food = catFoods.find((food) => food.id.toString() === id);
 
   if (!food) {
     return (
@@ -19,11 +30,107 @@ export default function FoodDetailsPage({ catList, catFoods }) {
     );
   }
 
+  const food = catFoods.find((food) => food.id.toString() === id);
+
   const filteredCatLikes = catList.filter((cat) => cat.food.likes.includes(id));
 
   const filteredCatDislikes = catList.filter((cat) =>
     cat.food.dislikes.includes(id)
   );
+
+  
+
+  function handleAddGoodCat() {
+    if (selectedGoodCat) {
+      const updatedCatList = catList.map((cat) => {
+        if (cat.id === selectedGoodCat) {
+          return {
+            ...cat,
+            food: {
+              ...cat.food,
+              likes: [...cat.food.likes, id],
+            },
+          };
+        }
+        return cat;
+      });
+      setCatList(updatedCatList);
+    }
+  }
+
+  function handleAddBadCat() {
+    if (selectedBadCat) {
+      const updatedCatList = catList.map((cat) => {
+        if (cat.id === selectedBadCat) {
+          return {
+            ...cat,
+            food: {
+              ...cat.food,
+              dislikes: [...cat.food.dislikes, id],
+            },
+          };
+        }
+        return cat;
+      });
+      setCatList(updatedCatList);
+    }
+  }
+
+  function handleRemoveGoodCat(catId) {
+    const updatedCatList = catList.map((cat) => {
+      if (cat.id === catId) {
+        return {
+          ...cat,
+          food: {
+            ...cat.food,
+            likes: cat.food.likes.filter((foodId) => foodId !== id),
+          },
+        };
+      }
+      return cat;
+    });
+    setCatList(updatedCatList);
+  }
+
+  function handleRemoveBadCat(catId) {
+    const updatedCatList = catList.map((cat) => {
+      if (cat.id === catId) {
+        return {
+          ...cat,
+          food: {
+            ...cat.food,
+            dislikes: cat.food.dislikes.filter((foodId) => foodId !== id),
+          },
+        };
+      }
+      return cat;
+    });
+    setCatList(updatedCatList);
+  }
+
+  function handleEdit() {
+    setIsEditing(true);
+  }
+
+  function handleSubmit(event) {
+    event.preventDefault();
+
+    const formData = new FormData(event.target);
+    const data = Object.fromEntries(formData);
+
+    const updatedFood = {
+      ...food,
+      cat: {
+        likes: 
+      }
+    }
+
+
+
+    handleUpdateCat();
+
+    setIsEditing(false);
+  }
 
   return (
     <>
@@ -70,29 +177,117 @@ export default function FoodDetailsPage({ catList, catFoods }) {
         <StyledGrid>
           <div>
             <h3>Good Acceptance: </h3>
-            <StyledList>
-              {filteredCatLikes.length > 0 ? (
-                filteredCatLikes.map((catLike) => (
-                  <StyledItem key={catLike.id}>{catLike.name}</StyledItem>
-                ))
-              ) : (
-                <StyledItem>Oh, it seems no cat liked this food </StyledItem>
-              )}
-            </StyledList>
+            {isEditing ? (
+              <>
+                <form onSubmit={handleSubmit}>
+                  <select
+                    id="good-acceptance-select"
+                    name="good-acceptance-select"
+                    onChange={(event) => setSelectedGoodCat(event.target.value)}
+                  >
+                    <option value={""}>-- Please choose a cat --</option>
+                    {catList.map((cat) => (
+                      <option key={cat.id} value={cat.id}>
+                        {cat.name}
+                      </option>
+                    ))}
+                  </select>
+                  <button type="button" onClick={handleAddGoodCat}>
+                    Add
+                  </button>
+
+                  <StyledList>
+                    {filteredCatLikes.length > 0 ? (
+                      filteredCatLikes.map((catLike) => (
+                        <StyledItem key={catLike.id}>
+                          <button
+                            type="button"
+                            onClick={() => handleRemoveGoodCat(catLike.id)}
+                          >
+                            X
+                          </button>
+                          {catLike.name}
+                        </StyledItem>
+                      ))
+                    ) : (
+                      <StyledItem>
+                        Oh, it seems no cat liked this food{" "}
+                      </StyledItem>
+                    )}
+                  </StyledList>
+                </form>
+              </>
+            ) : (
+              <StyledList>
+                {filteredCatLikes.length > 0 ? (
+                  filteredCatLikes.map((catLike) => (
+                    <StyledItem key={catLike.id}>{catLike.name}</StyledItem>
+                  ))
+                ) : (
+                  <StyledItem>Oh, it seems no cat liked this food </StyledItem>
+                )}
+              </StyledList>
+            )}
           </div>
           <div>
             <h3>Bad Acceptance: </h3>
-            <StyledList>
-              {filteredCatDislikes.length > 0 ? (
-                filteredCatDislikes.map((dislike) => (
-                  <StyledItem key={dislike.id}>{dislike.name}</StyledItem>
-                ))
-              ) : (
-                <StyledItem>Great, no cat hated this food</StyledItem>
-              )}
-            </StyledList>
+            {isEditing ? (
+              <>
+                <select
+                  id="bad-acceptance-select"
+                  name="bad-acceptance-select"
+                  onChange={(event) => setSelectedBadCat(event.target.value)}
+                >
+                  <option value={""}>-- Please choose a cat --</option>
+                  {catList.map((cat) => (
+                    <option key={cat.id} value={cat.id}>
+                      {cat.name}
+                    </option>
+                  ))}
+                </select>
+                <button type="button" onClick={handleAddBadCat}>
+                  Add
+                </button>
+                <StyledList>
+                  {filteredCatDislikes.length > 0 ? (
+                    filteredCatDislikes.map((dislike) => (
+                      <StyledItem key={dislike.id}>
+                        <button
+                          type="button"
+                          onClick={() => handleRemoveBadCat(dislike.id)}
+                        >
+                          X
+                        </button>
+                        {dislike.name}
+                      </StyledItem>
+                    ))
+                  ) : (
+                    <StyledItem>Great, no cat hated this food</StyledItem>
+                  )}
+                </StyledList>
+              </>
+            ) : (
+              <StyledList>
+                {filteredCatDislikes.length > 0 ? (
+                  filteredCatDislikes.map((dislike) => (
+                    <StyledItem key={dislike.id}>{dislike.name}</StyledItem>
+                  ))
+                ) : (
+                  <StyledItem>Great, no cat hated this food</StyledItem>
+                )}
+              </StyledList>
+            )}
           </div>
         </StyledGrid>
+        {isEditing ? (
+          <StyledButton type="button" onClick={handleSave}>
+            Save
+          </StyledButton>
+        ) : (
+          <StyledButton type="button" onClick={handleEdit}>
+            Edit
+          </StyledButton>
+        )}
       </StyledSection>
       <StyledLink href={"/foodsearch"}>Back</StyledLink>
     </>
@@ -103,6 +298,8 @@ const StyledHeaderWrapping = styled.div`
   gap: 0;
 `;
 const StyledSection = styled.section`
+  display: flex;
+  flex-direction: column;
   padding: 1.2rem 1.3rem;
   box-shadow: 0px 1px 5px -2px #ff6d60;
   border-radius: 10px/20px;
@@ -153,4 +350,9 @@ const StyledHeading = styled.h1`
 const StyledHeading2 = styled.h2`
   margin-left: 5%;
   margin-top: 2%;
+`;
+
+const StyledButton = styled.button`
+  margin-left: auto;
+  margin-right: 1rem;
 `;

@@ -13,6 +13,9 @@ export default function App({ Component, pageProps }) {
   const [catList, setCatList] = useLocalStorageState("cats", {
     defaultValue: cats,
   });
+  const [foodList, setFoodList] = useLocalStorageState("catfoods", {
+    defaultValue: catfoods,
+  });
   const [searchTerm, setSearchTerm] = useState("");
 
   function handleAddCat(newCat) {
@@ -53,7 +56,10 @@ export default function App({ Component, pageProps }) {
         {...pageProps}
         handleAddCat={handleAddCat}
         catList={catList}
+        setCatList={setCatList}
         catFoods={catfoods}
+        foodList={foodList}
+        setFoodList={setFoodList}
         searchTerm={searchTerm}
         setSearchTerm={setSearchTerm}
         handleSearchTermChange={handleSearchTermChange}
