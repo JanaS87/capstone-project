@@ -7,6 +7,8 @@ export default function FoodDetailsPage({
   catList,
   setCatList,
   catFoods,
+  foodList,
+  setFoodList,
   handleUpdateCat,
 }) {
   const router = useRouter();
@@ -16,8 +18,8 @@ export default function FoodDetailsPage({
   const [selectedGoodCat, setSelectedGoodCat] = useState("");
   const [selectedBadCat, setSelectedBadCat] = useState("");
 
-  const [addedGoodCat, setAddedGoodCat] = useState(catFoods.cat.likes);
-  const [addedBadCat, setAddedBadCat] = useState(catFoods.cat.dislikes);
+  const [addedGoodCat, setAddedGoodCat] = useState(foodList.cat.likes);
+  const [addedBadCat, setAddedBadCat] = useState(foodList.cat.dislikes);
 
   if (!id) return <h1>Loading</h1>;
 
@@ -38,42 +40,60 @@ export default function FoodDetailsPage({
     cat.food.dislikes.includes(id)
   );
 
-  
-
   function handleAddGoodCat() {
-    if (selectedGoodCat) {
-      const updatedCatList = catList.map((cat) => {
-        if (cat.id === selectedGoodCat) {
-          return {
-            ...cat,
-            food: {
-              ...cat.food,
-              likes: [...cat.food.likes, id],
-            },
-          };
-        }
-        return cat;
-      });
-      setCatList(updatedCatList);
+    const catToAdd = selectedGoodCat;
+    if (!catToAdd) {
+      return;
     }
+    const updatedCatList = catList.map((cat) => {
+      if (cat.id === catToAdd) {
+        if (cat.food.likes.includes(id)) {
+          alert(`Cat is already in "Good Acceptance"`);
+          return cat;
+        }
+        if (cat.food.dislikes.includes(id)) {
+          alert(`Cat is already in "Bad Acceptance"`);
+          return cat;
+        }
+        return {
+          ...cat,
+          food: {
+            ...cat.food,
+            likes: [...cat.food.likes, id],
+          },
+        };
+      }
+      return cat;
+    });
+    setCatList(updatedCatList);
   }
 
   function handleAddBadCat() {
-    if (selectedBadCat) {
-      const updatedCatList = catList.map((cat) => {
-        if (cat.id === selectedBadCat) {
-          return {
-            ...cat,
-            food: {
-              ...cat.food,
-              dislikes: [...cat.food.dislikes, id],
-            },
-          };
-        }
-        return cat;
-      });
-      setCatList(updatedCatList);
+    const catToAdd = selectedGoodCat;
+    if (!catToAdd) {
+      return;
     }
+    const updatedCatList = catList.map((cat) => {
+      if (cat.id === catToAdd) {
+        if (cat.food.dislikes.includes(id)) {
+          alert(`Cat is already in "Bad Acceptance"`);
+          return cat;
+        }
+        if (cat.food.likes.includes(id)) {
+          alert(`Cat is already in "Good Acceptance"`);
+          return cat;
+        }
+        return {
+          ...cat,
+          food: {
+            ...cat.food,
+            dislikes: [...cat.food.dislikes, id],
+          },
+        };
+      }
+      return cat;
+    });
+    setCatList(updatedCatList);
   }
 
   function handleRemoveGoodCat(catId) {
@@ -121,13 +141,12 @@ export default function FoodDetailsPage({
     const updatedFood = {
       ...food,
       cat: {
-        likes: 
-      }
-    }
+        likes: addedGoodCat,
+        dislikes: addedBadCat,
+      },
+    };
 
-
-
-    handleUpdateCat();
+    // hier fehlt noch handleUpdateFood()
 
     setIsEditing(false);
   }

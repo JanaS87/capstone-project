@@ -48,6 +48,17 @@ export default function App({ Component, pageProps }) {
     router.push("/");
   }
 
+  // update food
+  function handleUpdateFood(updatedFood) {
+    const updatedFoods = foodList.map((food) => {
+      if (updatedFood.id !== food.id) {
+        return food;
+      }
+      return updatedFood;
+    });
+    setFoodList(updatedFoods);
+  }
+
   return (
     <>
       <GlobalStyle />
@@ -65,6 +76,7 @@ export default function App({ Component, pageProps }) {
         handleSearchTermChange={handleSearchTermChange}
         handleUpdateCat={handleUpdateCat}
         handleDeleteCat={handleDeleteCat}
+        handleUpdateFood={handleUpdateFood}
       />
     </>
   );
