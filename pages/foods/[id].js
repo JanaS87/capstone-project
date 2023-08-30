@@ -13,10 +13,11 @@ export default function FoodDetailsPage({
   handleUpdateFood,
   handleRemoveGoodCat,
   handleRemoveBadCat,
+  isEditing,
+  setIsEditing,
 }) {
   const router = useRouter();
   const { id } = router.query;
-  const [isEditing, setIsEditing] = useState(false);
 
   const food = catFoods.find((food) => food.id.toString() === id);
 
@@ -174,7 +175,6 @@ export default function FoodDetailsPage({
             )}
           </div>
         </StyledGrid>
-
         <StyledButton type="button" onClick={handleEdit}>
           Edit
         </StyledButton>

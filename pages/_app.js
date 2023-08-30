@@ -10,6 +10,7 @@ import { ToastContainer } from "react-toastify";
 
 export default function App({ Component, pageProps }) {
   const router = useRouter();
+
   const [catList, setCatList] = useLocalStorageState("cats", {
     defaultValue: cats,
   });
@@ -17,6 +18,7 @@ export default function App({ Component, pageProps }) {
     defaultValue: catfoods,
   });
   const [searchTerm, setSearchTerm] = useState("");
+  const [isEditing, setIsEditing] = useState(false);
 
   function handleAddCat(newCat) {
     // update catList with new cat
@@ -113,6 +115,8 @@ export default function App({ Component, pageProps }) {
         handleUpdateFood={handleUpdateFood}
         handleRemoveGoodCat={handleRemoveGoodCat}
         handleRemoveBadCat={handleRemoveBadCat}
+        isEditing={isEditing}
+        setIsEditing={setIsEditing}
       />
     </>
   );
