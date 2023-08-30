@@ -2,6 +2,7 @@ import { useRouter } from "next/router";
 import styled from "styled-components";
 import Link from "next/link";
 import { useState } from "react";
+import EditGoodFoodForm from "@/components/EditFoodForm/EditBadFoodForm";
 
 export default function FoodDetailsPage({
   catList,
@@ -9,10 +10,13 @@ export default function FoodDetailsPage({
   catFoods,
   foodList,
   handleUpdateFood,
+  handleRemoveGoodCat,
 }) {
   const router = useRouter();
   const { id } = router.query;
   const [isEditing, setIsEditing] = useState(false);
+
+  const food = catFoods.find((food) => food.id.toString() === id);
 
   if (!id) return <h1>Loading</h1>;
 
@@ -25,8 +29,6 @@ export default function FoodDetailsPage({
     );
   }
 
-  const food = catFoods.find((food) => food.id.toString() === id);
-
   const filteredCatLikes = catList.filter((cat) => cat.food.likes.includes(id));
 
   const filteredCatDislikes = catList.filter((cat) =>
@@ -35,25 +37,6 @@ export default function FoodDetailsPage({
 
   function handleEdit() {
     setIsEditing(true);
-  }
-
-  function handleSubmit(event) {
-    event.preventDefault();
-
-    const formData = new FormData(event.target);
-    const data = Object.fromEntries(formData);
-
-    const updatedFood = {
-      ...food,
-      cat: {
-        likes: addedGoodCat,
-        dislikes: addedBadCat,
-      },
-    };
-
-    // hier fehlt noch handleUpdateFood()
-
-    setIsEditing(false);
   }
 
   return (
@@ -103,43 +86,30 @@ export default function FoodDetailsPage({
             <h3>Good Acceptance: </h3>
             {isEditing ? (
               <>
-                <form onSubmit={handleSubmit}>
-                  <select
-                    id="good-acceptance-select"
-                    name="good-acceptance-select"
-                    onChange={(event) => setSelectedGoodCat(event.target.value)}
-                  >
-                    <option value={""}>-- Please choose a cat --</option>
-                    {catList.map((cat) => (
-                      <option key={cat.id} value={cat.id}>
-                        {cat.name}
-                      </option>
-                    ))}
-                  </select>
-                  <button type="button" onClick={handleAddGoodCat}>
-                    Add
-                  </button>
-
-                  <StyledList>
-                    {filteredCatLikes.length > 0 ? (
-                      filteredCatLikes.map((catLike) => (
-                        <StyledItem key={catLike.id}>
-                          <button
-                            type="button"
-                            onClick={() => handleRemoveGoodCat(catLike.id)}
-                          >
-                            X
-                          </button>
-                          {catLike.name}
-                        </StyledItem>
-                      ))
-                    ) : (
-                      <StyledItem>
-                        Oh, it seems no cat liked this food{" "}
+                <EditGoodFoodForm
+                  onEditGoodFood={handleUpdateFood}
+                  food={food}
+                  onRemoveGoodCat={handleRemoveGoodCat}
+                />
+                <StyledList>
+                  {filteredCatLikes.length > 0 ? (
+                    filteredCatLikes.map((catLike) => (
+                      <StyledItem key={catLike.id}>
+                        <button
+                          type="button"
+                          onClick={() => handleRemoveGoodCat(catLike.id)}
+                        >
+                          X
+                        </button>
+                        {catLike.name}
                       </StyledItem>
-                    )}
-                  </StyledList>
-                </form>
+                    ))
+                  ) : (
+                    <StyledItem>
+                      Oh, it seems no cat liked this food{" "}
+                    </StyledItem>
+                  )}
+                </StyledList>
               </>
             ) : (
               <StyledList>
@@ -157,21 +127,8 @@ export default function FoodDetailsPage({
             <h3>Bad Acceptance: </h3>
             {isEditing ? (
               <>
-                <select
-                  id="bad-acceptance-select"
-                  name="bad-acceptance-select"
-                  onChange={(event) => setSelectedBadCat(event.target.value)}
-                >
-                  <option value={""}>-- Please choose a cat --</option>
-                  {catList.map((cat) => (
-                    <option key={cat.id} value={cat.id}>
-                      {cat.name}
-                    </option>
-                  ))}
-                </select>
-                <button type="button" onClick={handleAddBadCat}>
-                  Add
-                </button>
+                {/* // Hier kommt die form für die BÖSE KATZE */}
+
                 <StyledList>
                   {filteredCatDislikes.length > 0 ? (
                     filteredCatDislikes.map((dislike) => (
@@ -203,15 +160,10 @@ export default function FoodDetailsPage({
             )}
           </div>
         </StyledGrid>
-        {isEditing ? (
-          <StyledButton type="button" onClick={handleSave}>
-            Save
-          </StyledButton>
-        ) : (
-          <StyledButton type="button" onClick={handleEdit}>
-            Edit
-          </StyledButton>
-        )}
+
+        <StyledButton type="button" onClick={handleEdit}>
+          Edit
+        </StyledButton>
       </StyledSection>
       <StyledLink href={"/foodsearch"}>Back</StyledLink>
     </>

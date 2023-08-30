@@ -58,6 +58,40 @@ export default function App({ Component, pageProps }) {
     });
     setFoodList(updatedFoods);
   }
+  // remove cat from the good acceptance (food detail page)
+  function handleRemoveGoodCat(catId, foodId) {
+    const updatedCatList = catList.map((cat) => {
+      if (cat.id === catId) {
+        return {
+          ...cat,
+          food: {
+            ...cat.food,
+            likes: cat.food.likes.filter((id) => id !== foodId),
+          },
+        };
+      }
+      return cat;
+    });
+    setCatList(updatedCatList);
+    setFoodList(updatedCatList);
+  }
+
+  function handleRemoveBadCat(catId, foodId) {
+    const updatedCatList = catList.map((cat) => {
+      if (cat.id === catId) {
+        return {
+          ...cat,
+          food: {
+            ...cat.food,
+            dislikes: cat.food.dislikes.filter((id) => id !== foodId),
+          },
+        };
+      }
+      return cat;
+    });
+    setCatList(updatedCatList);
+    setFoodList(updatedCatList);
+  }
 
   return (
     <>
@@ -77,6 +111,8 @@ export default function App({ Component, pageProps }) {
         handleUpdateCat={handleUpdateCat}
         handleDeleteCat={handleDeleteCat}
         handleUpdateFood={handleUpdateFood}
+        handleRemoveGoodCat={handleRemoveGoodCat}
+        handleRemoveBadCat={handleRemoveBadCat}
       />
     </>
   );
