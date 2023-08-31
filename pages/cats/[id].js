@@ -42,8 +42,23 @@ export default function CatDetailPage({ catList, catFoods }) {
       const catIntolerance = food.ingredients.some((ingredient) =>
         cat.health.intolerances.includes(ingredient)
       );
+      const catDisease = cat.health.diseases.some((disease) =>
+        food.analyticalConstituents.some((constituent) =>
+          badIngredientsForCatDisease[disease].includes(constituent)
+        )
+      );
+      return !(catAllergy || catIntolerance || catDisease);
     });
   }
+
+  // extra const for the diseases (disease:  bad constituent)
+  const badIngredientsForCatDisease = {
+    Diabetes: ["sugar", "carbohydrates"],
+    "Feline Rhinitis": ["carbohydrates"],
+    "CNI (chronic renal insufficiency)": ["protein", "Phosphorus", "Natrium"],
+  };
+
+  const getRecommendedFood = filteredFoodBasedOnHealthIssues(catFoods, cat);
 
   return (
     <>
@@ -105,6 +120,15 @@ export default function CatDetailPage({ catList, catFoods }) {
       </StyledContainer>
 
       <h2>Recommended Food</h2>
+      <div>
+        <ul>
+          {getRecommendedFood.map((food) => (
+            <li key={food.id}>
+              {food.brand} - {food.variety}
+            </li>
+          ))}
+        </ul>
+      </div>
     </>
   );
 }
