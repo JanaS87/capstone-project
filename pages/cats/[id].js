@@ -30,6 +30,21 @@ export default function CatDetailPage({ catList, catFoods }) {
     catFoods.find((food) => food.id === bad)
   );
 
+  // RECOMMENDED FOOD SECTION (own page next US)
+
+  // filter the food based on the health issues
+
+  function filteredFoodBasedOnHealthIssues(catFoods, cat) {
+    return catFoods.filter((food) => {
+      const catAllergy = food.ingredients.some((ingredient) =>
+        cat.health.allergies.includes(ingredient)
+      );
+      const catIntolerance = food.ingredients.some((ingredient) =>
+        cat.health.intolerances.includes(ingredient)
+      );
+    });
+  }
+
   return (
     <>
       <div>
