@@ -4,7 +4,11 @@ import Link from "next/link";
 import Button from "@/components/Button/Button";
 import { useState } from "react";
 
-export default function CatDetailPage({ catList, catFoods }) {
+export default function CatDetailPage({
+  catList,
+  catFoods,
+  forbiddenFoodForCat,
+}) {
   const router = useRouter();
   const { id } = router.query;
 
@@ -34,35 +38,22 @@ export default function CatDetailPage({ catList, catFoods }) {
 
   // filter the food based on the health issues
 
-  function filteredFoodBasedOnHealthIssues(catFoods, cat) {
-    return catFoods.filter((food) => {
-      const catAllergy = food.ingredients.some((ingredient) =>
-        cat.health.allergies.includes(ingredient)
-      );
-      const catIntolerance = food.ingredients.some((ingredient) =>
-        cat.health.intolerances.includes(ingredient)
-      );
-      const catDisease = cat.health.diseases.some((disease) =>
-        food.analyticalConstituents.some((constituent) =>
-          badIngredientsForCatDisease[disease].includes(constituent)
-        )
-      );
-      return !(catAllergy || catIntolerance || catDisease);
-    });
+  // saving the good food
+  function filteredGoodFoodBasedOnHealthIssues(catFoods, cat) {
+    return catFoods.filter((food) => !forbiddenFoodForCat(food, cat));
   }
 
-  // extra const for the diseases (disease:  bad constituent)
-  // trying this solution from the internet
-  const badIngredientsForCatDisease = {
-    Diabetes: ["sugar", "carbohydrates"],
-    "Feline Rhinitis": ["carbohydrates"],
-    "CNI (chronic renal insufficiency)": ["protein", "Phosphorus", "Natrium"],
-    "Feline Epidemic": [],
-    "Ectoparasites (flea, ticks, ear mites)": [],
-    "Endoparasites (worms)": [],
-  };
+  // saving the bad food
+  function filteredBadFoodBasedOnHealthIssues(catFoods, cat) {
+    return catFoods.filter((food) => forbiddenFoodForCat(food, cat));
+  }
 
-  const getRecommendedFood = filteredFoodBasedOnHealthIssues(catFoods, cat);
+  const getRecommendedFood = filteredGoodFoodBasedOnHealthIssues(catFoods, cat);
+
+  const getNotRecommendedFood = filteredBadFoodBasedOnHealthIssues(
+    catFoods,
+    cat
+  );
 
   return (
     <>
@@ -127,6 +118,17 @@ export default function CatDetailPage({ catList, catFoods }) {
       <div>
         <ul>
           {getRecommendedFood.map((food) => (
+            <li key={food.id}>
+              {food.brand} - {food.variety}
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <h2>NOT Recommended Food</h2>
+      <div>
+        <ul>
+          {getNotRecommendedFood.map((food) => (
             <li key={food.id}>
               {food.brand} - {food.variety}
             </li>

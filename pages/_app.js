@@ -94,6 +94,39 @@ export default function App({ Component, pageProps }) {
     setCatList(updatedCatList);
   }
 
+  function forbiddenFoodForCat(food, cat) {
+    const catAllergy = food.ingredients.some((ingredient) =>
+      cat.health.allergies.includes(ingredient.toLowerCase())
+    );
+    const catIntolerance = food.ingredients.some((ingredient) =>
+      cat.health.intolerances.includes(ingredient.toLowerCase())
+    );
+    const catDisease = cat.health.diseases.some((disease) =>
+      food.analyticalConstituents.some((constituent) => {
+        const constituentName = constituent
+          .split(" ")[0]
+          .split("(")[0]
+          .trim()
+          .toLowerCase();
+        return badIngredientsForCatDisease[disease].includes(constituentName);
+      })
+    );
+    return catAllergy || catIntolerance || catDisease;
+  }
+
+  const badIngredientsForCatDisease = {
+    "Feline Rhinitis": ["carbohydrates"],
+    "CNI (chronic renal insufficiency)": [
+      "crude protein",
+      "phosphorus",
+      "natrium",
+    ],
+    "Feline Epidemic": [],
+    "Ectoparasites (flea, ticks, ear mites)": [],
+    "Endoparasites (worms)": [],
+    Diabetes: ["sugar", "carbohydrates"],
+  };
+
   return (
     <>
       <GlobalStyle />
@@ -118,6 +151,7 @@ export default function App({ Component, pageProps }) {
         setIsEditingGood={setIsEditingGoodCat}
         isEditingBad={isEditingBadCat}
         setIsEditingBad={setIsEditingBadCat}
+        forbiddenFoodForCat={forbiddenFoodForCat}
       />
     </>
   );
