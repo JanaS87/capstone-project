@@ -21,9 +21,9 @@ export default function FoodDetailsPage({
   const router = useRouter();
   const { id } = router.query;
 
-  // two qay link (from the internet)
-  const goBack = (e) => {
-    e.preventDefault();
+  // two way link (from the internet)
+  const goBack = (event) => {
+    event.preventDefault();
     window.history.back();
   };
 
