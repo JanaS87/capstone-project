@@ -40,11 +40,11 @@ export default function FoodDetailsPage({
     cat.food.dislikes.includes(id)
   );
 
-  function handleEditGood() {
+  function handleEditGoodCat() {
     setIsEditingGood(true);
   }
 
-  function handleEditBad() {
+  function handleEditBadCat() {
     setIsEditingBad(true);
   }
 
@@ -94,7 +94,7 @@ export default function FoodDetailsPage({
           <div>
             <StyledContainer>
               <h3>Good Acceptance: </h3>
-              <StyledButton type="button" onClick={handleEditGood}>
+              <StyledButton type="button" onClick={handleEditGoodCat}>
                 Edit
               </StyledButton>
             </StyledContainer>
@@ -146,7 +146,7 @@ export default function FoodDetailsPage({
           <div>
             <StyledContainer>
               <h3>Bad Acceptance: </h3>
-              <StyledButton type="button" onClick={handleEditBad}>
+              <StyledButton type="button" onClick={handleEditBadCat}>
                 Edit
               </StyledButton>
             </StyledContainer>
