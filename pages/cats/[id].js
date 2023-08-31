@@ -52,6 +52,7 @@ export default function CatDetailPage({ catList, catFoods }) {
   }
 
   // extra const for the diseases (disease:  bad constituent)
+  // trying this solution from the internet
   const badIngredientsForCatDisease = {
     Diabetes: ["sugar", "carbohydrates"],
     "Feline Rhinitis": ["carbohydrates"],
