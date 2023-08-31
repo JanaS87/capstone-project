@@ -12,7 +12,7 @@ const diseases = [
   "Feline Epidemic",
   "Ectoparasites (flea, ticks, ear mites)",
   "Endoparasites (worms)",
-  "CNI (chronic renal insufficiency",
+  "CNI (chronic renal insufficiency)",
   "Diabetes",
 ];
 

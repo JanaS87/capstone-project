@@ -57,9 +57,9 @@ export default function CatDetailPage({ catList, catFoods }) {
     Diabetes: ["sugar", "carbohydrates"],
     "Feline Rhinitis": ["carbohydrates"],
     "CNI (chronic renal insufficiency)": ["protein", "Phosphorus", "Natrium"],
-    "Feline Epidemic": [""],
-    "Ectoparasites (flea, ticks, ear mites)": [""],
-    "Endoparasites (worms)": [""],
+    "Feline Epidemic": [],
+    "Ectoparasites (flea, ticks, ear mites)": [],
+    "Endoparasites (worms)": [],
   };
 
   const getRecommendedFood = filteredFoodBasedOnHealthIssues(catFoods, cat);
