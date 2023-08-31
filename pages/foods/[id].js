@@ -1,14 +1,29 @@
 import { useRouter } from "next/router";
 import styled from "styled-components";
 import Link from "next/link";
+import { useState } from "react";
+import EditGoodFoodForm from "@/components/EditFoodForm/EditGoodFoodForm";
+import EditBadFoodForm from "@/components/EditFoodForm/EditBadFoodForm";
 
-export default function FoodDetailsPage({ catList, catFoods }) {
+export default function FoodDetailsPage({
+  catList,
+  setCatList,
+  catFoods,
+  foodList,
+  handleUpdateFood,
+  handleRemoveGoodCat,
+  handleRemoveBadCat,
+  isEditingGood,
+  setIsEditingGood,
+  isEditingBad,
+  setIsEditingBad,
+}) {
   const router = useRouter();
   const { id } = router.query;
 
-  if (!id) return <h1>Loading</h1>;
-
   const food = catFoods.find((food) => food.id.toString() === id);
+
+  if (!id) return <h1>Loading</h1>;
 
   if (!food) {
     return (
@@ -24,6 +39,14 @@ export default function FoodDetailsPage({ catList, catFoods }) {
   const filteredCatDislikes = catList.filter((cat) =>
     cat.food.dislikes.includes(id)
   );
+
+  function handleEditGoodCat() {
+    setIsEditingGoodCat(true);
+  }
+
+  function handleEditBadCat() {
+    setIsEditingBadCat(true);
+  }
 
   return (
     <>
@@ -69,28 +92,106 @@ export default function FoodDetailsPage({ catList, catFoods }) {
         </StyledGrid>
         <StyledGrid>
           <div>
-            <h3>Good Acceptance: </h3>
-            <StyledList>
-              {filteredCatLikes.length > 0 ? (
-                filteredCatLikes.map((catLike) => (
-                  <StyledItem key={catLike.id}>{catLike.name}</StyledItem>
-                ))
-              ) : (
-                <StyledItem>Oh, it seems no cat liked this food </StyledItem>
-              )}
-            </StyledList>
+            <StyledContainer>
+              <h3>Good Acceptance: </h3>
+              <StyledButton type="button" onClick={handleEditGoodCat}>
+                Edit
+              </StyledButton>
+            </StyledContainer>
+
+            {isEditingGood ? (
+              <>
+                <EditGoodFoodForm
+                  onEditGoodFood={handleUpdateFood}
+                  food={food}
+                  onRemoveGoodCat={handleRemoveGoodCat}
+                  catList={catList}
+                  setCatList={setCatList}
+                  setIsEditingGood={setIsEditingGood}
+                />
+                <StyledList>
+                  {filteredCatLikes.length > 0 ? (
+                    filteredCatLikes.map((catLike) => (
+                      <StyledItem key={catLike.id}>
+                        <button
+                          type="button"
+                          onClick={() =>
+                            handleRemoveGoodCat(catLike.id, food.id)
+                          }
+                        >
+                          X
+                        </button>
+                        {catLike.name}
+                      </StyledItem>
+                    ))
+                  ) : (
+                    <StyledItem>
+                      Oh, it seems no cat liked this food{" "}
+                    </StyledItem>
+                  )}
+                </StyledList>
+              </>
+            ) : (
+              <StyledList>
+                {filteredCatLikes.length > 0 ? (
+                  filteredCatLikes.map((catLike) => (
+                    <StyledItem key={catLike.id}>{catLike.name}</StyledItem>
+                  ))
+                ) : (
+                  <StyledItem>Oh, it seems no cat liked this food </StyledItem>
+                )}
+              </StyledList>
+            )}
           </div>
           <div>
-            <h3>Bad Acceptance: </h3>
-            <StyledList>
-              {filteredCatDislikes.length > 0 ? (
-                filteredCatDislikes.map((dislike) => (
-                  <StyledItem key={dislike.id}>{dislike.name}</StyledItem>
-                ))
-              ) : (
-                <StyledItem>Great, no cat hated this food</StyledItem>
-              )}
-            </StyledList>
+            <StyledContainer>
+              <h3>Bad Acceptance: </h3>
+              <StyledButton type="button" onClick={handleEditBadCat}>
+                Edit
+              </StyledButton>
+            </StyledContainer>
+            {isEditingBad ? (
+              <>
+                <EditBadFoodForm
+                  onEditBadFood={handleUpdateFood}
+                  food={food}
+                  onRemoveBadCat={handleRemoveBadCat}
+                  catList={catList}
+                  setCatList={setCatList}
+                  setIsEditingBad={setIsEditingBad}
+                />
+
+                <StyledList>
+                  {filteredCatDislikes.length > 0 ? (
+                    filteredCatDislikes.map((dislike) => (
+                      <StyledItem key={dislike.id}>
+                        <button
+                          type="button"
+                          onClick={() =>
+                            handleRemoveBadCat(dislike.id, food.id)
+                          }
+                        >
+                          X
+                        </button>
+                        {dislike.name}
+                      </StyledItem>
+                    ))
+                  ) : (
+                    <StyledItem>Great, no cat hated this food</StyledItem>
+                  )}
+                </StyledList>
+              </>
+            ) : (
+              <StyledList>
+                {filteredCatDislikes.length > 0 ? (
+                  filteredCatDislikes.map((dislike) => (
+                    <StyledItem key={dislike.id}>{dislike.name}</StyledItem>
+                  ))
+                ) : (
+                  <StyledItem>Great, no cat hated this food</StyledItem>
+                )}
+              </StyledList>
+            )}
           </div>
         </StyledGrid>
       </StyledSection>
@@ -103,6 +204,8 @@ const StyledHeaderWrapping = styled.div`
   gap: 0;
 `;
 const StyledSection = styled.section`
+  display: flex;
+  flex-direction: column;
   padding: 1.2rem 1.3rem;
   box-shadow: 0px 1px 5px -2px #ff6d60;
   border-radius: 10px/20px;
@@ -153,4 +256,14 @@ const StyledHeading = styled.h1`
 const StyledHeading2 = styled.h2`
   margin-left: 5%;
   margin-top: 2%;
+`;
+
+const StyledButton = styled.button`
+  margin-left: auto;
+  margin-right: 1rem;
+`;
+
+const StyledContainer = styled.div`
+  display: flex;
+  flex-direction: row;
 `;

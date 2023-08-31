@@ -10,10 +10,16 @@ import { ToastContainer } from "react-toastify";
 
 export default function App({ Component, pageProps }) {
   const router = useRouter();
+
   const [catList, setCatList] = useLocalStorageState("cats", {
     defaultValue: cats,
   });
+  const [foodList, setFoodList] = useLocalStorageState("catfoods", {
+    defaultValue: catfoods,
+  });
   const [searchTerm, setSearchTerm] = useState("");
+  const [isEditingGood, setIsEditingGood] = useState(false);
+  const [isEditingBad, setIsEditingBad] = useState(false);
 
   function handleAddCat(newCat) {
     // update catList with new cat
@@ -45,6 +51,49 @@ export default function App({ Component, pageProps }) {
     router.push("/");
   }
 
+  // update food
+  function handleUpdateFood(updatedFood) {
+    const updatedFoods = foodList.map((food) => {
+      if (updatedFood.id !== food.id) {
+        return food;
+      }
+      return updatedFood;
+    });
+    setFoodList(updatedFoods);
+  }
+  // remove cat from the good acceptance (food detail page)
+  function handleRemoveGoodCat(catId, foodId) {
+    const updatedCatList = catList.map((cat) => {
+      if (cat.id === catId) {
+        return {
+          ...cat,
+          food: {
+            ...cat.food,
+            likes: cat.food.likes.filter((id) => id !== foodId),
+          },
+        };
+      }
+      return cat;
+    });
+    setCatList(updatedCatList);
+  }
+
+  function handleRemoveBadCat(catId, foodId) {
+    const updatedCatList = catList.map((cat) => {
+      if (cat.id === catId) {
+        return {
+          ...cat,
+          food: {
+            ...cat.food,
+            dislikes: cat.food.dislikes.filter((id) => id !== foodId),
+          },
+        };
+      }
+      return cat;
+    });
+    setCatList(updatedCatList);
+  }
+
   return (
     <>
       <GlobalStyle />
@@ -53,12 +102,22 @@ export default function App({ Component, pageProps }) {
         {...pageProps}
         handleAddCat={handleAddCat}
         catList={catList}
+        setCatList={setCatList}
         catFoods={catfoods}
+        foodList={foodList}
+        setFoodList={setFoodList}
         searchTerm={searchTerm}
         setSearchTerm={setSearchTerm}
         handleSearchTermChange={handleSearchTermChange}
         handleUpdateCat={handleUpdateCat}
         handleDeleteCat={handleDeleteCat}
+        handleUpdateFood={handleUpdateFood}
+        handleRemoveGoodCat={handleRemoveGoodCat}
+        handleRemoveBadCat={handleRemoveBadCat}
+        isEditingGood={isEditingGood}
+        setIsEditingGood={setIsEditingGood}
+        isEditingBad={isEditingBad}
+        setIsEditingBad={setIsEditingBad}
       />
     </>
   );
