@@ -36,8 +36,6 @@ export default function CatDetailPage({
 
   // RECOMMENDED FOOD SECTION (own page next US)
 
-  // filter the food based on the health issues
-
   // saving the good food
   function filteredGoodFoodBasedOnHealthIssues(catFoods, cat) {
     return catFoods.filter((food) => !forbiddenFoodForCat(food, cat));
