@@ -114,24 +114,24 @@ export default function CatDetailPage({
 
       <h2>Recommended Food</h2>
       <div>
-        <ul>
+        <StyledList>
           {getRecommendedFood.map((food) => (
-            <li key={food.id}>
+            <StyledItem key={food.id}>
               {food.brand} - {food.variety}
-            </li>
+            </StyledItem>
           ))}
-        </ul>
+        </StyledList>
       </div>
 
       <h2>NOT Recommended Food</h2>
       <div>
-        <ul>
+        <StyledList>
           {getNotRecommendedFood.map((food) => (
-            <li key={food.id}>
+            <StyledItem key={food.id}>
               {food.brand} - {food.variety}
-            </li>
+            </StyledItem>
           ))}
-        </ul>
+        </StyledList>
       </div>
     </>
   );
