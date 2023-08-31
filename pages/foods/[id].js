@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import styled from "styled-components";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import EditGoodFoodForm from "@/components/EditFoodForm/EditGoodFoodForm";
 import EditBadFoodForm from "@/components/EditFoodForm/EditBadFoodForm";
 
@@ -13,13 +13,19 @@ export default function FoodDetailsPage({
   handleUpdateFood,
   handleRemoveGoodCat,
   handleRemoveBadCat,
-  isEditingGood,
-  setIsEditingGood,
-  isEditingBad,
-  setIsEditingBad,
+  isEditingGoodCat,
+  setIsEditingGoodCat,
+  isEditingBadCat,
+  setIsEditingBadCat,
 }) {
   const router = useRouter();
   const { id } = router.query;
+
+  // two way link (from the internet)
+  const goBack = (event) => {
+    event.preventDefault();
+    window.history.back();
+  };
 
   const food = catFoods.find((food) => food.id.toString() === id);
 
@@ -99,7 +105,7 @@ export default function FoodDetailsPage({
               </StyledButton>
             </StyledContainer>
 
-            {isEditingGood ? (
+            {isEditingGoodCat ? (
               <>
                 <EditGoodFoodForm
                   onEditGoodFood={handleUpdateFood}
@@ -150,7 +156,7 @@ export default function FoodDetailsPage({
                 Edit
               </StyledButton>
             </StyledContainer>
-            {isEditingBad ? (
+            {isEditingBadCat ? (
               <>
                 <EditBadFoodForm
                   onEditBadFood={handleUpdateFood}
@@ -195,7 +201,9 @@ export default function FoodDetailsPage({
           </div>
         </StyledGrid>
       </StyledSection>
-      <StyledLink href={"/foodsearch"}>Back</StyledLink>
+      <StyledLink href="#" onClick={goBack}>
+        Back
+      </StyledLink>
     </>
   );
 }

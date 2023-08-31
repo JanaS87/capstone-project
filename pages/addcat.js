@@ -4,7 +4,7 @@ import { cats } from "@/data/catdata";
 import Link from "next/link";
 import { styled } from "styled-components";
 
-export default function NewCatPage({ handleAddCat }) {
+export default function NewCatPage({ handleAddCat, forbiddenFoodForCat }) {
   return (
     <>
       <h1>Add a new cat</h1>

@@ -19,8 +19,8 @@ export const cats = [
     age: 10,
     health: {
       allergies: [],
-      diseases: ["diabetes"],
-      intolerances: ["lactose"],
+      diseases: ["Diabetes"],
+      intolerances: ["Lactose"],
     },
     food: {
       likes: ["2", "4"],
