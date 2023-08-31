@@ -3,11 +3,13 @@ import styled from "styled-components";
 import Link from "next/link";
 import Button from "@/components/Button/Button";
 import { useState } from "react";
+import FoodCard from "@/components/FoodCard/FoodCard";
 
 export default function CatDetailPage({
   catList,
   catFoods,
   forbiddenFoodForCat,
+  food,
 }) {
   const router = useRouter();
   const { id } = router.query;
@@ -116,9 +118,9 @@ export default function CatDetailPage({
       <div>
         <StyledList>
           {getRecommendedFood.map((food) => (
-            <StyledItem key={food.id}>
-              {food.brand} - {food.variety}
-            </StyledItem>
+            <StyledFoodItem key={food.id}>
+              <FoodCard food={food} />
+            </StyledFoodItem>
           ))}
         </StyledList>
       </div>
@@ -127,9 +129,9 @@ export default function CatDetailPage({
       <div>
         <StyledList>
           {getNotRecommendedFood.map((food) => (
-            <StyledItem key={food.id}>
-              {food.brand} - {food.variety}
-            </StyledItem>
+            <StyledFoodItem key={food.id}>
+              <FoodCard food={food} />
+            </StyledFoodItem>
           ))}
         </StyledList>
       </div>
@@ -204,4 +206,14 @@ const StyledContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+`;
+
+const StyledFoodItem = styled.li`
+  max-width: 50%;
+  padding: 0.2rem 0.6rem;
+  box-shadow: 0px 1px 5px -2px #ff6d60;
+  border-radius: 10px/20px;
+  font-size: 0.8em;
+  background-color: white;
+  list-style: none;
 `;

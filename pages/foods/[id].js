@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import styled from "styled-components";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import EditGoodFoodForm from "@/components/EditFoodForm/EditGoodFoodForm";
 import EditBadFoodForm from "@/components/EditFoodForm/EditBadFoodForm";
 
@@ -20,6 +20,11 @@ export default function FoodDetailsPage({
 }) {
   const router = useRouter();
   const { id } = router.query;
+
+  const goBack = (e) => {
+    e.preventDefault();
+    window.history.back();
+  };
 
   const food = catFoods.find((food) => food.id.toString() === id);
 
@@ -195,7 +200,9 @@ export default function FoodDetailsPage({
           </div>
         </StyledGrid>
       </StyledSection>
-      <StyledLink href={"/foodsearch"}>Back</StyledLink>
+      <StyledLink href="#" onClick={goBack}>
+        Back
+      </StyledLink>
     </>
   );
 }
