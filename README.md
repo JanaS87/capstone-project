@@ -1,37 +1,26 @@
-# New Next Project
+## Hello everyone and welcome to my capstone project:
 
-This project was created from the neue fische `next` template.
+# CAPP - Your cat food app
 
-You can [🔗 **use this template on CodeSandbox**](https://codesandbox.io/p/sandbox/github/neuefische/web-exercises/tree/main/templates/next?file=/README.md) or locally by running this command in your Terminal:
+## What is my app about?
 
-```bash
-npx -y ghcd@latest neuefische/web-exercises/tree/main/templates/next my-app -i
-```
+Little mind game: imagine you have several cats and you are standing in front of a big shelf of cat food and unfortunately you just don't know off the top of your head which of your cats liked or disliked a certain food. 
 
-## Development
+This is where my app comes in.
+With **Capp** you have all your cats at a glance. You can use the cat food search to see if one of your cats has already had that food and whether they liked it or not.
+In the profiles of your cats you can see the age, if your cat has intolerances, diseases or allergies, which food had a high acceptance and which had a low acceptance.
+Based on the health informations, you will also get cat food recommendations that your cat can try.
 
-### Local Development
+------
 
-To work locally, please install the dependencies using `npm i` first.
+### Future plans include the following:
 
-Run `npm run dev` to start a development server and open the displayed URL in a browser.
+*An appointment planner*:
 
-Use `npm run test` to run the tests.
+When important appointments, for example, at the vet are pending, these can be entered. These are then displayed to the cat.
 
-### CodeSandbox Cloud
 
-Select the "Preview: 3000" tab to view this project.
 
-Select the "Tests: logs" tab to view the tests.
+*Database connection via cloud by means of a server*:
 
-> The `npm run dev` and `npm run test` scripts run automatically.
-
-### Scripts
-
-You can use the following commands:
-
-- `npm run dev` to start a development server
-- `npm run build` to build the project
-- `npm run start` to start a production server
-- `npm run test` to run the tests
-- `npm run lint` to run the linter
+Each user gets their own login data for their very own profile. So they can be sure that no one else can access their cat data.
