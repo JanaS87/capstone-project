@@ -41,11 +41,11 @@ export default function FoodDetailsPage({
   );
 
   function handleEditGoodCat() {
-    setIsEditingGood(true);
+    setIsEditingGoodCat(true);
   }
 
   function handleEditBadCat() {
-    setIsEditingBad(true);
+    setIsEditingBadCat(true);
   }
 
   return (
