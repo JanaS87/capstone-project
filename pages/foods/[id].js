@@ -13,10 +13,10 @@ export default function FoodDetailsPage({
   handleUpdateFood,
   handleRemoveGoodCat,
   handleRemoveBadCat,
-  isEditingGood,
-  setIsEditingGood,
-  isEditingBad,
-  setIsEditingBad,
+  isEditingGoodCat,
+  setIsEditingGoodCat,
+  isEditingBadCat,
+  setIsEditingBadCat,
 }) {
   const router = useRouter();
   const { id } = router.query;
@@ -99,7 +99,7 @@ export default function FoodDetailsPage({
               </StyledButton>
             </StyledContainer>
 
-            {isEditingGood ? (
+            {isEditingGoodCat ? (
               <>
                 <EditGoodFoodForm
                   onEditGoodFood={handleUpdateFood}
@@ -150,7 +150,7 @@ export default function FoodDetailsPage({
                 Edit
               </StyledButton>
             </StyledContainer>
-            {isEditingBad ? (
+            {isEditingBadCat ? (
               <>
                 <EditBadFoodForm
                   onEditBadFood={handleUpdateFood}

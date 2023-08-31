@@ -88,6 +88,8 @@ export default function CatDetailPage({ catList, catFoods }) {
         <StyledLink href={"/"}>Back</StyledLink>
         <StyledLink href={`/updatecat/${cat.id}`}>Edit</StyledLink>
       </StyledContainer>
+
+      <h2>Recommended Food</h2>
     </>
   );
 }
