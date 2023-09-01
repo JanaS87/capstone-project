@@ -33,7 +33,7 @@ export default function RecommendPage({
   );
   return (
     <>
-      <StyledHead>{cat ? cat.name : Loading}</StyledHead>
+      <StyledHead>{cat ? cat.name : "Loading..."}</StyledHead>
       <Tabs cat={cat} id={id} />
       <StyledGoodFood>Recommended Food</StyledGoodFood>
       <StyledWrapper>
