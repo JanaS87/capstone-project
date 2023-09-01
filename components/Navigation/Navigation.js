@@ -71,7 +71,6 @@ const StyledNavItem = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-
   margin: 0 15px; // Space out the items if needed
 
   svg {
