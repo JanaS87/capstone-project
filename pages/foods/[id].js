@@ -1,7 +1,6 @@
 import { useRouter } from "next/router";
 import styled from "styled-components";
 import Link from "next/link";
-import { useEffect, useState } from "react";
 import EditGoodFoodForm from "@/components/EditFoodForm/EditGoodFoodForm";
 import EditBadFoodForm from "@/components/EditFoodForm/EditBadFoodForm";
 
