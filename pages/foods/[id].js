@@ -113,7 +113,7 @@ export default function FoodDetailsPage({
                   onRemoveGoodCat={handleRemoveGoodCat}
                   catList={catList}
                   setCatList={setCatList}
-                  setIsEditingGood={setIsEditingGood}
+                  setIsEditingGood={setIsEditingGoodCat}
                 />
                 <StyledList>
                   {filteredCatLikes.length > 0 ? (
@@ -164,7 +164,7 @@ export default function FoodDetailsPage({
                   onRemoveBadCat={handleRemoveBadCat}
                   catList={catList}
                   setCatList={setCatList}
-                  setIsEditingBad={setIsEditingBad}
+                  setIsEditingBad={setIsEditingBadCat}
                 />
 
                 <StyledList>
