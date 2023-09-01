@@ -16,6 +16,7 @@ export default function FoodDetailsPage({
   setIsEditingGoodCat,
   isEditingBadCat,
   setIsEditingBadCat,
+  cat,
 }) {
   const router = useRouter();
   const { id } = router.query;

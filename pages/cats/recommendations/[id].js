@@ -1,5 +1,7 @@
 import FoodCard from "@/components/FoodCard/FoodCard";
+import Tabs from "@/components/Tabs/Tabs";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { styled } from "styled-components";
 
 export default function RecommendPage({
@@ -9,20 +11,44 @@ export default function RecommendPage({
   cat,
   food,
 }) {
+  const router = useRouter();
+  const { id } = router.query;
+
   // saving the good food
   function filteredGoodFoodBasedOnHealthIssues(catFoods, cat) {
     return catFoods.filter((food) => !forbiddenFoodForCat(food, cat));
   }
 
+  // saving the bad food
+  function filteredBadFoodBasedOnHealthIssues(catFoods, cat) {
+    return catFoods.filter((food) => forbiddenFoodForCat(food, cat));
+  }
+
+  console.log("recommend cat", cat);
+
   const getRecommendedFood = filteredGoodFoodBasedOnHealthIssues(catFoods, cat);
+  const getNotRecommendedFood = filteredBadFoodBasedOnHealthIssues(
+    catFoods,
+    cat
+  );
   return (
     <>
-      <Link href={`/catdetailpage/${id}`}>Cat Details</Link>
-      <Link href={`/cats/recommendations/${id}`}>Recommended Food</Link>
+      <Tabs cat={cat} id={id} />
       <h2>Recommended Food</h2>
       <div>
         <StyledList>
           {getRecommendedFood.map((food) => (
+            <StyledFoodItem key={food.id}>
+              <FoodCard food={food} />
+            </StyledFoodItem>
+          ))}
+        </StyledList>
+      </div>
+
+      <h2>NOT Recommended Food</h2>
+      <div>
+        <StyledList>
+          {getNotRecommendedFood.map((food) => (
             <StyledFoodItem key={food.id}>
               <FoodCard food={food} />
             </StyledFoodItem>

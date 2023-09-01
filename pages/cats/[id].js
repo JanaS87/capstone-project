@@ -4,12 +4,14 @@ import Link from "next/link";
 import Button from "@/components/Button/Button";
 import { useState } from "react";
 import FoodCard from "@/components/FoodCard/FoodCard";
+import Tabs from "@/components/Tabs/Tabs";
 
 export default function CatDetailPage({
   catList,
   catFoods,
   forbiddenFoodForCat,
   food,
+  cat,
 }) {
   const router = useRouter();
   const { id } = router.query;
@@ -17,7 +19,7 @@ export default function CatDetailPage({
   if (!id) return <p>Loading</p>;
 
   // find the cat with the right id
-  const cat = catList.find((cat) => cat.id.toString() === id);
+  // const cat = catList.find((cat) => cat.id.toString() === id);
 
   if (!cat) {
     return (
@@ -36,31 +38,11 @@ export default function CatDetailPage({
     catFoods.find((food) => food.id === bad)
   );
 
-  // RECOMMENDED FOOD SECTION (own page next US)
-
-  // saving the good food
-  // function filteredGoodFoodBasedOnHealthIssues(catFoods, cat) {
-  //   return catFoods.filter((food) => !forbiddenFoodForCat(food, cat));
-  // }
-
-  // saving the bad food
-  function filteredBadFoodBasedOnHealthIssues(catFoods, cat) {
-    return catFoods.filter((food) => forbiddenFoodForCat(food, cat));
-  }
-
-  // const getRecommendedFood = filteredGoodFoodBasedOnHealthIssues(catFoods, cat);
-
-  const getNotRecommendedFood = filteredBadFoodBasedOnHealthIssues(
-    catFoods,
-    cat
-  );
-
   return (
     <>
       <div>
         <StyledHead>{cat.name}</StyledHead>
-        <Link href={`/catdetailpage/${id}`}>Cat Details</Link>
-        <Link href={`/cats/recommendations/${id}`}>Recommended Food</Link>
+        <Tabs cat={cat} id={id} />
       </div>
       <StyledWrapper>
         <StyledSection>
@@ -115,28 +97,6 @@ export default function CatDetailPage({
         <StyledLink href={"/"}>Back</StyledLink>
         <StyledLink href={`/updatecat/${cat.id}`}>Edit</StyledLink>
       </StyledContainer>
-
-      {/* <h2>Recommended Food</h2>
-      <div>
-        <StyledList>
-          {getRecommendedFood.map((food) => (
-            <StyledFoodItem key={food.id}>
-              <FoodCard food={food} />
-            </StyledFoodItem>
-          ))}
-        </StyledList>
-      </div> */}
-
-      <h2>NOT Recommended Food</h2>
-      <div>
-        <StyledList>
-          {getNotRecommendedFood.map((food) => (
-            <StyledFoodItem key={food.id}>
-              <FoodCard food={food} />
-            </StyledFoodItem>
-          ))}
-        </StyledList>
-      </div>
     </>
   );
 }
