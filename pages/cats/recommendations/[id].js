@@ -33,28 +33,31 @@ export default function RecommendPage({
   );
   return (
     <>
+      <StyledHead>{cat.name}</StyledHead>
       <Tabs cat={cat} id={id} />
-      <h2>Recommended Food</h2>
-      <div>
-        <StyledList>
-          {getRecommendedFood.map((food) => (
-            <StyledFoodItem key={food.id}>
-              <FoodCard food={food} />
-            </StyledFoodItem>
-          ))}
-        </StyledList>
-      </div>
+      <StyledGoodFood>Recommended Food</StyledGoodFood>
+      <StyledWrapper>
+        <div>
+          <StyledList>
+            {getRecommendedFood.map((food) => (
+              <StyledFoodItem key={food.id}>
+                <FoodCard food={food} />
+              </StyledFoodItem>
+            ))}
+          </StyledList>
+        </div>
 
-      <h2>NOT Recommended Food</h2>
-      <div>
-        <StyledList>
-          {getNotRecommendedFood.map((food) => (
-            <StyledFoodItem key={food.id}>
-              <FoodCard food={food} />
-            </StyledFoodItem>
-          ))}
-        </StyledList>
-      </div>
+        <StyledBadFood>NOT Recommended Food</StyledBadFood>
+        <div>
+          <StyledList>
+            {getNotRecommendedFood.map((food) => (
+              <StyledFoodItem key={food.id}>
+                <FoodCard food={food} />
+              </StyledFoodItem>
+            ))}
+          </StyledList>
+        </div>
+      </StyledWrapper>
     </>
   );
 }
@@ -70,4 +73,23 @@ const StyledFoodItem = styled.li`
 
 const StyledList = styled.ul`
   list-style: none;
+`;
+
+const StyledHead = styled.h1`
+  margin-left: 5%;
+`;
+
+const StyledWrapper = styled.div`
+  max-width: 85%;
+  margin: 0 1em;
+  list-style-type: none;
+  margin-bottom: 1.3rem;
+`;
+
+const StyledGoodFood = styled.h2`
+  color: green;
+`;
+
+const StyledBadFood = styled.h2`
+  color: red;
 `;

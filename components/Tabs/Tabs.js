@@ -1,8 +1,8 @@
 import { useRouter } from "next/router";
 import Link from "next/link";
-import { styled } from "styled-components";
-import OrangePaw from "../Paws/OrangePaw";
-import BlackPaw from "../Paws/Blackpaw";
+import styled from "styled-components";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPaw } from "@fortawesome/free-solid-svg-icons";
 
 export default function Tabs({ id }) {
   const router = useRouter();
@@ -20,16 +20,30 @@ export default function Tabs({ id }) {
   return (
     <>
       <StyledContainer>
-        <StyledLink href={`/cats/${id}`} passHref>
+        <StyledLink href={`/cats/${id}`}>
           <StyledNavItem>
-            {isCatDetailPage ? <OrangePaw /> : <BlackPaw />}
+            <FontAwesomeIcon
+              icon={faPaw}
+              color={
+                isCatDetailPage
+                  ? "var(--tab-icon-active)"
+                  : "var(--tab-icon-inactive)"
+              }
+            />
             <StyledNavText>Cat</StyledNavText>
           </StyledNavItem>
         </StyledLink>
 
         <StyledLink href={`/cats/recommendations/${id}`} passHref>
           <StyledNavItem>
-            {isRecommendPage ? <OrangePaw /> : <BlackPaw />}
+            <FontAwesomeIcon
+              icon={faPaw}
+              color={
+                isRecommendPage
+                  ? "var(--tab-icon-active)"
+                  : "var(--tab-icon-inactive)"
+              }
+            />
             <StyledNavText>Recommend</StyledNavText>
           </StyledNavItem>
         </StyledLink>
@@ -45,7 +59,7 @@ const StyledNavItem = styled.div`
   margin: 0 15px;
 
   svg {
-    font-size: 2em;
+    font-size: 3em;
   }
 `;
 
@@ -64,4 +78,5 @@ const StyledNavText = styled.span`
 
 const StyledLink = styled(Link)`
   text-decoration: none;
+  color: black;
 `;
