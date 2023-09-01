@@ -1,36 +1,35 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPaw } from "@fortawesome/free-solid-svg-icons";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { styled } from "styled-components";
+import OrangePaw from "../Paws/OrangePaw";
+import BlackPaw from "../Paws/Blackpaw";
 
 export default function Tabs({ id }) {
   const router = useRouter();
-  const isCatDetailPage = router.pathname === `/cats/${id}`;
-  const isRecommendPage = router.pathname === `/cats/recommendations/${id}`;
+  const isCatDetailPage = router.asPath === `/cats/${id}`;
+  const isRecommendPage = router.asPath === `/cats/recommendations/${id}`;
+
+  console.log("id:", id);
+  console.log("router.asPath:", router.asPath);
+  console.log("router.query.id:", router.query.id);
+  console.log("router.pathname:", router.pathname);
+
+  console.log("isCatDetailPage:", isCatDetailPage);
+  console.log("isRecommendPage:", isRecommendPage);
+
   return (
     <>
       <StyledContainer>
-        <StyledLink href={`/cats/${id}`}>
+        <StyledLink href={`/cats/${id}`} passHref>
           <StyledNavItem>
-            <FontAwesomeIcon
-              icon={faPaw}
-              style={
-                isCatDetailPage ? { color: "#ff6a00" } : { color: "#000000" }
-              }
-            />
+            {isCatDetailPage ? <OrangePaw /> : <BlackPaw />}
             <StyledNavText>Cat</StyledNavText>
           </StyledNavItem>
         </StyledLink>
 
-        <StyledLink href={`/cats/recommendations/${id}`}>
-          <StyledNavItem isRecommendPage>
-            <FontAwesomeIcon
-              icon={faPaw}
-              style={
-                isRecommendPage ? { color: "#ff6a00" } : { color: "#000000" }
-              }
-            />
+        <StyledLink href={`/cats/recommendations/${id}`} passHref>
+          <StyledNavItem>
+            {isRecommendPage ? <OrangePaw /> : <BlackPaw />}
             <StyledNavText>Recommend</StyledNavText>
           </StyledNavItem>
         </StyledLink>
