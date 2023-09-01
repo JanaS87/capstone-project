@@ -33,7 +33,7 @@ export default function RecommendPage({
   );
   return (
     <>
-      <StyledHead>{cat.name}</StyledHead>
+      <StyledHead>{cat ? cat.name : Loading}</StyledHead>
       <Tabs cat={cat} id={id} />
       <StyledGoodFood>Recommended Food</StyledGoodFood>
       <StyledWrapper>
@@ -74,7 +74,7 @@ const StyledFoodItem = styled.li`
 
 const StyledList = styled.ul`
   list-style: none;
-  margin-left: -9%;
+  padding-left: 0;
 `;
 
 const StyledHead = styled.h1`
