@@ -62,8 +62,8 @@ export default function RecommendPage({
   );
 }
 const StyledFoodItem = styled.li`
-  max-width: 50%;
-  padding: 0.2rem 0.5rem;
+  max-width: 95%;
+  padding: 0.1rem 0.8rem;
   box-shadow: 0px 1px 5px -2px #ff6d60;
   border-radius: 10px/20px;
   font-size: 0.8em;
@@ -73,6 +73,7 @@ const StyledFoodItem = styled.li`
 
 const StyledList = styled.ul`
   list-style: none;
+  margin-left: -9%;
 `;
 
 const StyledHead = styled.h1`
@@ -83,7 +84,6 @@ const StyledWrapper = styled.div`
   max-width: 85%;
   margin: 0 1em;
   list-style-type: none;
-  margin-bottom: 1.3rem;
 `;
 
 const StyledGoodFood = styled.h2`
