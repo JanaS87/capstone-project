@@ -69,6 +69,7 @@ const StyledFoodItem = styled.li`
   font-size: 0.8em;
   background-color: white;
   list-style: none;
+  margin-bottom: 1em;
 `;
 
 const StyledList = styled.ul`
