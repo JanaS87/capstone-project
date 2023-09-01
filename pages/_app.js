@@ -100,12 +100,12 @@ export default function App({ Component, pageProps }) {
 
   function forbiddenFoodForCat(food, cat) {
     const catAllergy = food.ingredients.some((ingredient) =>
-      cat.health.allergies.includes(ingredient.toLowerCase())
+      cat?.health.allergies.includes(ingredient.toLowerCase())
     );
     const catIntolerance = food.ingredients.some((ingredient) =>
-      cat.health.intolerances.includes(ingredient.toLowerCase())
+      cat?.health.intolerances.includes(ingredient.toLowerCase())
     );
-    const catDisease = cat.health.diseases.some((disease) =>
+    const catDisease = cat?.health.diseases.some((disease) =>
       food.analyticalConstituents.some((constituent) => {
         const constituentName = constituent
           .split(" ")[0]
