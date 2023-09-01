@@ -39,16 +39,16 @@ export default function CatDetailPage({
   // RECOMMENDED FOOD SECTION (own page next US)
 
   // saving the good food
-  function filteredGoodFoodBasedOnHealthIssues(catFoods, cat) {
-    return catFoods.filter((food) => !forbiddenFoodForCat(food, cat));
-  }
+  // function filteredGoodFoodBasedOnHealthIssues(catFoods, cat) {
+  //   return catFoods.filter((food) => !forbiddenFoodForCat(food, cat));
+  // }
 
   // saving the bad food
   function filteredBadFoodBasedOnHealthIssues(catFoods, cat) {
     return catFoods.filter((food) => forbiddenFoodForCat(food, cat));
   }
 
-  const getRecommendedFood = filteredGoodFoodBasedOnHealthIssues(catFoods, cat);
+  // const getRecommendedFood = filteredGoodFoodBasedOnHealthIssues(catFoods, cat);
 
   const getNotRecommendedFood = filteredBadFoodBasedOnHealthIssues(
     catFoods,
@@ -59,6 +59,8 @@ export default function CatDetailPage({
     <>
       <div>
         <StyledHead>{cat.name}</StyledHead>
+        <Link href={`/catdetailpage/${id}`}>Cat Details</Link>
+        <Link href={`/cats/recommendations/${id}`}>Recommended Food</Link>
       </div>
       <StyledWrapper>
         <StyledSection>
@@ -114,7 +116,7 @@ export default function CatDetailPage({
         <StyledLink href={`/updatecat/${cat.id}`}>Edit</StyledLink>
       </StyledContainer>
 
-      <h2>Recommended Food</h2>
+      {/* <h2>Recommended Food</h2>
       <div>
         <StyledList>
           {getRecommendedFood.map((food) => (
@@ -123,7 +125,7 @@ export default function CatDetailPage({
             </StyledFoodItem>
           ))}
         </StyledList>
-      </div>
+      </div> */}
 
       <h2>NOT Recommended Food</h2>
       <div>
