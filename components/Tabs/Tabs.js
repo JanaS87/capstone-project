@@ -52,12 +52,6 @@ const StyledNavItem = styled.div`
   svg {
     font-size: 2em;
   }
-  svg.faPaw {
-    color: var(--tab-icon-inactive);
-  }
-  svg.faPaw.active {
-    color: var(--tab-icon-active);
-  }
 `;
 
 const StyledContainer = styled.div`
