@@ -15,10 +15,8 @@ export default function Tabs({ id }) {
           <StyledNavItem>
             <FontAwesomeIcon
               icon={faPaw}
-              color={
-                isCatDetailPage
-                  ? "var(--tab-icon-active)"
-                  : "var(--tab-icon-inactive)"
+              style={
+                isCatDetailPage ? { color: "#ff6a00" } : { color: "#000000" }
               }
             />
             <StyledNavText>Cat</StyledNavText>
@@ -26,13 +24,11 @@ export default function Tabs({ id }) {
         </StyledLink>
 
         <StyledLink href={`/cats/recommendations/${id}`}>
-          <StyledNavItem>
+          <StyledNavItem isRecommendPage>
             <FontAwesomeIcon
               icon={faPaw}
-              color={
-                isRecommendPage
-                  ? "var(--tab-icon-active)"
-                  : "var(--tab-icon-inactive)"
+              style={
+                isRecommendPage ? { color: "#ff6a00" } : { color: "#000000" }
               }
             />
             <StyledNavText>Recommend</StyledNavText>
