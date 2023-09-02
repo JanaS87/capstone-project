@@ -151,10 +151,10 @@ export default function App({ Component, pageProps }) {
         handleUpdateFood={handleUpdateFood}
         handleRemoveGoodCat={handleRemoveGoodCat}
         handleRemoveBadCat={handleRemoveBadCat}
-        isEditingGood={isEditingGoodCat}
-        setIsEditingGood={setIsEditingGoodCat}
-        isEditingBad={isEditingBadCat}
-        setIsEditingBad={setIsEditingBadCat}
+        isEditingGoodCat={isEditingGoodCat}
+        setIsEditingGoodCat={setIsEditingGoodCat}
+        isEditingBadCat={isEditingBadCat}
+        setIsEditingBadCat={setIsEditingBadCat}
         forbiddenFoodForCat={forbiddenFoodForCat}
         cat={cat}
       />

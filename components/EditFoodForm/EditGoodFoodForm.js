@@ -7,7 +7,7 @@ export default function EditGoodFoodForm({
   foodList,
   catList,
   setCatList,
-  setIsEditingGood,
+  setIsEditingGoodCat,
 }) {
   const [selectedGoodCat, setSelectedGoodCat] = useState("");
   const [addedGoodCat, setAddedGoodCat] = useState(food.cat.likes);
@@ -56,7 +56,7 @@ export default function EditGoodFoodForm({
     };
 
     onEditGoodFood(updatedFood);
-    setIsEditingGood(false);
+    setIsEditingGoodCat(false);
   }
 
   return (
