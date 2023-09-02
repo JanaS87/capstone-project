@@ -16,16 +16,21 @@ export default function HomePage({ catList }) {
 
 const StyledHeading = styled.h1`
   margin-left: 5%;
+  text-align: center;
+  color: white;
+  letter-spacing: 2.5px;
+  text-shadow: 2px 2px 10px #f0caa3;
 `;
 
 const StyledLink = styled(Link)`
   max-width: 37%;
-  background: white;
-  color: #1d5d9b;
+  background: transparent;
+  backdrop-filter: blur(2px);
+  color: #f0caa3;
   font-size: 1em;
   margin: 1em;
   padding: 0.25em 1em;
-  border: 2px solid #1d5d9b;
+  border: 2px solid #f0caa3;
   border-radius: 3px;
   text-decoration: none;
 `;
