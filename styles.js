@@ -16,6 +16,7 @@ export default createGlobalStyle`
 }
 
 
+// every image created with playground.AI
 
   html, body, #__next {
     height: 100%;
