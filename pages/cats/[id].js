@@ -136,12 +136,16 @@ const StyledLink = styled(Link)`
   background: transparent;
   backdrop-filter: blur(2px);
   color: #f0caa3;
-  font-size: 1em;
-  margin: 1em;
+  font-size: 1.3em;
   padding: 0.25em 1em;
   border: 2px solid #f0caa3;
   border-radius: 3px;
   text-decoration: none;
+
+  &:hover {
+    background-color: #f0caa3;
+    color: black;
+  }
 `;
 
 const StyledList = styled.ul`
@@ -162,9 +166,9 @@ const StyledListItem = styled.li`
 `;
 
 const StyledLinkContainer = styled.div`
-  max-width: 80%;
+  max-width: 90%;
+  margin: 0 1em;
   display: flex;
-  margin-left: 5%;
   flex-direction: row;
   justify-content: space-between;
 `;
