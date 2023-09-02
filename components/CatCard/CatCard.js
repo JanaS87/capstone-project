@@ -12,7 +12,7 @@ export default function CatCard({ cat }) {
 const StyledLink = styled(Link)`
   cursor: pointer;
   text-decoration: none;
-  color: #1d5d9b;
+  color: #413f42;
   &:hover,
   :active {
     font-size: 110%;
