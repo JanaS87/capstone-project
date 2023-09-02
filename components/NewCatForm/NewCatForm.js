@@ -344,7 +344,7 @@ const StyledButton = styled.button`
   margin: 0 auto;
   background-color: #f0caa3;
   color: #413f42;
-  font-size: 15px;
+  font-size: 20px;
 `;
 
 const StyledSaveButton = styled.button`
