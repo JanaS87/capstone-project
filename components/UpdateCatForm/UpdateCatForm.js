@@ -321,7 +321,6 @@ const StyledButton = styled.button`
 
 const StyledSaveButton = styled.button`
   text-align: center;
-  margin: 0 auto;
   background-color: #f0caa3;
   color: #413f42;
   font-size: 20px;
@@ -355,4 +354,6 @@ const StyledRemoveFoodButton = styled.button`
 const StyledButtonContainer = styled.div`
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
+  max-width: 100%;
 `;
