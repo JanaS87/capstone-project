@@ -13,4 +13,8 @@ const StyledLink = styled(Link)`
   cursor: pointer;
   text-decoration: none;
   color: #1d5d9b;
+  &:hover,
+  :active {
+    font-size: 110%;
+  }
 `;

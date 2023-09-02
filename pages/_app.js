@@ -10,6 +10,7 @@ import { ToastContainer } from "react-toastify";
 
 export default function App({ Component, pageProps }) {
   const router = useRouter();
+  const { id } = router.query;
 
   const [catList, setCatList] = useLocalStorageState("cats", {
     defaultValue: cats,
@@ -20,6 +21,9 @@ export default function App({ Component, pageProps }) {
   const [searchTerm, setSearchTerm] = useState("");
   const [isEditingGoodCat, setIsEditingGoodCat] = useState(false);
   const [isEditingBadCat, setIsEditingBadCat] = useState(false);
+
+  const cat = catList.find((cat) => cat.id.toString() === id);
+  console.log("cat", cat);
 
   function handleAddCat(newCat) {
     // update catList with new cat
@@ -96,12 +100,12 @@ export default function App({ Component, pageProps }) {
 
   function forbiddenFoodForCat(food, cat) {
     const catAllergy = food.ingredients.some((ingredient) =>
-      cat.health.allergies.includes(ingredient.toLowerCase())
+      cat?.health.allergies.includes(ingredient.toLowerCase())
     );
     const catIntolerance = food.ingredients.some((ingredient) =>
-      cat.health.intolerances.includes(ingredient.toLowerCase())
+      cat?.health.intolerances.includes(ingredient.toLowerCase())
     );
-    const catDisease = cat.health.diseases.some((disease) =>
+    const catDisease = cat?.health.diseases.some((disease) =>
       food.analyticalConstituents.some((constituent) => {
         const constituentName = constituent
           .split(" ")[0]
@@ -147,11 +151,12 @@ export default function App({ Component, pageProps }) {
         handleUpdateFood={handleUpdateFood}
         handleRemoveGoodCat={handleRemoveGoodCat}
         handleRemoveBadCat={handleRemoveBadCat}
-        isEditingGood={isEditingGoodCat}
-        setIsEditingGood={setIsEditingGoodCat}
-        isEditingBad={isEditingBadCat}
-        setIsEditingBad={setIsEditingBadCat}
+        isEditingGoodCat={isEditingGoodCat}
+        setIsEditingGoodCat={setIsEditingGoodCat}
+        isEditingBadCat={isEditingBadCat}
+        setIsEditingBadCat={setIsEditingBadCat}
         forbiddenFoodForCat={forbiddenFoodForCat}
+        cat={cat}
       />
     </>
   );

@@ -1,7 +1,6 @@
 import { useRouter } from "next/router";
 import styled from "styled-components";
 import Link from "next/link";
-import { useEffect, useState } from "react";
 import EditGoodFoodForm from "@/components/EditFoodForm/EditGoodFoodForm";
 import EditBadFoodForm from "@/components/EditFoodForm/EditBadFoodForm";
 
@@ -17,6 +16,7 @@ export default function FoodDetailsPage({
   setIsEditingGoodCat,
   isEditingBadCat,
   setIsEditingBadCat,
+  cat,
 }) {
   const router = useRouter();
   const { id } = router.query;
@@ -113,7 +113,7 @@ export default function FoodDetailsPage({
                   onRemoveGoodCat={handleRemoveGoodCat}
                   catList={catList}
                   setCatList={setCatList}
-                  setIsEditingGood={setIsEditingGood}
+                  setIsEditingGoodCat={setIsEditingGoodCat}
                 />
                 <StyledList>
                   {filteredCatLikes.length > 0 ? (
@@ -164,7 +164,7 @@ export default function FoodDetailsPage({
                   onRemoveBadCat={handleRemoveBadCat}
                   catList={catList}
                   setCatList={setCatList}
-                  setIsEditingBad={setIsEditingBad}
+                  setIsEditingBadCat={setIsEditingBadCat}
                 />
 
                 <StyledList>
