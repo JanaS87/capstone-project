@@ -8,7 +8,6 @@ const allergies = ["Eggs", "Pollen", "Dust Mites", "Mold Spores", "Flea Bite"];
 const diseases = [
   "Feline Rhinitis",
   "Feline Epidemic",
-  "Ectoparasites (flea, ticks, ear mites)",
   "Endoparasites (worms)",
   "CNI (chronic renal insufficiency)",
   "Diabetes",
@@ -267,7 +266,6 @@ export default function UpdateCatForm({ onEditCat, onDeleteCat, cat }) {
 // Styling Section
 const StyledInputGroup = styled.div`
   display: flex;
-  background-color: white;
   gap: 0.8rem;
 
   label {
@@ -287,13 +285,9 @@ const StyledForm = styled.form`
   box-shadow: 0px 1px 5px -2px #ff6d60;
   border-radius: 10px/20px;
   font-size: 1.3em;
-  background-color: white;
   gap: 1rem;
-
-  label,
-  input {
-    background-color: white;
-  }
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(2px);
 `;
 
 const StyledCheckBoxWrapper = styled.article`
@@ -319,17 +313,17 @@ const StyledLastBox = styled.article`
 const StyledButton = styled.button`
   text-align: center;
   margin: 0 auto;
-  background-color: #1d5d9b;
-  color: white;
-  font-size: 15px;
+  background-color: #f0caa3;
+  color: #413f42;
+  font-size: 20px;
   cursor: pointer;
 `;
 
 const StyledSaveButton = styled.button`
   text-align: center;
   margin: 0 auto;
-  background-color: #1d5d9b;
-  color: white;
+  background-color: #f0caa3;
+  color: #413f42;
   font-size: 20px;
   cursor: pointer;
 `;
