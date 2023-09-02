@@ -113,12 +113,10 @@ const StyledWrapper = styled.div`
 
   span {
     margin-left: 0.5rem;
-    background-color: white;
   }
 
   strong,
   div {
-    background-color: white;
   }
 `;
 
@@ -129,11 +127,8 @@ const StyledSection = styled.section`
   box-shadow: 0px 1px 5px -2px #ff6d60;
   border-radius: 10px/20px;
   font-size: 1.3em;
-  background-color: white;
-
   h4,
   p {
-    background-color: white;
     margin: 0.8rem 0.4rem;
   }
 `;
@@ -168,14 +163,4 @@ const StyledContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-`;
-
-const StyledFoodItem = styled.li`
-  max-width: 50%;
-  padding: 0.2rem 0.6rem;
-  box-shadow: 0px 1px 5px -2px #ff6d60;
-  border-radius: 10px/20px;
-  font-size: 0.8em;
-  background-color: white;
-  list-style: none;
 `;

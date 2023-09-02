@@ -25,6 +25,10 @@ export default function CatFoodSearch({ searchTerm, handleSearchTermChange }) {
 
 const StyledHeading = styled.h1`
   margin-left: 5%;
+  text-align: center;
+  color: white;
+  letter-spacing: 2.5px;
+  text-shadow: 2px 2px 10px #f0caa3;
 `;
 
 const StyledWrapper = styled.div`
