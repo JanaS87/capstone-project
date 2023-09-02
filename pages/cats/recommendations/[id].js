@@ -93,11 +93,13 @@ const StyledWrapper = styled.div`
 `;
 
 const StyledGoodFood = styled.h2`
-  color: green;
+  color: #a2ff86;
+  text-shadow: 2px 2px 8px black;
   margin-left: 5%;
 `;
 
 const StyledBadFood = styled.h2`
-  color: red;
-  margin-left: 5%;
+  color: #ff5d6e;
+  text-shadow: 2px 2px 4px black;
+  margin-left: 2.4%;
 `;
