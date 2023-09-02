@@ -26,6 +26,8 @@ export default createGlobalStyle`
     background-image: url("capp_background2.png");
     background-repeat: no-repeat;
     background-size: cover;
+    background-color: #D9D9D9;
+    background-attachment: fixed;
   }
 
 

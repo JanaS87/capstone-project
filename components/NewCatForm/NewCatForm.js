@@ -10,7 +10,6 @@ const allergies = ["Eggs", "Pollen", "Dust Mites", "Mold Spores", "Flea Bite"];
 const diseases = [
   "Feline Rhinitis",
   "Feline Epidemic",
-  "Ectoparasites (flea, ticks, ear mites)",
   "Endoparasites (worms)",
   "CNI (chronic renal insufficiency)",
   "Diabetes",
@@ -232,8 +231,8 @@ export default function NewCatForm({ onAddCat }) {
           Add
         </StyledButton>
       </StyledInputGroup>
-      <div>
-        <ul>
+      <StyledContainer>
+        <StyledList>
           {addedGoodFood.map((foodId) => {
             // help from a friend
             const food = catfoods.find((food) => food.id === foodId);
@@ -246,8 +245,8 @@ export default function NewCatForm({ onAddCat }) {
             }
             return null;
           })}
-        </ul>
-      </div>
+        </StyledList>
+      </StyledContainer>
 
       <label htmlFor="badFood-select">Bad Acceptance: </label>
       <StyledInputGroup>
@@ -268,8 +267,8 @@ export default function NewCatForm({ onAddCat }) {
           Add
         </StyledButton>
       </StyledInputGroup>
-      <div>
-        <ul>
+      <StyledContainer>
+        <StyledList>
           {addedBadFood.map((foodId) => {
             // help from a friend
             const food = catfoods.find((food) => food.id === foodId);
@@ -282,8 +281,8 @@ export default function NewCatForm({ onAddCat }) {
             }
             return null;
           })}
-        </ul>
-      </div>
+        </StyledList>
+      </StyledContainer>
       <StyledSaveButton type="submit">Add Cat</StyledSaveButton>
     </StyledForm>
   );
@@ -296,7 +295,6 @@ const AgeInput = styled.input`
 
 const StyledInputGroup = styled.div`
   display: flex;
-  background-color: white;
   gap: 0.8rem;
 
   label {
@@ -316,13 +314,9 @@ const StyledForm = styled.form`
   box-shadow: 0px 1px 5px -2px #ff6d60;
   border-radius: 10px/20px;
   font-size: 1.3em;
-  background-color: white;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(1px);
   gap: 1rem;
-
-  label,
-  input {
-    background-color: white;
-  }
 `;
 
 const StyledCheckBoxWrapper = styled.article`
@@ -348,19 +342,32 @@ const StyledLastBox = styled.article`
 const StyledButton = styled.button`
   text-align: center;
   margin: 0 auto;
-  background-color: #1d5d9b;
-  color: white;
+  background-color: #f0caa3;
+  color: #413f42;
   font-size: 15px;
 `;
 
 const StyledSaveButton = styled.button`
   text-align: center;
   margin: 0 auto;
-  background-color: #1d5d9b;
-  color: white;
+  background-color: #f0caa3;
+  color: #413f42;
   font-size: 20px;
 `;
 
 const StyledListItem = styled.li`
   list-style: none;
+  background: transparent;
+`;
+
+const StyledContainer = styled.div`
+  background: transparent;
+  backdrop-filter: blur(1px);
+  list-style: none;
+  text-decoration: none;
+`;
+
+const StyledList = styled.ul`
+  background: transparent;
+  backdrop-filter: blur(1px);
 `;

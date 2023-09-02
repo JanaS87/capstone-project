@@ -126,7 +126,6 @@ export default function App({ Component, pageProps }) {
       "natrium",
     ],
     "Feline Epidemic": [],
-    "Ectoparasites (flea, ticks, ear mites)": [],
     "Endoparasites (worms)": [],
     Diabetes: ["sugar", "carbohydrates"],
   };
