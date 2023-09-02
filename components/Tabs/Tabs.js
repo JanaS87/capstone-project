@@ -73,7 +73,8 @@ const StyledContainer = styled.div`
 `;
 
 const StyledNavText = styled.span`
-  font-size: 0.8em;
+  font-size: 1em;
+  color: #f0caa3;
 `;
 
 const StyledLink = styled(Link)`

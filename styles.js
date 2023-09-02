@@ -10,8 +10,8 @@ export default createGlobalStyle`
 :root {
   --navbar-icon-active: #EEB76B;
   --navbar-icon-inactive: #D2E9E9;
-  --tab-icon-active: #FF6000;
-  --tab-icon-inactive: black;
+  --tab-icon-active: #D89216;
+  --tab-icon-inactive: #7f8487;
 
 }
 
