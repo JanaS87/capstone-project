@@ -58,8 +58,7 @@ const StyledContainer = styled.div`
   font-size: 1.5em;
   background-color: #413f42;
   opacity: 0.9;
-  height: 7.1%;
-  overflow: hidden;
+  height: 60px;
 `;
 
 const StyledLink = styled(Link)`

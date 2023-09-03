@@ -141,6 +141,9 @@ const StyledLink = styled(Link)`
   border: 2px solid #f0caa3;
   border-radius: 3px;
   text-decoration: none;
+  margin-top: 3%;
+  margin-left: 3%;
+  text-align: center;
 
   &:hover {
     background-color: #f0caa3;
@@ -167,7 +170,8 @@ const StyledListItem = styled.li`
 
 const StyledLinkContainer = styled.div`
   max-width: 90%;
-  margin: 0 1em;
+  margin-left: 4%;
+  margin: -6% 4% 0 4%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;

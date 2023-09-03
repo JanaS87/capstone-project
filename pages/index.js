@@ -6,9 +6,11 @@ import { styled } from "styled-components";
 export default function HomePage({ catList }) {
   return (
     <>
-      <StyledHeading>Your Cats</StyledHeading>
-      <StyledLink href={"/addcat"}>Add New Cat</StyledLink>
-      <CatList catList={catList} />
+      <StyledContainer>
+        <StyledHeading>Your Cats</StyledHeading>
+        <StyledLink href={"/addcat"}>Add New Cat</StyledLink>
+        <CatList catList={catList} />
+      </StyledContainer>
       <Navigation />
     </>
   );
@@ -33,4 +35,8 @@ const StyledLink = styled(Link)`
   border: 2px solid #f0caa3;
   border-radius: 3px;
   text-decoration: none;
+`;
+
+const StyledContainer = styled.div`
+  padding-bottom: 60px;
 `;
