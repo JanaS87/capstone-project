@@ -56,15 +56,21 @@ const StyledHeading2 = styled.h2`
 `;
 
 const StyledLink = styled(Link)`
-  max-width: 20%;
+  max-width: 25%;
   background: transparent;
   backdrop-filter: blur(2px);
   color: #f0caa3;
-  font-size: 1em;
-  margin: 1em;
+  font-size: 1.3em;
   padding: 0.25em 1em;
   border: 2px solid #f0caa3;
   border-radius: 3px;
   text-decoration: none;
+  margin-top: 3%;
+  margin-left: 3%;
   text-align: center;
+
+  &:hover {
+    background-color: #f0caa3;
+    color: black;
+  }
 `;
