@@ -28,11 +28,9 @@ const StyledList = styled.ul`
 const ListItem = styled.li`
   max-width: 75%;
   padding: 0.2rem 0.6rem;
-  box-shadow: 0px 1px 5px -2px #ff6d60;
+  box-shadow: 0px 1px 5px -2px #7f8487;
   border-radius: 10px/20px;
   font-size: 0.8em;
-  background-color: white;
-  h3 {
-    background-color: white;
-  }
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(2px);
 `;

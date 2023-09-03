@@ -56,8 +56,9 @@ const StyledContainer = styled.div`
   z-index: 9999;
   box-shadow: 0 -1px 10px rgba(0, 0, 0, 0.1);
   font-size: 1.5em;
-  background-color: #1d5d9b;
-  height: 8.5%;
+  background-color: #413f42;
+  opacity: 0.9;
+  height: 60px;
 `;
 
 const StyledLink = styled(Link)`
@@ -71,8 +72,8 @@ const StyledNavItem = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  overflow: hidden;
-  margin: 0 15px; // Space out the items if needed
+
+  margin: 4px 40px;
 
   svg {
     font-size: 1.2em;

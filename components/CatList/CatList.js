@@ -25,8 +25,9 @@ const ListItem = styled.li`
   max-width: 65%;
   height: 60px;
   padding: 0.1rem 2rem;
-  box-shadow: 0px 1px 5px -2px #ff6d60;
+  box-shadow: 0px 1px 5px -2px #7f8487;
   border-radius: 10px/20px;
   font-size: 1em;
-  background-color: white;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(2px);
 `;

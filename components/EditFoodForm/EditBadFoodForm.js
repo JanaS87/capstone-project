@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { styled } from "styled-components";
 
 export default function EditBadFoodForm({
   onEditBadFood,
@@ -62,23 +63,47 @@ export default function EditBadFoodForm({
   return (
     <>
       <form onSubmit={handleSubmit}>
-        <select
-          id="bad-acceptance-select"
-          name="bad-acceptance-select"
-          onChange={(event) => setSelectedBadCat(event.target.value)}
-        >
-          <option value={""}>-- Please choose a cat --</option>
-          {catList.map((cat) => (
-            <option key={cat.id} value={cat.id}>
-              {cat.name}
-            </option>
-          ))}
-        </select>
-        <button type="button" onClick={handleAddBadCat}>
-          Add
-        </button>
-        <button type="submit">Save</button>
+        <StyledInputGroup>
+          <StyledSelect
+            id="bad-acceptance-select"
+            name="bad-acceptance-select"
+            onChange={(event) => setSelectedBadCat(event.target.value)}
+          >
+            <StyledOptions value={""}>-- Please choose a cat --</StyledOptions>
+            {catList.map((cat) => (
+              <StyledOptions key={cat.id} value={cat.id}>
+                {cat.name}
+              </StyledOptions>
+            ))}
+          </StyledSelect>
+          <StyledButton type="button" onClick={handleAddBadCat}>
+            Add
+          </StyledButton>
+          <StyledButton type="submit">Save</StyledButton>
+        </StyledInputGroup>
       </form>
     </>
   );
 }
+
+const StyledInputGroup = styled.div`
+  display: flex;
+  gap: 0.8rem;
+`;
+
+const StyledSelect = styled.select`
+  font-size: 1rem;
+`;
+
+const StyledOptions = styled.option`
+  font-size: 1rem;
+`;
+
+const StyledButton = styled.button`
+  text-align: center;
+  margin: 0 auto;
+  background-color: #f0caa3;
+  color: #413f42;
+  font-size: 20px;
+  cursor: pointer;
+`;

@@ -96,8 +96,9 @@ export default function FoodDetailsPage({
             <p>{food.type}</p>
           </div>
         </StyledGrid>
-        <StyledGrid>
-          <div>
+
+        <StyledAcceptanceSection>
+          <StyledAcceptanceContainer>
             <StyledContainer>
               <h3>Good Acceptance: </h3>
               <StyledButton type="button" onClick={handleEditGoodCat}>
@@ -119,14 +120,14 @@ export default function FoodDetailsPage({
                   {filteredCatLikes.length > 0 ? (
                     filteredCatLikes.map((catLike) => (
                       <StyledItem key={catLike.id}>
-                        <button
+                        <StyledRemoveButton
                           type="button"
                           onClick={() =>
                             handleRemoveGoodCat(catLike.id, food.id)
                           }
                         >
                           X
-                        </button>
+                        </StyledRemoveButton>
                         {catLike.name}
                       </StyledItem>
                     ))
@@ -148,8 +149,9 @@ export default function FoodDetailsPage({
                 )}
               </StyledList>
             )}
-          </div>
-          <div>
+          </StyledAcceptanceContainer>
+
+          <StyledAcceptanceContainer>
             <StyledContainer>
               <h3>Bad Acceptance: </h3>
               <StyledButton type="button" onClick={handleEditBadCat}>
@@ -171,14 +173,14 @@ export default function FoodDetailsPage({
                   {filteredCatDislikes.length > 0 ? (
                     filteredCatDislikes.map((dislike) => (
                       <StyledItem key={dislike.id}>
-                        <button
+                        <StyledRemoveButton
                           type="button"
                           onClick={() =>
                             handleRemoveBadCat(dislike.id, food.id)
                           }
                         >
                           X
-                        </button>
+                        </StyledRemoveButton>
                         {dislike.name}
                       </StyledItem>
                     ))
@@ -198,8 +200,8 @@ export default function FoodDetailsPage({
                 )}
               </StyledList>
             )}
-          </div>
-        </StyledGrid>
+          </StyledAcceptanceContainer>
+        </StyledAcceptanceSection>
       </StyledSection>
       <StyledLink href="#" onClick={goBack}>
         Back
@@ -215,13 +217,14 @@ const StyledSection = styled.section`
   display: flex;
   flex-direction: column;
   padding: 1.2rem 1.3rem;
-  box-shadow: 0px 1px 5px -2px #ff6d60;
+  box-shadow: 0px 1px 5px -2px #7f8487;
   border-radius: 10px/20px;
-  background-color: white;
-  max-width: 93%;
+  max-width: 95%;
   list-style-type: none;
   margin-bottom: 1.3rem;
-  margin-left: 1rem;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(1px);
 `;
 const StyledGrid = styled.div`
   display: grid;
@@ -237,41 +240,78 @@ const StyledList = styled.ul`
 const StyledItem = styled.li`
   list-style: none;
   margin-left: 0;
+  margin-bottom: 2%;
+  margin-top: 3%;
 `;
 
 const StyledLink = styled(Link)`
-  background: white;
-  color: red;
-  font-size: 1em;
-  margin: 1em;
+  max-width: 25%;
+  background: transparent;
+  backdrop-filter: blur(2px);
+  color: #f0caa3;
+  font-size: 1.3em;
   padding: 0.25em 1em;
-  border: 2px solid red;
+  border: 2px solid #f0caa3;
   border-radius: 3px;
-  cursor: pointer;
   text-decoration: none;
-  max-width: 20%;
+  margin-top: 3%;
+  margin-left: 3%;
+  text-align: center;
+
   &:hover {
-    background-color: #f86f03;
-    color: white;
+    background-color: #f0caa3;
+    color: black;
   }
 `;
 
 const StyledHeading = styled.h1`
-  margin-left: 5%;
+  text-align: center;
+  color: white;
+  letter-spacing: 2.5px;
+  text-shadow: 2px 2px 10px #f0caa3;
   margin-bottom: 0;
 `;
 
 const StyledHeading2 = styled.h2`
-  margin-left: 5%;
+  color: white;
+  font-size: 1.3rem;
+  letter-spacing: 2.5px;
+  text-shadow: 2px 2px 10px #f0caa3;
   margin-top: 2%;
+  text-align: center;
 `;
 
 const StyledButton = styled.button`
-  margin-left: auto;
-  margin-right: 1rem;
+  text-align: center;
+  margin-top: 23%;
+  margin-left: 3.5%;
+  background-color: #f0caa3;
+  color: #413f42;
+  font-size: 20px;
+  height: 30px;
 `;
 
 const StyledContainer = styled.div`
   display: flex;
   flex-direction: row;
+  max-width: 80%;
+`;
+
+const StyledAcceptanceSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  max-width: 80%;
+  justify-content: flex-start;
+`;
+
+const StyledAcceptanceContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  max-width: 80%;
+  margin: 0 auto;
+  margin-left: 0;
+`;
+
+const StyledRemoveButton = styled.button`
+  margin-right: 3%;
 `;

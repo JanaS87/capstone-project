@@ -8,14 +8,15 @@ export default createGlobalStyle`
   }
 
 :root {
-  --navbar-icon-active: #F86F03;
+  --navbar-icon-active: #EEB76B;
   --navbar-icon-inactive: #D2E9E9;
-  --tab-icon-active: #FF6000;
-  --tab-icon-inactive: black;
+  --tab-icon-active: #D89216;
+  --tab-icon-inactive: #7f8487;
 
 }
 
 
+// every image created with playground.AI
 
   html, body, #__next {
     height: 100%;
@@ -23,6 +24,11 @@ export default createGlobalStyle`
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     display: flex;
     flex-direction: column;
+    background-image: url("/capp_background2.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: #D9D9D9;
+    background-attachment: fixed;
   }
 
 

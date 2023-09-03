@@ -64,12 +64,14 @@ export default function RecommendPage({
 const StyledFoodItem = styled.li`
   max-width: 95%;
   padding: 0.1rem 0.8rem;
-  box-shadow: 0px 1px 5px -2px #ff6d60;
+  box-shadow: 0px 1px 5px -2px #7f8487;
   border-radius: 10px/20px;
   font-size: 0.8em;
   background-color: white;
   list-style: none;
   margin-bottom: 1em;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(2px);
 `;
 
 const StyledList = styled.ul`
@@ -78,7 +80,10 @@ const StyledList = styled.ul`
 `;
 
 const StyledHead = styled.h1`
-  margin-left: 5%;
+  text-align: center;
+  color: white;
+  letter-spacing: 2.5px;
+  text-shadow: 2px 2px 10px #f0caa3;
 `;
 
 const StyledWrapper = styled.div`
@@ -88,11 +93,13 @@ const StyledWrapper = styled.div`
 `;
 
 const StyledGoodFood = styled.h2`
-  color: green;
+  color: #a2ff86;
+  text-shadow: 2px 2px 8px black;
   margin-left: 5%;
 `;
 
 const StyledBadFood = styled.h2`
-  color: red;
-  margin-left: 5%;
+  color: #ff5d6e;
+  text-shadow: 2px 2px 4px black;
+  margin-left: 2.4%;
 `;

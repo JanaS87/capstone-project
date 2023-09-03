@@ -29,8 +29,8 @@ export default function UpdateCat({
   return (
     <>
       <div>
-        <h1>{cat.name}</h1>
-        <h2>What would you like to change?</h2>
+        <StyledHeading1>{cat.name}</StyledHeading1>
+        <StyledHeading2>What would you like to change?</StyledHeading2>
       </div>
       <UpdateCatForm
         onEditCat={handleUpdateCat}
@@ -42,13 +42,35 @@ export default function UpdateCat({
   );
 }
 
+const StyledHeading1 = styled.h1`
+  text-align: center;
+  color: white;
+  letter-spacing: 2.5px;
+  text-shadow: 2px 2px 10px #f0caa3;
+`;
+
+const StyledHeading2 = styled.h2`
+  color: white;
+  letter-spacing: 2.5px;
+  text-shadow: 2px 2px 10px #f0caa3;
+`;
+
 const StyledLink = styled(Link)`
-  max-width: 20%;
-  background: white;
-  color: red;
-  font-size: 1em;
-  margin: 1em;
+  max-width: 25%;
+  background: transparent;
+  backdrop-filter: blur(2px);
+  color: #f0caa3;
+  font-size: 1.3em;
   padding: 0.25em 1em;
-  border: 2px solid red;
+  border: 2px solid #f0caa3;
   border-radius: 3px;
+  text-decoration: none;
+  margin-top: 3%;
+  margin-left: 3%;
+  text-align: center;
+
+  &:hover {
+    background-color: #f0caa3;
+    color: black;
+  }
 `;

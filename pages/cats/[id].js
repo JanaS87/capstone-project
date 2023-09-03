@@ -40,142 +40,146 @@ export default function CatDetailPage({
 
   return (
     <>
-      <div>
-        <StyledHead>{cat.name}</StyledHead>
+      <StyledHead>{cat.name}</StyledHead>
+      <StyledTabContainer>
         <Tabs cat={cat} id={id} />
-      </div>
+      </StyledTabContainer>
       <StyledWrapper>
-        <StyledSection>
-          <p>
-            <strong>Age:</strong> <span>{cat.age}</span>
-          </p>
-          <h4>Allergies, Diseases, Intolerances:</h4>
-          <div>
-            <StyledList>
-              <p>Allergies: </p>
-              {cat.health.allergies.map((allergy, index) => (
-                <StyledItem key={index}>{allergy}</StyledItem>
-              ))}
-            </StyledList>
+        <p>
+          <strong>Age:</strong> <span>{cat.age}</span>
+        </p>
+        <h4>Allergies, Diseases, Intolerances:</h4>
+        <StyledContainer>
+          <StyledList>
+            <p>Allergies: </p>
+            {cat.health.allergies.map((allergy, index) => (
+              <StyledItem key={index}>{allergy}</StyledItem>
+            ))}
+          </StyledList>
 
-            <ul>
-              <p>Diseases: </p>
-              {cat.health.diseases.map((disease, index) => (
-                <StyledItem key={index}>{disease}</StyledItem>
-              ))}
-            </ul>
-            <ul>
-              <p>Intolerances:</p>
-              {cat.health.intolerances.map((intolerance, index) => (
-                <StyledItem key={index}>{intolerance}</StyledItem>
-              ))}
-            </ul>
-          </div>
+          <StyledList>
+            <p>Diseases: </p>
+            {cat.health.diseases.map((disease, index) => (
+              <StyledItem key={index}>{disease}</StyledItem>
+            ))}
+          </StyledList>
+          <StyledList>
+            <p>Intolerances: </p>
+            {cat.health.intolerances.map((intolerance, index) => (
+              <StyledItem key={index}>{intolerance}</StyledItem>
+            ))}
+          </StyledList>
+        </StyledContainer>
+
+        <StyledContainer>
           <h4>Good Acceptance: </h4>
-          <div>
-            <ul>
-              {filteredGoodFood.map((food) => (
-                <StyledListItem key={food.id}>
-                  {food.brand} - {food.variety}
-                </StyledListItem>
-              ))}
-            </ul>
-          </div>
+          <ul>
+            {filteredGoodFood.map((food) => (
+              <StyledListItem key={food.id}>
+                {food.brand} - {food.variety}
+              </StyledListItem>
+            ))}
+          </ul>
+        </StyledContainer>
+        <StyledContainer>
           <h4>Bad Acceptance: </h4>
-          <div>
-            <ul>
-              {filteredBadFood.map((food) => (
-                <StyledListItem key={food.id}>
-                  {food.brand} - {food.variety}
-                </StyledListItem>
-              ))}
-            </ul>
-          </div>
-        </StyledSection>
+          <ul>
+            {filteredBadFood.map((food) => (
+              <StyledListItem key={food.id}>
+                {food.brand} - {food.variety}
+              </StyledListItem>
+            ))}
+          </ul>
+        </StyledContainer>
       </StyledWrapper>
-      <StyledContainer>
+      <StyledLinkContainer>
         <StyledLink href={"/"}>Back</StyledLink>
         <StyledLink href={`/updatecat/${cat.id}`}>Edit</StyledLink>
-      </StyledContainer>
+      </StyledLinkContainer>
     </>
   );
 }
 
 const StyledHead = styled.h1`
-  margin-left: 5%;
+  text-align: center;
+  color: white;
+  letter-spacing: 2.5px;
+  text-shadow: 2px 2px 10px #f0caa3;
 `;
 
 const StyledWrapper = styled.div`
-  max-width: 85%;
-  margin: 0 1em;
-  list-style-type: none;
-  margin-bottom: 1.3rem;
-
-  span {
-    margin-left: 0.5rem;
-    background-color: white;
-  }
-
-  strong,
-  div {
-    background-color: white;
-  }
-`;
-
-const StyledSection = styled.section`
   display: flex;
   flex-direction: column;
   padding: 1.2rem 1.3rem;
-  box-shadow: 0px 1px 5px -2px #ff6d60;
+  max-width: 90%;
+  margin: 0 1em;
+  list-style-type: none;
+  margin-bottom: 1.3rem;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(2px);
+  box-shadow: 0px 1px 5px -2px #7f8487;
   border-radius: 10px/20px;
-  font-size: 1.3em;
-  background-color: white;
+  font-size: 1.2em;
 
-  h4,
+  h4 {
+    margin-left: 0.5rem;
+  }
+
+  span,
   p {
-    background-color: white;
-    margin: 0.8rem 0.4rem;
+    margin-left: 0.5rem;
   }
 `;
 
 const StyledLink = styled(Link)`
   max-width: 25%;
-  background: white;
-  color: red;
-  font-size: 1em;
-  margin: 1em;
+  background: transparent;
+  backdrop-filter: blur(2px);
+  color: #f0caa3;
+  font-size: 1.3em;
   padding: 0.25em 1em;
-  border: 2px solid red;
+  border: 2px solid #f0caa3;
   border-radius: 3px;
+  text-decoration: none;
+  margin-top: 3%;
+  margin-left: 3%;
+  text-align: center;
+
+  &:hover {
+    background-color: #f0caa3;
+    color: black;
+  }
 `;
 
 const StyledList = styled.ul`
-  display: flex;
-  flex-direction: column;
+  p {
+    text-decoration: underline;
+  }
 `;
 
 const StyledItem = styled.li`
   list-style: none;
   margin-left: 10%;
+  text-decoration: none;
 `;
 
 const StyledListItem = styled.li`
   list-style: none;
+  margin-bottom: 8%;
 `;
 
-const StyledContainer = styled.div`
-  max-width: 80%;
+const StyledLinkContainer = styled.div`
+  max-width: 90%;
+  margin-left: 4%;
+  margin: -6% 4% 0 4%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 `;
 
-const StyledFoodItem = styled.li`
-  max-width: 50%;
-  padding: 0.2rem 0.6rem;
-  box-shadow: 0px 1px 5px -2px #ff6d60;
-  border-radius: 10px/20px;
-  font-size: 0.8em;
-  background-color: white;
-  list-style: none;
+const StyledContainer = styled.div``;
+
+const StyledTabContainer = styled.div`
+  align-self: center;
+  margin-left: 1.5%;
 `;
