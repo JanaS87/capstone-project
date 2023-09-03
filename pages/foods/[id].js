@@ -96,8 +96,9 @@ export default function FoodDetailsPage({
             <p>{food.type}</p>
           </div>
         </StyledGrid>
-        <StyledGrid>
-          <div>
+
+        <StyledAcceptanceSection>
+          <StyledAcceptanceContainer>
             <StyledContainer>
               <h3>Good Acceptance: </h3>
               <StyledButton type="button" onClick={handleEditGoodCat}>
@@ -148,8 +149,9 @@ export default function FoodDetailsPage({
                 )}
               </StyledList>
             )}
-          </div>
-          <div>
+          </StyledAcceptanceContainer>
+
+          <StyledAcceptanceContainer>
             <StyledContainer>
               <h3>Bad Acceptance: </h3>
               <StyledButton type="button" onClick={handleEditBadCat}>
@@ -198,8 +200,8 @@ export default function FoodDetailsPage({
                 )}
               </StyledList>
             )}
-          </div>
-        </StyledGrid>
+          </StyledAcceptanceContainer>
+        </StyledAcceptanceSection>
       </StyledSection>
       <StyledLink href="#" onClick={goBack}>
         Back
@@ -217,10 +219,10 @@ const StyledSection = styled.section`
   padding: 1.2rem 1.3rem;
   box-shadow: 0px 1px 5px -2px #7f8487;
   border-radius: 10px/20px;
-  max-width: 93%;
+  max-width: 95%;
   list-style-type: none;
   margin-bottom: 1.3rem;
-  margin-left: 1rem;
+  margin: 0 auto;
   background: rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(1px);
 `;
@@ -274,11 +276,32 @@ const StyledHeading2 = styled.h2`
 `;
 
 const StyledButton = styled.button`
-  margin-left: auto;
-  margin-right: 1rem;
+  text-align: center;
+  margin-top: 23%;
+  margin-left: 3.5%;
+  background-color: #f0caa3;
+  color: #413f42;
+  font-size: 20px;
+  height: 30px;
 `;
 
 const StyledContainer = styled.div`
   display: flex;
   flex-direction: row;
+  max-width: 80%;
+`;
+
+const StyledAcceptanceSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  max-width: 80%;
+  justify-content: flex-start;
+`;
+
+const StyledAcceptanceContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  max-width: 80%;
+  margin: 0 auto;
+  margin-left: 0;
 `;

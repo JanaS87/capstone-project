@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { styled } from "styled-components";
 
 export default function EditGoodFoodForm({
   onEditGoodFood,
@@ -61,18 +62,18 @@ export default function EditGoodFoodForm({
 
   return (
     <form onSubmit={handleSubmit}>
-      <select
+      <StyledSelect
         id="good-acceptance-select"
         name="good-acceptance-select"
         onChange={(event) => setSelectedGoodCat(event.target.value)}
       >
-        <option value={""}>-- Please choose a cat --</option>
+        <StyledOptions value={""}>-- Please choose a cat --</StyledOptions>
         {catList.map((cat) => (
-          <option key={cat.id} value={cat.id}>
+          <StyledOptions key={cat.id} value={cat.id}>
             {cat.name}
-          </option>
+          </StyledOptions>
         ))}
-      </select>
+      </StyledSelect>
       <button type="button" onClick={handleAddGoodCat}>
         Add
       </button>
@@ -80,3 +81,11 @@ export default function EditGoodFoodForm({
     </form>
   );
 }
+
+const StyledSelect = styled.select`
+  font-size: 1rem;
+`;
+
+const StyledOptions = styled.option`
+  font-size: 1rem;
+`;
