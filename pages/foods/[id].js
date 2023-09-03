@@ -120,14 +120,14 @@ export default function FoodDetailsPage({
                   {filteredCatLikes.length > 0 ? (
                     filteredCatLikes.map((catLike) => (
                       <StyledItem key={catLike.id}>
-                        <button
+                        <StyledRemoveButton
                           type="button"
                           onClick={() =>
                             handleRemoveGoodCat(catLike.id, food.id)
                           }
                         >
                           X
-                        </button>
+                        </StyledRemoveButton>
                         {catLike.name}
                       </StyledItem>
                     ))
@@ -173,14 +173,14 @@ export default function FoodDetailsPage({
                   {filteredCatDislikes.length > 0 ? (
                     filteredCatDislikes.map((dislike) => (
                       <StyledItem key={dislike.id}>
-                        <button
+                        <StyledRemoveButton
                           type="button"
                           onClick={() =>
                             handleRemoveBadCat(dislike.id, food.id)
                           }
                         >
                           X
-                        </button>
+                        </StyledRemoveButton>
                         {dislike.name}
                       </StyledItem>
                     ))
@@ -240,6 +240,8 @@ const StyledList = styled.ul`
 const StyledItem = styled.li`
   list-style: none;
   margin-left: 0;
+  margin-bottom: 2%;
+  margin-top: 3%;
 `;
 
 const StyledLink = styled(Link)`
@@ -304,4 +306,8 @@ const StyledAcceptanceContainer = styled.div`
   max-width: 80%;
   margin: 0 auto;
   margin-left: 0;
+`;
+
+const StyledRemoveButton = styled.button`
+  margin-right: 3%;
 `;
