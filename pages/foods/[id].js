@@ -245,20 +245,19 @@ const StyledItem = styled.li`
 `;
 
 const StyledLink = styled(Link)`
-  background: white;
-  color: red;
-  font-size: 1em;
-  margin: 1em;
-  padding: 0.25em 1em;
-  border: 2px solid red;
-  border-radius: 3px;
-  cursor: pointer;
-  text-decoration: none;
   max-width: 20%;
-  &:hover {
-    background-color: #f86f03;
-    color: white;
-  }
+  background: transparent;
+  backdrop-filter: blur(2px);
+  color: #f0caa3;
+  font-size: 1em;
+  margin-left: 3.5%;
+  margin-top: 2%;
+  padding: 0.25em 1em;
+  border: 2px solid #f0caa3;
+  border-radius: 3px;
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
 `;
 
 const StyledHeading = styled.h1`
@@ -275,6 +274,7 @@ const StyledHeading2 = styled.h2`
   letter-spacing: 2.5px;
   text-shadow: 2px 2px 10px #f0caa3;
   margin-top: 2%;
+  text-align: center;
 `;
 
 const StyledButton = styled.button`
