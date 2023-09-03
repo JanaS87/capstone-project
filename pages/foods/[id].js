@@ -215,13 +215,14 @@ const StyledSection = styled.section`
   display: flex;
   flex-direction: column;
   padding: 1.2rem 1.3rem;
-  box-shadow: 0px 1px 5px -2px #ff6d60;
+  box-shadow: 0px 1px 5px -2px #7f8487;
   border-radius: 10px/20px;
-  background-color: white;
   max-width: 93%;
   list-style-type: none;
   margin-bottom: 1.3rem;
   margin-left: 1rem;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(1px);
 `;
 const StyledGrid = styled.div`
   display: grid;
@@ -257,12 +258,18 @@ const StyledLink = styled(Link)`
 `;
 
 const StyledHeading = styled.h1`
-  margin-left: 5%;
+  text-align: center;
+  color: white;
+  letter-spacing: 2.5px;
+  text-shadow: 2px 2px 10px #f0caa3;
   margin-bottom: 0;
 `;
 
 const StyledHeading2 = styled.h2`
-  margin-left: 5%;
+  color: white;
+  font-size: 1.3rem;
+  letter-spacing: 2.5px;
+  text-shadow: 2px 2px 10px #f0caa3;
   margin-top: 2%;
 `;
 
