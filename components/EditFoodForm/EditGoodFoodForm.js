@@ -62,22 +62,24 @@ export default function EditGoodFoodForm({
 
   return (
     <form onSubmit={handleSubmit}>
-      <StyledSelect
-        id="good-acceptance-select"
-        name="good-acceptance-select"
-        onChange={(event) => setSelectedGoodCat(event.target.value)}
-      >
-        <StyledOptions value={""}>-- Please choose a cat --</StyledOptions>
-        {catList.map((cat) => (
-          <StyledOptions key={cat.id} value={cat.id}>
-            {cat.name}
-          </StyledOptions>
-        ))}
-      </StyledSelect>
-      <button type="button" onClick={handleAddGoodCat}>
-        Add
-      </button>
-      <button type="submit">Save</button>
+      <StyledInputGroup>
+        <StyledSelect
+          id="good-acceptance-select"
+          name="good-acceptance-select"
+          onChange={(event) => setSelectedGoodCat(event.target.value)}
+        >
+          <StyledOptions value={""}>-- Please choose a cat --</StyledOptions>
+          {catList.map((cat) => (
+            <StyledOptions key={cat.id} value={cat.id}>
+              {cat.name}
+            </StyledOptions>
+          ))}
+        </StyledSelect>
+        <StyledButton type="button" onClick={handleAddGoodCat}>
+          Add
+        </StyledButton>
+        <StyledButton type="submit">Save</StyledButton>
+      </StyledInputGroup>
     </form>
   );
 }
@@ -88,4 +90,18 @@ const StyledSelect = styled.select`
 
 const StyledOptions = styled.option`
   font-size: 1rem;
+`;
+
+const StyledInputGroup = styled.div`
+  display: flex;
+  gap: 0.8rem;
+`;
+
+const StyledButton = styled.button`
+  text-align: center;
+  margin: 0 auto;
+  background-color: #f0caa3;
+  color: #413f42;
+  font-size: 20px;
+  cursor: pointer;
 `;
