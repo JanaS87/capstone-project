@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import NewCatForm from "../components/NewCatForm/NewCatForm";
 import { cats } from "@/data/catdata";
 import Link from "next/link";
-import { styled } from "styled-components";
+import styled from "styled-components";
 
 export default function NewCatPage({ handleAddCat, forbiddenFoodForCat, cat }) {
   return (

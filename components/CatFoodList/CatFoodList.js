@@ -1,5 +1,5 @@
 import FoodCard from "../FoodCard/FoodCard.js";
-import { styled } from "styled-components";
+import styled from "styled-components";
 import { catfoods } from "@/data/catfooddata.js";
 
 export default function FoodList({ catfoods, searchTerm }) {

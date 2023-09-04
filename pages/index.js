@@ -1,7 +1,7 @@
 import CatList from "@/components/CatList/CatList";
 import Navigation from "@/components/Navigation/Navigation";
 import Link from "next/link";
-import { styled } from "styled-components";
+import styled from "styled-components";
 
 export default function HomePage({ catList }) {
   return (

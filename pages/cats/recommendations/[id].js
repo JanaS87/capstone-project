@@ -2,7 +2,7 @@ import FoodCard from "@/components/FoodCard/FoodCard";
 import Tabs from "@/components/Tabs/Tabs";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { styled } from "styled-components";
+import styled from "styled-components";
 
 export default function RecommendPage({
   catFoods,
