@@ -57,7 +57,7 @@ export default function Login() {
           />
         </StyledLogin>
         <div>
-          <StyledButton type="submit"></StyledButton>
+          <StyledButton type="submit">Login</StyledButton>
         </div>
       </StyledForm>
     </>
@@ -86,21 +86,21 @@ const StyledForm = styled.form`
 
 const StyledLabel = styled.label`
   text-shadow: 1px 1px 2px rgba(255, 255, 255, 1);
-  font-size: 18px;
+  font-size: 16px;
   display: block;
-  width: 80%;
+  width: 60%;
   margin: 4% auto;
   padding: 5px;
   margin-bottom: 1%;
   text-align: center;
-  background-color: rgba(255, 255, 255, 0.1); // Ein leichter weißer Hintergrund
+  background-color: rgba(255, 255, 255, 0.4); // Ein leichter weißer Hintergrund
   border-radius: 10px/20px;
   backdrop-filter: blur(2px);
 `;
 
 const StyledInput = styled.input`
   border-radius: 10px/20px;
-  max-width: 70%;
+  max-width: 50%;
   text-align: center;
   background-color: rgba(255, 255, 255, 0.32);
   margin: 5px auto;
@@ -109,23 +109,33 @@ const StyledInput = styled.input`
   outline: none;
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(2px);
-  font-size: 14px;
+  font-size: 18px;
 `;
 
 const StyledButton = styled.button`
-  background-image: url("/pawbutton2.png");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-color: transparent;
-  color: #f0caa3;
+  background: rgba(255, 255, 255, 0.32);
+  backdrop-filter: blur(2px);
   border: none;
-  width: 50px;
-  height: 50px;
+  border-radius: 10px/20px;
+  color: #333;
+  text-shadow: 1px 1px 2px rgba(255, 255, 255, 1);
+  font-size: 1rem;
+  padding: 10px 20px;
   cursor: pointer;
-  outline: none;
+  transition: all 0.3s ease;
+  margin-top: 7px;
+
   &:hover {
-    opacity: 0.9;
+    background: rgba(255, 255, 255, 0.9);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
   }
 `;
 
