@@ -47,7 +47,9 @@ export default function App({ Component, pageProps }) {
 
   // deleting an existing cat
   function handleDeleteCat(deleteCat) {
-    const catsWithoutDeletedCat = cats.filter((cat) => cat.id !== deleteCat.id);
+    const catsWithoutDeletedCat = catList.filter(
+      (cat) => cat.id !== deleteCat.id
+    );
 
     setCatList(catsWithoutDeletedCat);
 
