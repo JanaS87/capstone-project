@@ -12,7 +12,7 @@ export default function Login() {
   function handleLogin(event) {
     event.preventDefault();
 
-    const fakeUsername = "Jana";
+    const fakeUsername = "User";
     const fakePassword = "Test123";
 
     if (
@@ -36,7 +36,7 @@ export default function Login() {
           <StyledInput
             type="text"
             id="username"
-            placeholder="Jana"
+            placeholder="User"
             value={credentials.username}
             onChange={(event) =>
               setCredentials({ ...credentials, username: event.target.value })
