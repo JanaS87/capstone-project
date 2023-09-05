@@ -23,7 +23,6 @@ export default function App({ Component, pageProps }) {
   const [isEditingBadCat, setIsEditingBadCat] = useState(false);
 
   const cat = catList.find((cat) => cat.id.toString() === id);
-  console.log("cat", cat);
 
   function handleAddCat(newCat) {
     // update catList with new cat
@@ -54,7 +53,7 @@ export default function App({ Component, pageProps }) {
     setCatList(catsWithoutDeletedCat);
 
     toast.success("Cat successfully removed!");
-    router.push("/");
+    router.push("/overview");
   }
 
   // update food

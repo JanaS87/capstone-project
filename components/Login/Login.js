@@ -19,7 +19,7 @@ export default function Login() {
       credentials.username === fakeUsername &&
       credentials.password === fakePassword
     ) {
-      router.push("/");
+      router.push("/overview");
     } else {
       alert("Wrong username or password!");
     }

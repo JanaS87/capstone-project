@@ -24,8 +24,6 @@ export default function RecommendPage({
     return catFoods.filter((food) => forbiddenFoodForCat(food, cat));
   }
 
-  console.log("recommend cat", cat);
-
   const getRecommendedFood = filteredGoodFoodBasedOnHealthIssues(catFoods, cat);
   const getNotRecommendedFood = filteredBadFoodBasedOnHealthIssues(
     catFoods,

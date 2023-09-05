@@ -25,7 +25,7 @@ export default function CatDetailPage({
     return (
       <>
         <p>Cat not found</p>
-        <StyledLink href={"/"}>Back</StyledLink>
+        <StyledLink href={"/overview"}>Back</StyledLink>
       </>
     );
   }
@@ -93,7 +93,7 @@ export default function CatDetailPage({
         </StyledContainer>
       </StyledWrapper>
       <StyledLinkContainer>
-        <StyledLink href={"/"}>Back</StyledLink>
+        <StyledLink href={"/overview"}>Back</StyledLink>
         <StyledLink href={`/updatecat/${cat.id}`}>Edit</StyledLink>
       </StyledLinkContainer>
     </>

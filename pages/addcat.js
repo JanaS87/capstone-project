@@ -9,7 +9,7 @@ export default function NewCatPage({ handleAddCat, forbiddenFoodForCat, cat }) {
     <>
       <StyledHeading>Add a new cat</StyledHeading>
       <NewCatForm onAddCat={handleAddCat} />
-      <StyledLink href={"/"}>Back</StyledLink>
+      <StyledLink href={"/overview"}>Back</StyledLink>
     </>
   );
 }
