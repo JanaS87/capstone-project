@@ -27,9 +27,12 @@ export default function Login() {
 
   return (
     <>
+      <StyledH1>CAPP</StyledH1>
+      <StyledH2>Your cat food app</StyledH2>
+
       <StyledForm onSubmit={handleLogin}>
-        <StyledLoginName>
-          <label htmlFor="username">username</label>
+        <StyledLogin>
+          <StyledLabel htmlFor="username">username</StyledLabel>
           <StyledInput
             type="text"
             id="username"
@@ -39,10 +42,10 @@ export default function Login() {
               setCredentials({ ...credentials, username: event.target.value })
             }
           />
-        </StyledLoginName>
+        </StyledLogin>
 
-        <div>
-          <label htmlFor="">password</label>
+        <StyledLogin>
+          <StyledLabel htmlFor="">password</StyledLabel>
           <StyledInput
             type="password"
             id="password"
@@ -52,18 +55,20 @@ export default function Login() {
               setCredentials({ ...credentials, password: event.target.value })
             }
           />
+        </StyledLogin>
+        <div>
+          <StyledButton type="submit"></StyledButton>
         </div>
-        <StyledButton type="submit">login</StyledButton>
       </StyledForm>
     </>
   );
 }
 
-const StyledLoginName = styled.div`
+const StyledLogin = styled.div`
   display: flex;
   flex-direction: column;
   align-content: center;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
 `;
 
 const StyledForm = styled.form`
@@ -73,46 +78,74 @@ const StyledForm = styled.form`
   text-align: center;
   border-radius: 10px/20px;
   background: transparent;
-  backdrop-filter: blur(2px);
   position: absolute;
-  bottom: 20%;
+  bottom: 16.2%;
   left: 50%;
   transform: translateX(-50%);
 `;
 
+const StyledLabel = styled.label`
+  text-shadow: 1px 1px 2px rgba(255, 255, 255, 1);
+  font-size: 18px;
+  display: block;
+  width: 80%;
+  margin: 4% auto;
+  padding: 5px;
+  margin-bottom: 1%;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.1); // Ein leichter weißer Hintergrund
+  border-radius: 10px/20px;
+  backdrop-filter: blur(2px);
+`;
+
 const StyledInput = styled.input`
   border-radius: 10px/20px;
-  max-width: 100%;
+  max-width: 70%;
   text-align: center;
-  background-color: transparent;
-  margin: 5px 0;
-  color: white;
+  background-color: rgba(255, 255, 255, 0.32);
+  margin: 5px auto;
+  color: black;
   border: 1px solid rgba(0, 0, 0, 0.1);
   outline: none;
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(2px);
+  font-size: 14px;
 `;
 
 const StyledButton = styled.button`
-  background: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(2px);
+  background-image: url("/pawbutton2.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: transparent;
+  color: #f0caa3;
   border: none;
-  border-radius: 10px/20px;
-  color: #333;
-  font-size: 1rem;
-  padding: 10px 20px;
+  width: 50px;
+  height: 50px;
   cursor: pointer;
-  transition: all 0.3s ease;
-  margin-top: 10px;
+  outline: none;
   &:hover {
-    background: rgba(255, 255, 255, 0.9); // Etwas heller beim Hover
+    opacity: 0.9;
   }
+`;
 
-  &:active {
-    transform: scale(0.95); // Ein kleiner "Pressed"-Effekt beim Klicken
-  }
+const StyledH1 = styled.h1`
+  font-family: "Dancing Script", "Lucida Sans", "Lucida Sans Regular",
+    "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  font-size: 4rem;
+  text-align: center;
+  margin-bottom: 0;
+  color: white;
+  letter-spacing: 2.5px;
+  text-shadow: 2px 2px 10px #f0caa3;
+`;
 
-  &:focus {
-    outline: none; // Entfernt den Browser-Standard-Fokus-Rand
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); // Fügt einen sanften Schatten für den Fokus-Zustand hinzu
-  }
+const StyledH2 = styled.h2`
+  font-family: "Amaranth", italic;
+  margin-top: 0;
+  font-size: 2rem;
+  margin-right: 0.82em;
+  text-align: right;
+  color: #666;
+  text-shadow: 2px 2px 10px #f0caa3;
 `;
