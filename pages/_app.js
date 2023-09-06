@@ -137,17 +137,16 @@ export default function App({ Component, pageProps }) {
 
   function handleLogout() {
     setLoggedIn(null);
-
-    console.log("Logout-Button geklickt");
-    setLoggedIn(null);
-    console.log("loggedIn Zustand nach Logout:", loggedIn);
+    router.push("/");
   }
 
   return (
     <>
       <GlobalStyle />
       <ToastContainer />
-      {loggedIn && <LogoutButton />}
+      {loggedIn && (
+        <LogoutButton loggedIn={loggedIn} handleLogout={handleLogout} />
+      )}
       <Component
         {...pageProps}
         handleAddCat={handleAddCat}

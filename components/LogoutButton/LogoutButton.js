@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export default function LogoutButton({ loggedIn, handleLogout }) {
-  console.log("User:", loggedIn);
   return (
     <>
       <StyledGreetingContainer>
@@ -24,11 +23,10 @@ const StyledGreetingContainer = styled.div`
   position: fixed;
   top: 10px;
   left: 10px;
-  font-size: 12px;
-  color: white;
 `;
 const StyledGreeting = styled.span`
-  font-size: 12px;
+  font-size: 15px;
+  color: white;
 `;
 
 const StyledLogoutButton = styled.button`
