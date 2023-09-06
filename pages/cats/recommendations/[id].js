@@ -2,7 +2,7 @@ import FoodCard from "@/components/FoodCard/FoodCard";
 import Tabs from "@/components/Tabs/Tabs";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { styled } from "styled-components";
+import styled from "styled-components";
 
 export default function RecommendPage({
   catFoods,
@@ -23,8 +23,6 @@ export default function RecommendPage({
   function filteredBadFoodBasedOnHealthIssues(catFoods, cat) {
     return catFoods.filter((food) => forbiddenFoodForCat(food, cat));
   }
-
-  console.log("recommend cat", cat);
 
   const getRecommendedFood = filteredGoodFoodBasedOnHealthIssues(catFoods, cat);
   const getNotRecommendedFood = filteredBadFoodBasedOnHealthIssues(

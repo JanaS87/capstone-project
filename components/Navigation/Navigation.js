@@ -9,13 +9,13 @@ import { useRouter } from "next/router";
 
 export default function Navigation() {
   const router = useRouter();
-  const isCatOverview = router.pathname === "/";
+  const isCatOverview = router.pathname === "/overview";
   const isFoodSearch = router.pathname === "/foodsearch";
 
   return (
     <>
       <StyledContainer>
-        <StyledLink href={"/"}>
+        <StyledLink href={"/overview"}>
           <StyledNavItem>
             <FontAwesomeIcon
               icon={faCat}

@@ -9,14 +9,6 @@ export default function Tabs({ id }) {
   const isCatDetailPage = router.asPath === `/cats/${id}`;
   const isRecommendPage = router.asPath === `/cats/recommendations/${id}`;
 
-  console.log("id:", id);
-  console.log("router.asPath:", router.asPath);
-  console.log("router.query.id:", router.query.id);
-  console.log("router.pathname:", router.pathname);
-
-  console.log("isCatDetailPage:", isCatDetailPage);
-  console.log("isRecommendPage:", isRecommendPage);
-
   return (
     <>
       <StyledContainer>

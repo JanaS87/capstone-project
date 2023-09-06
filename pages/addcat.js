@@ -2,14 +2,14 @@ import React, { useState } from "react";
 import NewCatForm from "../components/NewCatForm/NewCatForm";
 import { cats } from "@/data/catdata";
 import Link from "next/link";
-import { styled } from "styled-components";
+import styled from "styled-components";
 
 export default function NewCatPage({ handleAddCat, forbiddenFoodForCat, cat }) {
   return (
     <>
       <StyledHeading>Add a new cat</StyledHeading>
       <NewCatForm onAddCat={handleAddCat} />
-      <StyledLink href={"/"}>Back</StyledLink>
+      <StyledLink href={"/overview"}>Back</StyledLink>
     </>
   );
 }

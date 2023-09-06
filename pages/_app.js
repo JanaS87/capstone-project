@@ -7,6 +7,8 @@ import { useRouter } from "next/router";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
+import LogoutButton from "@/components/LogoutButton/LogoutButton";
+import Login from "@/components/Login/Login";
 
 export default function App({ Component, pageProps }) {
   const router = useRouter();
@@ -22,8 +24,9 @@ export default function App({ Component, pageProps }) {
   const [isEditingGoodCat, setIsEditingGoodCat] = useState(false);
   const [isEditingBadCat, setIsEditingBadCat] = useState(false);
 
+  const [loggedIn, setLoggedIn] = useLocalStorageState("loggedIn");
+
   const cat = catList.find((cat) => cat.id.toString() === id);
-  console.log("cat", cat);
 
   function handleAddCat(newCat) {
     // update catList with new cat
@@ -47,12 +50,14 @@ export default function App({ Component, pageProps }) {
 
   // deleting an existing cat
   function handleDeleteCat(deleteCat) {
-    const catsWithoutDeletedCat = cats.filter((cat) => cat.id !== deleteCat.id);
+    const catsWithoutDeletedCat = catList.filter(
+      (cat) => cat.id !== deleteCat.id
+    );
 
     setCatList(catsWithoutDeletedCat);
 
     toast.success("Cat successfully removed!");
-    router.push("/");
+    router.push("/overview");
   }
 
   // update food
@@ -130,10 +135,18 @@ export default function App({ Component, pageProps }) {
     Diabetes: ["sugar", "carbohydrates"],
   };
 
+  function handleLogout() {
+    setLoggedIn(null);
+    router.push("/");
+  }
+
   return (
     <>
       <GlobalStyle />
       <ToastContainer />
+      {loggedIn && (
+        <LogoutButton loggedIn={loggedIn} handleLogout={handleLogout} />
+      )}
       <Component
         {...pageProps}
         handleAddCat={handleAddCat}
@@ -156,6 +169,9 @@ export default function App({ Component, pageProps }) {
         setIsEditingBadCat={setIsEditingBadCat}
         forbiddenFoodForCat={forbiddenFoodForCat}
         cat={cat}
+        loggedIn={loggedIn}
+        setLoggedIn={setLoggedIn}
+        handleLogout={handleLogout}
       />
     </>
   );

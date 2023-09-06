@@ -21,7 +21,7 @@ export default function UpdateCat({
     return (
       <>
         <p>Cat not found</p>
-        <StyledLink href={"/"}>Back</StyledLink>
+        <StyledLink href={"/overview"}>Back</StyledLink>
       </>
     );
   }

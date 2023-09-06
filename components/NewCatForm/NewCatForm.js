@@ -40,7 +40,6 @@ export default function NewCatForm({ onAddCat }) {
   // // any cat food is selected
   function handleGoodFoodChange(selectedOption) {
     setSelectedGoodFood(selectedOption);
-    console.log(selectedGoodFood);
   }
 
   function handleBadFoodChange(selectedOption) {
@@ -132,16 +131,12 @@ export default function NewCatForm({ onAddCat }) {
       },
     };
 
-    console.log("onAddCat type:", typeof onAddCat);
-
     // add new cat to the list
     onAddCat(newCat);
 
-    console.log(newCat);
-
     event.target.reset();
 
-    router.push("/");
+    router.push("/overview");
   }
 
   return (

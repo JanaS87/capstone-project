@@ -1,5 +1,5 @@
 import CatCard from "../CatCard/CatCard.js";
-import { styled } from "styled-components";
+import styled from "styled-components";
 
 export default function CatList({ catList }) {
   return (
