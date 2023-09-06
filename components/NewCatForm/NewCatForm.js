@@ -15,7 +15,7 @@ const diseases = [
   "Diabetes",
 ];
 
-const intolerances = ["Grains", "Lactose", "Artifical Additives", "Beef"];
+const intolerances = ["Grains", "Lactose", "Artifical Additives", "Fish"];
 
 export default function NewCatForm({ onAddCat }) {
   const router = useRouter();
