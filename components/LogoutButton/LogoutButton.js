@@ -8,7 +8,7 @@ export default function LogoutButton({ loggedIn, handleLogout }) {
         <StyledGreeting>Hello, {loggedIn}!</StyledGreeting>
       </StyledGreetingContainer>
       <StyledContainer>
-        <button onClick={handleLogout}>Logout</button>
+        <StyledLogoutButton onClick={handleLogout}>Logout</StyledLogoutButton>
       </StyledContainer>
     </>
   );
@@ -29,4 +29,10 @@ const StyledGreetingContainer = styled.div`
 `;
 const StyledGreeting = styled.span`
   font-size: 12px;
+`;
+
+const StyledLogoutButton = styled.button`
+  text-align: center;
+  background-color: #f0caa3;
+  color: #413f42;
 `;
