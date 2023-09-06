@@ -7,6 +7,8 @@ import { useRouter } from "next/router";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
+import LogoutButton from "@/components/LogoutButton/LogoutButton";
+import Login from "@/components/Login/Login";
 
 export default function App({ Component, pageProps }) {
   const router = useRouter();
@@ -21,6 +23,8 @@ export default function App({ Component, pageProps }) {
   const [searchTerm, setSearchTerm] = useState("");
   const [isEditingGoodCat, setIsEditingGoodCat] = useState(false);
   const [isEditingBadCat, setIsEditingBadCat] = useState(false);
+
+  const [loggedIn, setLoggedIn] = useLocalStorageState("loggedIn");
 
   const cat = catList.find((cat) => cat.id.toString() === id);
 
@@ -131,10 +135,19 @@ export default function App({ Component, pageProps }) {
     Diabetes: ["sugar", "carbohydrates"],
   };
 
+  function handleLogout() {
+    setLoggedIn(null);
+
+    console.log("Logout-Button geklickt");
+    setLoggedIn(null);
+    console.log("loggedIn Zustand nach Logout:", loggedIn);
+  }
+
   return (
     <>
       <GlobalStyle />
       <ToastContainer />
+      {loggedIn && <LogoutButton />}
       <Component
         {...pageProps}
         handleAddCat={handleAddCat}
@@ -157,6 +170,9 @@ export default function App({ Component, pageProps }) {
         setIsEditingBadCat={setIsEditingBadCat}
         forbiddenFoodForCat={forbiddenFoodForCat}
         cat={cat}
+        loggedIn={loggedIn}
+        setLoggedIn={setLoggedIn}
+        handleLogout={handleLogout}
       />
     </>
   );

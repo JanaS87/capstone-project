@@ -1,11 +1,11 @@
 import Login from "@/components/Login/Login";
 import styled from "styled-components";
 
-export default function LoginPage() {
+export default function LoginPage({ loggedIn, setLoggedIn }) {
   return (
     <>
       <StyledLoginBackground>
-        <Login />
+        <Login loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
       </StyledLoginBackground>
     </>
   );

@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import styled from "styled-components";
 
-export default function Login() {
+export default function Login({ loggedIn, setLoggedIn }) {
   const [credentials, setCredentials] = useState({
     username: "",
     password: "",
@@ -12,13 +12,14 @@ export default function Login() {
   function handleLogin(event) {
     event.preventDefault();
 
-    const fakeUsername = "User";
+    const fakeUsername = "Jana";
     const fakePassword = "Test123";
 
     if (
       credentials.username === fakeUsername &&
       credentials.password === fakePassword
     ) {
+      setLoggedIn(credentials.username);
       router.push("/overview");
     } else {
       alert("Wrong username or password!");
@@ -36,7 +37,7 @@ export default function Login() {
           <StyledInput
             type="text"
             id="username"
-            placeholder="User"
+            placeholder="Jana"
             value={credentials.username}
             onChange={(event) =>
               setCredentials({ ...credentials, username: event.target.value })
