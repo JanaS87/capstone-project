@@ -103,13 +103,25 @@ export default function App({ Component, pageProps }) {
     setCatList(updatedCatList);
   }
 
+  // refactoring this function to its full functionality! (with needed help from the internet like chatGPT and a developer friend)
+
   function forbiddenFoodForCat(food, cat) {
-    const catAllergy = food.ingredients.some((ingredient) =>
-      cat?.health.allergies.includes(ingredient.toLowerCase())
-    );
-    const catIntolerance = food.ingredients.some((ingredient) =>
-      cat?.health.intolerances.includes(ingredient.toLowerCase())
-    );
+    const catAllergy = food.ingredients.some((ingredient) => {
+      return cat?.health.allergies.some((allergy) => {
+        return ingredient
+          .toLowerCase()
+          .split(" ")
+          .includes(allergy.toLowerCase());
+      });
+    });
+    const catIntolerance = food.ingredients.some((ingredient) => {
+      return cat?.health.intolerances.some((intolerance) => {
+        return ingredient
+          .toLowerCase()
+          .split(" ")
+          .includes(intolerance.toLowerCase());
+      });
+    });
     const catDisease = cat?.health.diseases.some((disease) =>
       food.analyticalConstituents.some((constituent) => {
         const constituentName = constituent
@@ -120,6 +132,10 @@ export default function App({ Component, pageProps }) {
         return badIngredientsForCatDisease[disease].includes(constituentName);
       })
     );
+    console.log("inhaltsstoffe futter: ", food.ingredients);
+    console.log("Katzenallergie: ", cat?.health.allergies);
+    console.log("Katzenintolleranz: ", cat?.health.intolerances);
+
     return catAllergy || catIntolerance || catDisease;
   }
 
