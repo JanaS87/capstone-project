@@ -24,3 +24,7 @@ When important appointments, for example, at the vet are pending, these can be e
 *Database connection via cloud by means of a server*:
 
 Each user gets their own login data for their very own profile. So they can be sure that no one else can access their cat data.
+
+------
+
+*Please enjoy my app in iPhone XR- view. Thank you 😺*
