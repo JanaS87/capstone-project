@@ -15,21 +15,6 @@ export default createGlobalStyle`
 
 }
 
-// Amaranth- Font in italic for the login
-@font-face {
-  font-family: 'Amaranth';
-  src: url("/fonts/Amaranth-italic.ttf") format('truetype');
-  font-weight: normal;
-  font-style: italic;
-}
-
-// Dancing Script - Font in normal for the login
-@font-face {
-  font-family: 'Dancing Script';
-  src: url("/fonts/DancingScript-VariableFont_wght.ttf") format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
 // every image created with playground.AI
 
   html, body, #__next {
