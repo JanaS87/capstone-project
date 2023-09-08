@@ -139,7 +139,7 @@ const StyledButton = styled.button`
 `;
 
 const StyledH1 = styled.h1`
-  font-family: "DancingScript", sans-serif;
+  font-family: "DancingScript", cursive;
   font-size: 4rem;
   text-align: center;
   margin-bottom: 0;

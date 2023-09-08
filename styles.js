@@ -26,7 +26,7 @@ export default createGlobalStyle`
   font-family: "DancingSparkles";
   src: url("fonts/DancingScript-VariableFont_wght.ttf");
   font-weight: 400;
-  font-style: regular;
+  font-style: normal;
 }
 
 
@@ -44,8 +44,6 @@ export default createGlobalStyle`
     background-color: #D9D9D9;
     background-attachment: fixed;
   }
-
-
 
   input[type="number"]::-webkit-inner-spin-button,
   input[type="number"]::-webkit-outer-spin-button {
