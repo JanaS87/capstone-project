@@ -37,7 +37,6 @@ export default function Login({ loggedIn, setLoggedIn }) {
           <StyledInput
             type="text"
             id="username"
-            placeholder="Jana"
             value={credentials.username}
             onChange={(event) =>
               setCredentials({ ...credentials, username: event.target.value })
@@ -50,7 +49,6 @@ export default function Login({ loggedIn, setLoggedIn }) {
           <StyledInput
             type="password"
             id="password"
-            placeholder="Test123"
             value={credentials.password}
             onChange={(event) =>
               setCredentials({ ...credentials, password: event.target.value })

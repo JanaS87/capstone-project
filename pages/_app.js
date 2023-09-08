@@ -132,9 +132,6 @@ export default function App({ Component, pageProps }) {
         return badIngredientsForCatDisease[disease].includes(constituentName);
       })
     );
-    console.log("inhaltsstoffe futter: ", food.ingredients);
-    console.log("Katzenallergie: ", cat?.health.allergies);
-    console.log("Katzenintolleranz: ", cat?.health.intolerances);
 
     return catAllergy || catIntolerance || catDisease;
   }
