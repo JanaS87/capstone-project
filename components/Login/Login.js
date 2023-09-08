@@ -139,7 +139,7 @@ const StyledButton = styled.button`
 `;
 
 const StyledH1 = styled.h1`
-  font-family: "Dancing Script", Geneva, Verdana, sans-serif;
+  font-family: "DancingScript", cursive;
   font-size: 4rem;
   text-align: center;
   margin-bottom: 0;
@@ -149,7 +149,7 @@ const StyledH1 = styled.h1`
 `;
 
 const StyledH2 = styled.h2`
-  font-family: "Amaranth", italic;
+  font-family: "Amaranth", sans-serif;
   margin-top: 0;
   font-size: 2rem;
   margin-right: 0.82em;

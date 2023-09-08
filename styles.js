@@ -15,6 +15,20 @@ export default createGlobalStyle`
 
 }
 
+@font-face {
+  font-family: "Amaranth";
+  src: url("/fonts/Amaranth-Italic.ttf");
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "DancingSparkles";
+  src: url("fonts/DancingScript-VariableFont_wght.ttf");
+  font-weight: 400;
+  font-style: normal;
+}
+
 
 // every image created with playground.AI
 
@@ -30,8 +44,6 @@ export default createGlobalStyle`
     background-color: #D9D9D9;
     background-attachment: fixed;
   }
-
-
 
   input[type="number"]::-webkit-inner-spin-button,
   input[type="number"]::-webkit-outer-spin-button {
