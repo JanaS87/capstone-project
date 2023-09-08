@@ -15,6 +15,12 @@ export default createGlobalStyle`
 
 }
 
+@font-face {
+  font-family: 'Amaranth';
+  src: url("/fonts/Amaranth.ttf") format('truetype');
+  font-weight: normal;
+  font-style: italic;
+}
 
 // every image created with playground.AI
 
