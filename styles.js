@@ -15,6 +15,21 @@ export default createGlobalStyle`
 
 }
 
+@font-face {
+  font-family: "Amaranth";
+  src: url("/fonts/Amaranth-Italic.ttf");
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "DancingSparkles";
+  src: url("fonts/DancingScript-VariableFont_wght.ttf");
+  font-weight: 400;
+  font-style: regular;
+}
+
+
 // every image created with playground.AI
 
   html, body, #__next {
