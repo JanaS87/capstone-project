@@ -23,7 +23,7 @@ export default createGlobalStyle`
 }
 
 @font-face {
-  font-family: "DancingSparkles";
+  font-family: "DancingScript";
   src: url("fonts/DancingScript-VariableFont_wght.ttf");
   font-weight: 400;
   font-style: normal;
