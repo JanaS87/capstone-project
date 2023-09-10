@@ -1,6 +1,7 @@
 ## Hello everyone and welcome to my capstone project:
 
-# CAPP - Your cat food app
+![Capp_1](https://github.com/JanaS87/capstone-project/assets/136725332/a2795d3e-4973-4cd8-a7cf-5eded7fc6a69)
+
 
 ## What is my app about?
 
@@ -11,6 +12,13 @@ With **CAPP** you have all your cats at a glance. You can use the cat food searc
 In the profiles of your cats you can see the age, if your cat has intolerances, diseases or allergies, which food had a high acceptance and which had a low acceptance.
 Based on the health informations, you will also get cat food recommendations that your cat can try.
 
+![Capp_2](https://github.com/JanaS87/capstone-project/assets/136725332/2257a3cc-99dd-4fe3-9dec-72a43bcfe298)
+
+![Capp3](https://github.com/JanaS87/capstone-project/assets/136725332/ace23b61-54f7-4ff9-8978-d9954772c16b)
+
+## You can try out my app here: [CAPP](http://project-capp.de/) *(username: Jana / password: Test123)*
+
+*Please enjoy my app in iPhone XR- view. Thank you 😺*
 ------
 
 ### Future plans include the following:
@@ -27,4 +35,4 @@ Each user gets their own login data for their very own profile. So they can be s
 
 ------
 
-*Please enjoy my app in iPhone XR- view. Thank you 😺*
+
